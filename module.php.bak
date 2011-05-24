@@ -18,7 +18,7 @@ define('AT_ADMIN_PRIV_HELLO_WORLD', $this->getAdminPrivilege());
 /*******
  * create a side menu box/stack.
  */
-$this->_stacks['hello_world'] = array('title_var'=>'he', 'file'=>'mods/hello_world/side_menu.inc.php');
+$this->_stacks['hello_world'] = array('title_var'=>'hello_world', 'file'=>'mods/hello_world/side_menu.inc.php');
 // ** possible alternative: **
 // $this->addStack('hello_world', array('title_var' => 'hello_world', 'file' => './side_menu.inc.php');
 

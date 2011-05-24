@@ -4,7 +4,7 @@ require (AT_INCLUDE_PATH.'vitals.inc.php');
 authenticate(AT_PRIV_HELLO_WORLD);
 require (AT_INCLUDE_PATH.'header.inc.php');
 ?>
-<form name="search" method="post" action="">
+<form name="search" method="get" action="mods/hello_world/result.php">
 <table>
 	<tr>
     	<td>
@@ -24,9 +24,4 @@ require (AT_INCLUDE_PATH.'header.inc.php');
 </form>
 <?php
 
-if( isset($_POST['q']) )
-{
-		echo $_POST['q'];
-		$_POST['q']='';
-}
 require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
