@@ -1,7 +1,7 @@
 <?php
 define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
-$_custom_css = $_base_path . 'mods/hello_world/module.css'; // use a custom stylesheet
+$_custom_css = $_base_path . 'mods/ol_search_open_learn/module.css'; // use a custom stylesheet
 require (AT_INCLUDE_PATH.'header.inc.php');
 ?>
 

@@ -14,7 +14,7 @@ function hello_world_delete($course) {
 	mysql_query($sql, $db);
 
 	// delete hello_world course files
-	$path = AT_CONTENT_DIR .'hello_world/' . $course .'/';
+	$path = AT_CONTENT_DIR .'ol_search_open_learn/' . $course .'/';
 	clr_dir($path);
 }
 

@@ -2,12 +2,12 @@
 /* start output buffering: */
 ob_start(); ?>
 
-hello world
+Search OpenLearn
 
 <?php
 $savant->assign('dropdown_contents', ob_get_contents());
 ob_end_clean();
 
-$savant->assign('title', _AT('hello_world')); // the box title
+$savant->assign('title', _AT('ol_search_open_learn')); // the box title
 $savant->display('include/box.tmpl.php');
 ?>

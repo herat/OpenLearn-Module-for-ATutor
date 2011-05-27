@@ -4,7 +4,7 @@ require (AT_INCLUDE_PATH.'vitals.inc.php');
 authenticate(AT_PRIV_HELLO_WORLD);
 require (AT_INCLUDE_PATH.'header.inc.php');
 ?>
-<form name="search" method="get" action="mods/hello_world/result.php">
+<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php">
 <table>
 	<tr>
     	<td>

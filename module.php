@@ -18,7 +18,7 @@ define('AT_ADMIN_PRIV_HELLO_WORLD', $this->getAdminPrivilege());
 /*******
  * create a side menu box/stack.
  */
-$this->_stacks['hello_world'] = array('title_var'=>'he', 'file'=>'mods/hello_world/side_menu.inc.php');
+$this->_stacks['ol_search_open_learn'] = array('title_var'=>'ol_search_open_learn', 'file'=>'mods/ol_search_open_learn/side_menu.inc.php');
 // ** possible alternative: **
 // $this->addStack('hello_world', array('title_var' => 'hello_world', 'file' => './side_menu.inc.php');
 
@@ -36,30 +36,30 @@ $this->_stacks['hello_world'] = array('title_var'=>'he', 'file'=>'mods/hello_wor
 
 // ** possible alternative: **
 // the text to display on module "detail view" when sublinks are not available
-$this->_pages['mods/hello_world/index.php']['text']      = _AT('hello_world_text');
+$this->_pages['mods/ol_search_open_learn/index.php']['text']      = _AT('ol_search_open_learn_text');
 
 /*******
  * if this module is to be made available to students on the Home or Main Navigation.
  */
-$_group_tool = $_student_tool = 'mods/hello_world/index.php';
+$_group_tool = $_student_tool = 'mods/ol_search_open_learn/index.php';
 
 /*******
  * add the admin pages when needed.
  */
 if (admin_authenticate(AT_ADMIN_PRIV_HELLO_WORLD, TRUE) || admin_authenticate(AT_ADMIN_PRIV_ADMIN, TRUE)) {
-	$this->_pages[AT_NAV_ADMIN] = array('mods/hello_world/index_admin.php');
-	$this->_pages['mods/hello_world/index_admin.php']['title_var'] = 'hello_world';
-	$this->_pages['mods/hello_world/index_admin.php']['parent']    = AT_NAV_ADMIN;
+	$this->_pages[AT_NAV_ADMIN] = array('mods/ol_search_open_learn/index_admin.php');
+	$this->_pages['mods/ol_search_open_learn/index_admin.php']['title_var'] = 'ol_search_open_learn';
+	$this->_pages['mods/ol_search_open_learn/index_admin.php']['parent']    = AT_NAV_ADMIN;
 }
 
 /*******
  * instructor Manage section:
  */
-$this->_pages['mods/hello_world/index_instructor.php']['title_var'] = 'search_results';
-$this->_pages['mods/hello_world/index_instructor.php']['parent']   = 'tools/index.php';
+$this->_pages['mods/ol_search_open_learn/index_instructor.php']['title_var'] = 'ol_search_open_learn';
+$this->_pages['mods/ol_search_open_learn/index_instructor.php']['parent']   = 'tools/index.php';
 
-$this->_pages['mods/hello_world/result_instructor.php']['title_var'] = 'hello_world';
-$this->_pages['mods/hello_world/result_instructor.php']['parent']   = 'tools/index.php';
+$this->_pages['mods/ol_search_open_learn/result_instructor.php']['title_var'] = 'search_results';
+$this->_pages['mods/ol_search_open_learn/result_instructor.php']['parent']   = 'tools/index.php';
 
 // ** possible alternative: **
 // $this->pages['./index_instructor.php']['title_var'] = 'hello_world';
@@ -68,21 +68,21 @@ $this->_pages['mods/hello_world/result_instructor.php']['parent']   = 'tools/ind
 /*******
  * student page.
  */
-$this->_pages['mods/hello_world/index.php']['title_var'] = 'hello_world';
-$this->_pages['mods/hello_world/index.php']['img']       = 'mods/hello_world/hello_world.jpg';
+$this->_pages['mods/ol_search_open_learn/index.php']['title_var'] = 'ol_search_open_learn';
+$this->_pages['mods/ol_search_open_learn/index.php']['img']       = 'mods/ol_search_open_learn/hello_world.jpg';
 
-/* public pages */
-/*$this->_pages[AT_NAV_PUBLIC] = array('mods/hello_world/index_public.php');
-$this->_pages['mods/hello_world/index_public.php']['title_var'] = 'hello_world';
+/* public pages 
+$this->_pages[AT_NAV_PUBLIC] = array('mods/hello_world/index_public.php');
+$this->_pages['mods/hello_world/index_public.php']['title_var'] = 'ol_search_open_learn';
 $this->_pages['mods/hello_world/index_public.php']['parent'] = AT_NAV_PUBLIC;*/
 
 /* my start page pages */
-$this->_pages[AT_NAV_START]  = array('mods/hello_world/index_mystart.php');
-$this->_pages['mods/hello_world/index_mystart.php']['title_var'] = 'hello_world';
-$this->_pages['mods/hello_world/index_mystart.php']['parent'] = AT_NAV_START;
+$this->_pages[AT_NAV_START]  = array('mods/ol_search_open_learn/index_mystart.php');
+$this->_pages['mods/ol_search_open_learn/index_mystart.php']['title_var'] = 'ol_search_open_learn';
+$this->_pages['mods/ol_search_open_learn/index_mystart.php']['parent'] = AT_NAV_START;
 
-$this->_pages['mods/hello_world/result_gen.php']['title_var'] = 'Search Results';
-$this->_pages['mods/hello_world/result_gen.php']['parent'] = AT_NAV_START;
+$this->_pages['mods/ol_search_open_learn/result_gen.php']['title_var'] = 'search_results';
+$this->_pages['mods/ol_search_open_learn/result_gen.php']['parent'] = AT_NAV_START;
 
 
 /*******
@@ -96,13 +96,13 @@ $this->_pages['mods/hello_world/result_gen.php']['parent'] = AT_NAV_START;
  * js = reference to the script that provides the tool's functionality
  */
 
-$this->_content_tools[] = array("id"=>"helloworld_tool", 
+$this->_content_tools[] = array("id"=>"ol_search_open_learn_tool", 
                                 "class"=>"fl-col clickable", 
-                                "src"=>AT_BASE_HREF."mods/hello_world/hello_world.jpg",
-                                "title"=>_AT('hello_world_tool'),
-                                "alt"=>_AT('hello_world_tool'),
-                                "text"=>_AT('hello_world'), 
-                                "js"=>AT_BASE_HREF."mods/hello_world/content_tool_action.js");
+                                "src"=>AT_BASE_HREF."mods/ol_search_open_learn/hello_world.jpg",
+                                "title"=>_AT('ol_search_open_learn_tool'),
+                                "alt"=>_AT('ol_search_open_learn_tool'),
+                                "text"=>_AT('ol_search_open_learn'), 
+                                "js"=>AT_BASE_HREF."mods/ol_search_open_learn/content_tool_action.js");
 
 /*******
  * Register the entry of the callback class. Make sure the class name is properly namespaced, 
@@ -110,9 +110,9 @@ $this->_content_tools[] = array("id"=>"helloworld_tool",
  * This class must be defined in "ModuleCallbacks.class.php".
  * This class is an API that contains the static methods to act on core functions.
  */
-$this->_callbacks['hello_world'] = 'HelloWorldCallbacks';
+$this->_callbacks['ol_search_open_learn'] = 'HelloWorldCallbacks';
 
 function hello_world_get_group_url($group_id) {
-	return 'mods/hello_world/index.php';
+	return 'mods/ol_search_open_learn/index.php';
 }
 ?>

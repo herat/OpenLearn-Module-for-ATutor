@@ -37,7 +37,7 @@ $_cron_interval    = 35; // run every 30 minutes
  * the following code is used for creating a module-specific directory.
  * it generates appropriate error messages to aid in its creation.
  */
-$directory = AT_CONTENT_DIR .'hello_world';
+$directory = AT_CONTENT_DIR .'ol_search_open_learn';
 
 // check if the directory is writeable
 if (!is_dir($directory) && !@mkdir($directory)) {

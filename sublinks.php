@@ -22,7 +22,7 @@ if (mysql_num_rows($result) > 0) {
 		* SUBLINK_TEXT_LEN, VALIDATE_LENGTH_FOR_DISPLAY are defined in include/lib/constance.lib.inc
 		* SUBLINK_TEXT_LEN determins the maxium length of the string to be displayed on "detail view" box.
 		*****/
-		$list[] = '<a href="'.AT_BASE_HREF.url_rewrite('mods/hello_world/index.php?id='. $row['hello_world_id']).'"'.
+		$list[] = '<a href="'.AT_BASE_HREF.url_rewrite('mods/ol_search_open_learn/index.php?id='. $row['hello_world_id']).'"'.
 		          (strlen($row['value']) > SUBLINK_TEXT_LEN ? ' title="'.$row['value'].'"' : '') .'>'. 
 		          validate_length($row['value'], SUBLINK_TEXT_LEN, VALIDATE_LENGTH_FOR_DISPLAY) .'</a>';
 	}
