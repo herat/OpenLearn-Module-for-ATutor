@@ -118,7 +118,7 @@ class Parser {
 			$index = 1;
             foreach ( $members as $member) {
 				
-                $qry='INSERT INTO at_hello_world VALUES ('.$index.',"'.$member['identifier'].'","'.
+                $qry='INSERT INTO '.TABLE_PREFIX.'hello_world VALUES ('.$index.',"'.$member['identifier'].'","'.
 				$member['datestamp'].'","'.$member['catalog'].'","'.$member['entry'].'","'.
 				$member['title'].'","'.$member['description'].'","'.$member['keywords'].'","'.
 				$member['website'].'","'.$member['common'].'","'.$member['package'].'")';
