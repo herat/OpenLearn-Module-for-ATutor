@@ -9,22 +9,19 @@ require ('search.class.php');
 $obj = new Search();
 ?>	
 <?php 
-		$rows = $obj->getSearchResult($_GET['q']);
-		//echo count($rows)."<br/>";
-		if( is_array($rows) && count($rows) > 0)
-		{
-			$i=1;
-			foreach( $rows as $row )
-			{
-				echo $i.". <b>".$row['title']."</b><br/>";
-				echo $row['description']."<br/>";
-				$i++;
-			}
-		}
-		else
-		{
-			echo "No results found... for  <b>". $_GET['q'] ."</b><br/>";
-		}
+$rows = $obj->getSearchResult($_GET['q']);
+//echo count($rows)."<br/>";
+if( is_array($rows) && count($rows) > 0) {
+    $i=1;
+    foreach( $rows as $row ) {
+        echo $i.". <b>".$row['title']."</b><br/>";
+        echo $row['description']."<br/>";
+        $i++;
+    }
+}
+else {
+    echo "No results found... for  <b>". $_GET['q'] ."</b><br/>";
+}
 ?>
 <?php
 require (AT_INCLUDE_PATH.'footer.inc.php'); ?>

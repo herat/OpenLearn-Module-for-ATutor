@@ -5,7 +5,7 @@ authenticate(AT_PRIV_HELLO_WORLD);
 require (AT_INCLUDE_PATH.'header.inc.php');
 ?>	
 <?php 
-		echo $_GET['q'];
+echo $_GET['q'];
 ?>
 <?php
 require (AT_INCLUDE_PATH.'footer.inc.php'); ?>

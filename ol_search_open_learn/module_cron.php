@@ -5,9 +5,9 @@
  */
 
 function hello_world_cron() {
-	global $db;
+    global $db;
 
-	debug('yay i am running!');
+    debug('yay i am running!');
 }
 
 ?>

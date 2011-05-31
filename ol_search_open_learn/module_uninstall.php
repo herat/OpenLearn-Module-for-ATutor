@@ -8,7 +8,9 @@
  * a web browser. It will only execute if required from within an ATutor script,
  * in our case the Module::uninstall() method.
  */
-if (!defined('AT_INCLUDE_PATH')) { exit; }
+if (!defined('AT_INCLUDE_PATH')) {
+    exit;
+}
 
 /********
  * the following code is used for removing a module-specific directory created in module_install.php.
@@ -18,10 +20,10 @@ $directory = AT_CONTENT_DIR .'ol_search_open_learn';
 
 // check if the directory exists
 if (is_dir($directory)) {
-	require(AT_INCLUDE_PATH.'../mods/_core/file_manager/filemanager.inc.php');
+    require(AT_INCLUDE_PATH.'../mods/_core/file_manager/filemanager.inc.php');
 
-	if (!clr_dir($directory))
-		$msg->addError(array('MODULE_UNINSTALL', '<li>'.$directory.' can not be removed. Please manually remove it.</li>'));
+    if (!clr_dir($directory))
+        $msg->addError(array('MODULE_UNINSTALL', '<li>'.$directory.' can not be removed. Please manually remove it.</li>'));
 }
 
 /******
@@ -30,15 +32,15 @@ if (is_dir($directory)) {
  * ie. "create table" statement in module.sql is run as drop according table.
  */
 if (!$msg->containsErrors() && file_exists(dirname(__FILE__) . '/module.sql')) {
-	// deal with the SQL file:
-	require(AT_INCLUDE_PATH . 'classes/sqlutility.class.php');
-	$sqlUtility = new SqlUtility();
+    // deal with the SQL file:
+    require(AT_INCLUDE_PATH . 'classes/sqlutility.class.php');
+    $sqlUtility = new SqlUtility();
 
-	/*
+    /*
 	 * the SQL file could be stored anywhere, and named anything, "module.sql" is simply
 	 * a convention we're using.
-	 */
-	$sqlUtility->revertQueryFromFile(dirname(__FILE__) . '/module.sql', TABLE_PREFIX);
+    */
+    $sqlUtility->revertQueryFromFile(dirname(__FILE__) . '/module.sql', TABLE_PREFIX);
 }
 
 ?>

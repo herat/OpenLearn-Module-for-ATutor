@@ -2,12 +2,16 @@
 /*******
  * doesn't allow this file to be loaded with a browser.
  */
-if (!defined('AT_INCLUDE_PATH')) { exit; }
+if (!defined('AT_INCLUDE_PATH')) {
+    exit;
+}
 
 /******
  * this file must only be included within a Module obj
  */
-if (!isset($this) || (isset($this) && (strtolower(get_class($this)) != 'module'))) { exit(__FILE__ . ' is not a Module'); }
+if (!isset($this) || (isset($this) && (strtolower(get_class($this)) != 'module'))) {
+    exit(__FILE__ . ' is not a Module');
+}
 
 /*******
  * assign the instructor and admin privileges to the constants.
@@ -47,9 +51,9 @@ $_group_tool = $_student_tool = 'mods/ol_search_open_learn/index.php';
  * add the admin pages when needed.
  */
 if (admin_authenticate(AT_ADMIN_PRIV_HELLO_WORLD, TRUE) || admin_authenticate(AT_ADMIN_PRIV_ADMIN, TRUE)) {
-	$this->_pages[AT_NAV_ADMIN] = array('mods/ol_search_open_learn/index_admin.php');
-	$this->_pages['mods/ol_search_open_learn/index_admin.php']['title_var'] = 'ol_search_open_learn';
-	$this->_pages['mods/ol_search_open_learn/index_admin.php']['parent']    = AT_NAV_ADMIN;
+    $this->_pages[AT_NAV_ADMIN] = array('mods/ol_search_open_learn/index_admin.php');
+    $this->_pages['mods/ol_search_open_learn/index_admin.php']['title_var'] = 'ol_search_open_learn';
+    $this->_pages['mods/ol_search_open_learn/index_admin.php']['parent']    = AT_NAV_ADMIN;
 }
 
 /*******
@@ -97,12 +101,12 @@ $this->_pages['mods/ol_search_open_learn/result_gen.php']['parent'] = AT_NAV_STA
  */
 
 $this->_content_tools[] = array("id"=>"ol_search_open_learn_tool", 
-                                "class"=>"fl-col clickable", 
-                                "src"=>AT_BASE_HREF."mods/ol_search_open_learn/hello_world.jpg",
-                                "title"=>_AT('ol_search_open_learn_tool'),
-                                "alt"=>_AT('ol_search_open_learn_tool'),
-                                "text"=>_AT('ol_search_open_learn'), 
-                                "js"=>AT_BASE_HREF."mods/ol_search_open_learn/content_tool_action.js");
+        "class"=>"fl-col clickable",
+        "src"=>AT_BASE_HREF."mods/ol_search_open_learn/hello_world.jpg",
+        "title"=>_AT('ol_search_open_learn_tool'),
+        "alt"=>_AT('ol_search_open_learn_tool'),
+        "text"=>_AT('ol_search_open_learn'),
+        "js"=>AT_BASE_HREF."mods/ol_search_open_learn/content_tool_action.js");
 
 /*******
  * Register the entry of the callback class. Make sure the class name is properly namespaced, 
@@ -113,6 +117,6 @@ $this->_content_tools[] = array("id"=>"ol_search_open_learn_tool",
 $this->_callbacks['ol_search_open_learn'] = 'HelloWorldCallbacks';
 
 function hello_world_get_group_url($group_id) {
-	return 'mods/ol_search_open_learn/index.php';
+    return 'mods/ol_search_open_learn/index.php';
 }
 ?>

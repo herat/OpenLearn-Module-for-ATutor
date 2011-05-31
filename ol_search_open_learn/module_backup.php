@@ -8,11 +8,11 @@ $sql = array();
 $sql['ol_search_open_learn']  = 'SELECT value FROM '.TABLE_PREFIX.'hello_world WHERE course_id=?';
 
 function hello_world_convert($row, $course_id, $table_id_map, $version) {
-	$new_row = array();
-	$new_row[0]  = $course_id;
-	$new_row[1]  = $row[0];
+    $new_row = array();
+    $new_row[0]  = $course_id;
+    $new_row[1]  = $row[0];
 
-	return $new_row;
+    return $new_row;
 }
 
 ?>

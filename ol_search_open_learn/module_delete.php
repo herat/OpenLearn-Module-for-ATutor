@@ -7,15 +7,15 @@
  */
 
 function hello_world_delete($course) {
-	global $db;
+    global $db;
 
-	// delete hello_world course table entries
-	$sql = "DELETE FROM ".TABLE_PREFIX."hello_world WHERE course_id=$course";
-	mysql_query($sql, $db);
+    // delete hello_world course table entries
+    $sql = "DELETE FROM ".TABLE_PREFIX."hello_world WHERE course_id=$course";
+    mysql_query($sql, $db);
 
-	// delete hello_world course files
-	$path = AT_CONTENT_DIR .'ol_search_open_learn/' . $course .'/';
-	clr_dir($path);
+    // delete hello_world course files
+    $path = AT_CONTENT_DIR .'ol_search_open_learn/' . $course .'/';
+    clr_dir($path);
 }
 
 ?>

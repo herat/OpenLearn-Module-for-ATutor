@@ -1,52 +1,45 @@
+
 <?php
 
-class Search
-{
-	function execute($sql)
-	{
-		$sql = trim($sql);
-		$conn=mysql_connect('localhost:3306','root','root');
-		if(!$conn)
-		{	
-			echo ' database connection failed... <br/> ';
-		}
-		mysql_select_db('atutor',$conn);
-		$result = mysql_query($sql, $conn) or die($sql . "<br />". mysql_error());
+class Search {
+    function execute($sql) {
+        $sql = trim($sql);
+        global $db;
+        $result = mysql_query($sql, $db) or die($sql . "<br />". mysql_error());
 
-		// for 'select' SQL, return retrieved rows
-		if (strtolower(substr($sql, 0, 6)) == 'select') 
-		{
-			if (mysql_num_rows($result) > 0) {
-				for($i = 0; $i < mysql_num_rows($result); $i++) 
-				{
-					$rows[] = mysql_fetch_assoc($result);
-				}
-				mysql_free_result($result);
-				return $rows;
-			} else {
-				return false;
-			}
-		}
-		else {
-			return true;
-		}
-	}
+        // for 'select' SQL, return retrieved rows
+        if (strtolower(substr($sql, 0, 6)) == 'select') {
+            if (mysql_num_rows($result) > 0) {
+                for($i = 0; $i < mysql_num_rows($result); $i++) {
+                    $rows[] = mysql_fetch_assoc($result);
+                }
+                mysql_free_result($result);
+                return $rows;
+            } else {
+                return false;
+            }
+        }
+        else {
+            return true;
+        }
+    }
 
-	public function getSearchResult($keywords)
-	{
-		$keywords = trim($keywords);
-		list($sql_where, $sql_order) = $this->getSearchSqlParams($keywords);
-		
-		if ($sql_where <> '') $sql_where = ' AND '. $sql_where;
-				
-		// sql search
-		$sql = "SELECT DISTINCT title, description FROM OL_REPO WHERE title like '%".$keywords."%' OR description like '%".$keywords."%'";
-		if ($sql_where <> '') $sql .= $sql_where;
-		
-		//echo "<br/>".$sql."<br/>";
-		return $this->execute($sql);
-	}
-	
+    public function getSearchResult($keywords) {
+        $keywords = trim($keywords);
+        //list($sql_where, $sql_order) = $this->getSearchSqlParams($keywords);
+
+        //if ($sql_where <> '') $sql_where = ' AND '. $sql_where;
+		//define('AT_INCLUDE_PATH', '../../include/');
+		//require (AT_INCLUDE_PATH.'vitals.inc.php');
+        // sql search
+        $sql = "SELECT DISTINCT title, description FROM ".TABLE_PREFIX."hello_world WHERE title like '%"
+		.$keywords."%' OR description like '%".$keywords."%'";
+        //if ($sql_where <> '') $sql .= $sql_where;
+
+        //echo "<br/>".$sql."<br/>";
+        return $this->execute($sql);
+    }
+    /*
 	private function getSearchSqlParams($all_keywords)
 	{
 		if (!is_array($all_keywords) || count($all_keywords) == 0) return array();
@@ -119,7 +112,7 @@ class Search
 		
 		return array($sql_where, $sql_order);
 	}
-
+    */
 }
 
 ?>

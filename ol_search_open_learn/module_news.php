@@ -5,14 +5,14 @@
 */
 
 function helloworld_news() {
-	global $db;
-	$sql = "SELECT something FROM a table WHERE date < NOW() LIMIT 3";
-	if ($result = mysql_query($sql, $db)) {
-		while($row = mysql_fetch_assoc($result)){
-			$news[] = $row['something'];
-		}
-	}
-	return $news;
+    global $db;
+    $sql = "SELECT something FROM a table WHERE date < NOW() LIMIT 3";
+    if ($result = mysql_query($sql, $db)) {
+        while($row = mysql_fetch_assoc($result)) {
+            $news[] = $row['something'];
+        }
+    }
+    return $news;
 }
 
 ?>
