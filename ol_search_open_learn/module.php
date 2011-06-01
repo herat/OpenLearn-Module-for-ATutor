@@ -52,8 +52,13 @@ $_group_tool = $_student_tool = 'mods/ol_search_open_learn/index.php';
  */
 if (admin_authenticate(AT_ADMIN_PRIV_HELLO_WORLD, TRUE) || admin_authenticate(AT_ADMIN_PRIV_ADMIN, TRUE)) {
     $this->_pages[AT_NAV_ADMIN] = array('mods/ol_search_open_learn/index_admin.php');
+	
+	
     $this->_pages['mods/ol_search_open_learn/index_admin.php']['title_var'] = 'ol_search_open_learn';
     $this->_pages['mods/ol_search_open_learn/index_admin.php']['parent']    = AT_NAV_ADMIN;
+
+	$this->_pages['mods/ol_search_open_learn/change_admin.php']['title_var'] = 'update_param';
+    $this->_pages['mods/ol_search_open_learn/change_admin.php']['parent']    = AT_NAV_ADMIN;
 }
 
 /*******
