@@ -32,7 +32,7 @@ class Search {
         //if ($sql_where <> '') $sql_where = ' AND '. $sql_where;
 
         $sql = "SELECT DISTINCT *
-		          FROM ".TABLE_PREFIX."hello_world
+		          FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN
 		         WHERE ";
         if ($sql_where <> '') $sql .= $sql_where;
 

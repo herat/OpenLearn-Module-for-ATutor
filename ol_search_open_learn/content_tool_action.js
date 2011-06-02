@@ -12,16 +12,16 @@
 
 ATutor = ATutor || {};
 ATutor.mods = ATutor.mods || {};
-ATutor.mods.hello_world = ATutor.mods.hello_world || {};
+ATutor.mods.ol_search_open_learn = ATutor.mods.ol_search_open_learn || {};
 
 (function () {
-    var helloWorldOnClick = function () {
+    var olsearchopenlearnOnClick = function () {
     	alert("Clicked on hello world tool icon!");
     }
     
 	//set up click handlers and show/hide appropriate tools
     var initialize = function () {
-        jQuery("#helloworld_tool").click(helloWorldOnClick);
+        jQuery("#helloworld_tool").click(olsearchopenlearnOnClick);
     };
     
     jQuery(document).ready(initialize);

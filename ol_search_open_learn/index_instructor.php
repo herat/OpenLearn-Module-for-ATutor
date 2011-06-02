@@ -1,7 +1,7 @@
 <?php
 define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
-authenticate(AT_PRIV_HELLO_WORLD);
+authenticate(AT_PRIV_OL_SEARCH_OPEN_LEARN);
 require (AT_INCLUDE_PATH.'header.inc.php');
 ?>
 <form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php">

@@ -1,7 +1,7 @@
 <?php
 define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
-admin_authenticate(AT_ADMIN_PRIV_HELLO_WORLD);
+admin_authenticate(AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN);
 require (AT_INCLUDE_PATH.'header.inc.php');
 ?>
 

@@ -6,11 +6,11 @@
  * $course is the ID of the course to delete.
  */
 
-function hello_world_delete($course) {
+function ol_search_open_learn_delete($course) {
     global $db;
 
     // delete hello_world course table entries
-    $sql = "DELETE FROM ".TABLE_PREFIX."hello_world WHERE course_id=$course";
+    $sql = "DELETE FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN";
     mysql_query($sql, $db);
 
     // delete hello_world course files

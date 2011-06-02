@@ -1,7 +1,7 @@
 <?php
 define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
-admin_authenticate(AT_ADMIN_PRIV_HELLO_WORLD);
+admin_authenticate(AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN);
 require (AT_INCLUDE_PATH.'header.inc.php');
 ?>
 <div class="admin_container" style="width: 25%;" >
@@ -12,7 +12,7 @@ require (AT_INCLUDE_PATH.'header.inc.php');
     </ol>
 	<ol id="tools">
     	<li class="child-tool">
-        	<a href="">Update Now</a>
+        	<a href="mods/ol_search_open_learn/update_admin.php">Update Now</a>
         </li>
     </ol>
 </div>

@@ -12,7 +12,7 @@ global $db;
 
 $link_limit = 3;		// Number of links to be displayed on "detail view" box
 
-$sql = "SELECT hello_world_id, value FROM ".TABLE_PREFIX."hello_world WHERE course_id=".$_SESSION[course_id].
+$sql = "SELECT id, value FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN WHERE course_id=".$_SESSION[course_id].
        " ORDER BY value LIMIT $link_limit";
 $result = mysql_query($sql, $db);
 

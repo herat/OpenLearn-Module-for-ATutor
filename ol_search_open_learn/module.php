@@ -16,8 +16,8 @@ if (!isset($this) || (isset($this) && (strtolower(get_class($this)) != 'module')
 /*******
  * assign the instructor and admin privileges to the constants.
  */
-define('AT_PRIV_HELLO_WORLD',       $this->getPrivilege());
-define('AT_ADMIN_PRIV_HELLO_WORLD', $this->getAdminPrivilege());
+define('AT_PRIV_OL_SEARCH_OPEN_LEARN',       $this->getPrivilege());
+define('AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN', $this->getAdminPrivilege());
 
 /*******
  * create a side menu box/stack.
@@ -50,7 +50,7 @@ $_group_tool = $_student_tool = 'mods/ol_search_open_learn/index.php';
 /*******
  * add the admin pages when needed.
  */
-if (admin_authenticate(AT_ADMIN_PRIV_HELLO_WORLD, TRUE) || admin_authenticate(AT_ADMIN_PRIV_ADMIN, TRUE)) {
+if (admin_authenticate(AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN, TRUE) || admin_authenticate(AT_ADMIN_PRIV_ADMIN, TRUE)) {
     $this->_pages[AT_NAV_ADMIN] = array('mods/ol_search_open_learn/index_admin.php');
 	
 	
@@ -119,9 +119,9 @@ $this->_content_tools[] = array("id"=>"ol_search_open_learn_tool",
  * This class must be defined in "ModuleCallbacks.class.php".
  * This class is an API that contains the static methods to act on core functions.
  */
-$this->_callbacks['ol_search_open_learn'] = 'HelloWorldCallbacks';
+$this->_callbacks['ol_search_open_learn'] = 'SearchOpenLearnCallbacks';
 
-function hello_world_get_group_url($group_id) {
+function ol_search_open_learn_get_group_url($group_id) {
     return 'mods/ol_search_open_learn/index.php';
 }
 ?>

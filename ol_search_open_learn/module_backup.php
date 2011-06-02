@@ -1,5 +1,5 @@
 <?php
-/* each table to be backed up. includes the sql entry and fields */
+/* each table to be backed up. includes the sql entry and fields 
 
 $dirs = array();
 $dirs['ol_search_open_learn/'] = AT_CONTENT_DIR . 'ol_search_open_learn' . DIRECTORY_SEPARATOR;
@@ -14,5 +14,5 @@ function hello_world_convert($row, $course_id, $table_id_map, $version) {
 
     return $new_row;
 }
-
+*/
 ?>

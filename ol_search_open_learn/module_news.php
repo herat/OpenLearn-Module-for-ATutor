@@ -4,7 +4,7 @@
 * across all modules installed on a system. Return a variable called $news
 */
 
-function helloworld_news() {
+function searchopenlearn_news() {
     global $db;
     $sql = "SELECT something FROM a table WHERE date < NOW() LIMIT 3";
     if ($result = mysql_query($sql, $db)) {

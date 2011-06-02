@@ -13,7 +13,7 @@
  */
 if (!defined('AT_INCLUDE_PATH')) exit;
 
-class HelloWorldCallbacks {
+class SearchOpenLearnCallbacks {
 	/*
 	 * To append output onto course content page 
 	 * @param: None

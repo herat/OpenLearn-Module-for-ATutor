@@ -5,7 +5,7 @@
  */
  require('update.class.php');
 
-function hello_world_cron() {
+function ol_search_open_learn_cron() {
     global $db;
 
     //debug('yay i am running!');

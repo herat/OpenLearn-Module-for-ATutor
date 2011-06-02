@@ -1,7 +1,7 @@
 # sql file for hello world module
 
-CREATE TABLE `hello_world` (
-      `hello_world_id` mediumint(8) unsigned NOT NULL,
+CREATE TABLE `ol_search_open_learn` (
+      `id` mediumint(8) unsigned NOT NULL,
       `identifier` varchar (768),
 	 `datestamp` varchar (768),
 	 `catalog` varchar (768),
@@ -12,7 +12,7 @@ CREATE TABLE `hello_world` (
 	 `website` varchar (768),
 	 `cc` varchar (768),
 	 `cp` varchar (768),
-      PRIMARY KEY ( `hello_world_id` )
+      PRIMARY KEY ( `id` )
    
 );
 

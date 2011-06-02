@@ -118,19 +118,19 @@ class Update {
             $index = 1;
             foreach ( $members as $member) {
 
-                $qry="SELECT * FROM ".TABLE_PREFIX."hello_world where ENTRY='".$member['entry']."' ";
+                $qry="SELECT * FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN where ENTRY='".$member['entry']."' ";
 
                 $result = mysql_query($qry,$db);
                 if(mysql_num_rows($result) > 0) {
 
-                    $qry = "UPDATE ".TABLE_PREFIX."hello_world SET DATESTAMP='".$member['datestamp']."' , CATALOG='".$member['catalog'].
+                    $qry = "UPDATE ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN SET DATESTAMP='".$member['datestamp']."' , CATALOG='".$member['catalog'].
                             "' , TITLE='".$member['title']."' , DESCRIPTION='".$member['description']."' , KEYWORDS='".$member['keywords']."' ,".
                             " WEBSITE='".$member['website']."' , CC='".$member['common']."' , CP='".$member['package'].
                             "' WHERE ENTRY='".$member['entry']."'";
 
                 }
                 else {
-                    $qry='INSERT INTO '.TABLE_PREFIX.'hello_world VALUES ('.$index.',"'.$member['identifier'].'","'.
+                    $qry='INSERT INTO '.TABLE_PREFIX.'OL_SEARCH_OPEN_LEARN VALUES ('.$index.',"'.$member['identifier'].'","'.
                             $member['datestamp'].'","'.$member['catalog'].'","'.$member['entry'].'","'.
                             $member['title'].'","'.$member['description'].'","'.$member['keywords'].'","'.
                             $member['website'].'","'.$member['common'].'","'.$member['package'].'")';
