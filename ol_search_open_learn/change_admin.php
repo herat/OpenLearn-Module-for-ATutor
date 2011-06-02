@@ -43,7 +43,7 @@ if(isset ($_POST['submit'])) {
 
                 ?>
                 <input type="text" name="cron" value="<?php echo $rows['cron_interval']; ?>" />
-
+				minutes
             </td>
         </tr>
         <tr>

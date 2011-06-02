@@ -8,15 +8,21 @@ require ('search.class.php');
 
 $obj = new Search();
 ?>	
+
 <?php 
 $rows = $obj->getSearchResult($_GET['q']);
 //echo count($rows)."<br/>";
 if( is_array($rows) && count($rows) > 0) {
     $i=1;
     foreach( $rows as $row ) {
-        echo $i.". <b>".$row['title']."</b><br/>";
-        echo $row['description']."<br/>";
+        echo $i.". <b><a href='".$row['website']."' target='_new' > ".$row['title']." </a></b><br/>";
+		
+		if( strlen($row['description']) < 300 )
+			echo $row['description']."<br/>";	
+		else
+        	echo substr($row['description'],0,300)."...<br/>";
         $i++;
+		echo "<br/><br/>";
     }
 }
 else {
