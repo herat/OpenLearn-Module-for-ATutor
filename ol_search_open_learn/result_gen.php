@@ -22,7 +22,16 @@ if( is_array($rows) && count($rows) > 0) {
 		else
         	echo substr($row['description'],0,300)."...<br/>";
         $i++;
-		echo "<br/><br/>";
+		$img = 
+		   "<a href='".$row['cp']."'> 
+            	<img src='mods/ol_search_open_learn/cp.png' 
+			    alt='Download Content Package' title='Download Content Package' border='0' /> 
+          	</a> 
+          	<a href='".$row['cc']."'> 
+            	<img src='mods/ol_search_open_learn/cc.png' 
+				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
+          	</a>";
+		echo "<br/>".$imgs."<br/><br/>";
     }
 }
 else {
