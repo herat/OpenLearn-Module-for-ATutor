@@ -22,7 +22,7 @@ if( is_array($rows) && count($rows) > 0) {
 		else
         	echo substr($row['description'],0,300)."...<br/>";
         $i++;
-		$img = 
+		$imgs = 
 		   "<a href='".$row['cp']."'> 
             	<img src='mods/ol_search_open_learn/cp.png' 
 			    alt='Download Content Package' title='Download Content Package' border='0' /> 

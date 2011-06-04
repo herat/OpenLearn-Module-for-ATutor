@@ -51,8 +51,8 @@ class Search {
         //.$keywords."%' OR description like '%".$keywords."%'";
         //if ($sql_where <> '') $sql .= $sql_where;
 
-        //echo "<br/>".$sql."<br/>";
-        return $this->execute($sql);
+        echo "<br/>".$sql."<br/>";
+        //return $this->execute($sql);
     }
 
     private function getSearchSqlParams($all_keywords) {
@@ -64,7 +64,7 @@ class Search {
 
         $sql_order_template = " 15* ((LENGTH(title) - LENGTH(REPLACE(lower(title),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + ".
                 " 12* ((LENGTH(description) - LENGTH(REPLACE(lower(description),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + ".
-                " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}')))  "; 
+                " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + "; 
 
         // get all OR conditions
         $found_first_or_item = false;
