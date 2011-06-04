@@ -37,7 +37,7 @@ class Search {
         if ($sql_where <> '') $sql .= $sql_where;
 
         //echo $sql;
-        //if ($sql_order <> '') $sql .= " ORDER BY ".$sql_order." DESC ";
+        if ($sql_order <> '') $sql .= " ORDER BY ".$sql_order." DESC ";
 
         //if ($maxResults > 0) $sql .= " LIMIT ".$start.", ".$maxResults;
 
@@ -62,9 +62,9 @@ class Search {
                 "OR description like '%{KEYWORD}%' ".
                 "OR keywords like '%{KEYWORD}%' )";
 
-        /*$sql_order_template = " 15* ((LENGTH(title) - LENGTH(REPLACE(lower(title),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + ".
+        $sql_order_template = " 15* ((LENGTH(title) - LENGTH(REPLACE(lower(title),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + ".
                 " 12* ((LENGTH(description) - LENGTH(REPLACE(lower(description),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + ".
-                " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + "; */
+                " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) "; 
 
         // get all OR conditions
         $found_first_or_item = false;
@@ -88,16 +88,16 @@ class Search {
                     $sql_where_or .= str_replace('{KEYWORD}', $all_keywords[$i-1], $sql_search_template) .
                             ' OR '.
                             str_replace('{KEYWORD}', $all_keywords[$i+1], $sql_search_template);
-                    /*$sql_order_or .= str_replace('{KEYWORD}', $all_keywords[$i-1], $sql_order_template) .
+                    $sql_order_or .= str_replace('{KEYWORD}', $all_keywords[$i-1], $sql_order_template) .
                             ' + '.
-                            str_replace('{KEYWORD}', $all_keywords[$i+1], $sql_order_template); */
+                            str_replace('{KEYWORD}', $all_keywords[$i+1], $sql_order_template); 
                     unset($all_keywords[$i-1]);  // the keyword before "OR"
                     unset($all_keywords[$i]);    // "OR"
                     unset($all_keywords[$i+1]);  // the keyword after "OR"
                 }
                 else {
                     $sql_where_or .= ' OR '.str_replace('{KEYWORD}', $all_keywords[$i+1], $sql_search_template);
-                    //$sql_order_or .= ' + '.str_replace('{KEYWORD}', $all_keywords[$i+1], $sql_order_template);
+                    $sql_order_or .= ' + '.str_replace('{KEYWORD}', $all_keywords[$i+1], $sql_order_template);
                     unset($all_keywords[$i]);   // "OR"
                     unset($all_keywords[$i+1]); // the keyword after "OR"
                 }
@@ -108,14 +108,14 @@ class Search {
         if (count($all_keywords) > 0) {
             foreach ($all_keywords as $keyword) {
                 $sql_where .= str_replace('{KEYWORD}', $keyword, $sql_search_template). ' AND ';
-                //$sql_order .= str_replace('{KEYWORD}', $keyword, $sql_order_template). ' + ';
+                $sql_order .= str_replace('{KEYWORD}', $keyword, $sql_order_template). ' + ';
             }
         }
         if ($sql_where_or == '') $sql_where = substr($sql_where, 0, -5);
         else $sql_where .= "(".$sql_where_or.")";
 
-        /*if ($sql_order_or == '') $sql_order = substr($sql_order, 0, -3);
-        else $sql_order .= $sql_order_or; */
+        if ($sql_order_or == '') $sql_order = substr($sql_order, 0, -3);
+        else $sql_order .= $sql_order_or; 
 
         return array($sql_where, $sql_order);
     }
