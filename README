@@ -1,0 +1,28 @@
+This project is under Google Summer of Code 2011.
+
+OpenLearn Module for ATutor aims at developing a module for ATutor. 
+
+Purpose:
+I like the whole idea of OpenLearn. The OpenLearn website gives free access to Open University 
+course materials. This is the place where we can find hundreds of free study units, each with a discussion forum. 
+Study independently at our own pace or join a group and use the free learning tools to work with others. 
+This is a great idea. The purpose of my project is to develop OpenLearn module for ATutor which will allow 
+ATutor to search and retrieve OpenLearn content.
+
+Deliverables:
+•	A module for ATutor
+•	Search OpenLearn for content based upon users’ requests
+•	Retrieve content from OpenLearn
+•	Fill content in common cartridge or content package
+•	Use of pre available courses from OpenLearn on ATutor
+•	ATutor template module
+•	Testing
+•	Documentation
+
+Benefits:
+•	As OpenLearn contains a lot of courses and open learning material, it is very nice thought to use them in ATutor. 
+•	OpenLearn repository has too many of articles on variety of subjects, intelligent use of the content will make ATutor more useful.
+•	OpenLearn already provides different mechanisms to interact with its repository so it will be not be tough to interact with it from ATutor.
+•	Searching for particular topics will be made easier.
+•	Integration of OpenLearn and ATutor will add a new dimension to ATutor.
+
