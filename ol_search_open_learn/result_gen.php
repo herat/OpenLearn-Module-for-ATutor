@@ -37,7 +37,7 @@ else $last_rec_number = $total_num;
 
 if( is_array($rows) && count($rows) > 0) {
     $i=$start+1;
-	echo "<div id='accordion' >";
+	echo "<div id='accordion'>";
     foreach( $rows as $row ) {
 		
 		echo "<h3>".$i.". <a href='#section". $i ."' > ".$row['title']." </a></h3>";
@@ -62,23 +62,27 @@ if( is_array($rows) && count($rows) > 0) {
             	<img src='mods/ol_search_open_learn/cc.png' 
 				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
           	</a>";
+		
+		//$prevw = "";	
+		$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" rel=\"gb_page_fs[]\">Preview on OL</a>";
 			
-		echo "<br/>".$imgs;
+		echo "<br/>".$imgs.$prevw;
 			
 		echo "</div>";	
 		
     }
 	echo "</div>";
 	
+	if( $start > 0 )
+	{
+		$prev = $start-$maxResults;
+		echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
 	if( $total_num > $last_rec_number )
 	{
 		echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' /> </a>";
 	}
-	if( $start > 0 )
-	{
-		$prev = $start-$maxResults;
-		echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' /></a>";
-	}
+	
 	
 }
 else {
@@ -88,17 +92,25 @@ else {
 <?php
 require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 
-<script type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
-<script type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/ui/js/ui.core.js"></script>
-<script type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/ui/js/ui.accordion.js"></script>        
-<script type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/ui/js/ui.slider.js"></script>  
+<script type="text/javascript">
+    var GB_ROOT_DIR = "mods/ol_search_open_learn/greybox/";
+</script>
+<script type="text/javascript" src="mods/ol_search_open_learn/greybox/AJS.js"></script>
+
+<script type="text/javascript" src="mods/ol_search_open_learn/greybox/gb_scripts.js"></script>
+<link href="mods/ol_search_open_learn/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="mods/ol_search_open_learn/greybox/AJS_fx.js"></script>
+ 
+
+<script type="text/javascript" src="jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
+<script type="text/javascript" src="jscripts/infusion/lib/jquery/ui/js/ui.core.js"></script>
+<script type="text/javascript" src="jscripts/infusion/lib/jquery/ui/js/ui.accordion.js"></script>        
+<script type="text/javascript" src="jscripts/infusion/lib/jquery/ui/js/ui.slider.js"></script>  
 <script>
 	$(function() {
 		$( "#accordion" ).accordion({
 			autoHeight: false,
 			navigation: true
 		});
-	});
+	});		
 </script>
-
- 
