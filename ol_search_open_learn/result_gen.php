@@ -12,10 +12,24 @@ $obj = new Search();
 
 <?php
 
-$start = intval(trim(strtolower($_GET['start'])));
 $maxResults = intval(trim(strtolower($_GET['maxResults'])));
+$maxResults1 = intval(trim(strtolower($_GET['maxResults'])));
 
-if ($maxResults == 0) $maxResults = 2;  // default
+?>
+
+Maximum Records: 
+<select name="maxResults" id="maxResults" onchange="changeMax()" >
+	<option value="5" <?php if($maxResults==5) echo "selected='selected'" ?>>5</option>
+    <option value="10" <?php if($maxResults==10) echo "selected='selected'" ?>>10</option>
+    <option value="25" <?php if($maxResults==25) echo "selected='selected'" ?>>25</option>
+</select>
+
+<?php
+
+$start = intval(trim(strtolower($_GET['start'])));
+//$maxResults = intval(trim(strtolower($_GET['maxResults'])));
+
+if ($maxResults == 0) $maxResults = 5;  // default
 
 $rows = $obj->getSearchResult($_GET['q'],$start,$maxResults);
 //echo count($rows)."<br/>";
@@ -76,11 +90,25 @@ if( is_array($rows) && count($rows) > 0) {
 	if( $start > 0 )
 	{
 		$prev = $start-$maxResults;
-		echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+		if( $maxResults1 != 0)
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/prev.gif' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+		}
+		else
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+		}
 	}
 	if( $total_num > $last_rec_number )
 	{
-		echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' /> </a>";
+		if( $maxResults1 != 0)
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/next.gif' /> </a>";
+		}
+		else
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' /> </a>";
+		}
 	}
 	
 	
@@ -113,4 +141,13 @@ require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 			navigation: true
 		});
 	});		
+	
+	function changeMax()
+	{
+		var e = document.getElementById("maxResults");
+		var ele= e.options[e.selectedIndex].value;
+		
+		window.location = "<?php echo $_SERVER[PHP_SELF]."?q=".$_GET['q']."&maxResults="; ?>"+ele;
+ 		
+	}
 </script>
