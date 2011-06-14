@@ -14,10 +14,16 @@ $obj = new Search();
 
 $maxResults = intval(trim(strtolower($_GET['maxResults'])));
 $maxResults1 = intval(trim(strtolower($_GET['maxResults'])));
-
+$start = intval(trim(strtolower($_GET['start'])));
 ?>
 
 <form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php">
+	<?php
+		if( $maxResults1 != 0 )
+		{
+			echo "<input name='maxResults' type='hidden' value='".$_GET['maxResults']."'/>";
+		}
+	?>
     <table>
         <tr>
             <td>
@@ -36,17 +42,22 @@ $maxResults1 = intval(trim(strtolower($_GET['maxResults'])));
     </table>
 </form>
 <br/>
+
 Maximum Records: 
-<select name="maxResults" id="maxResults" onchange="changeMax()" >
+<form name="max" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
+<input type="hidden" value="<?php echo $_GET['q'];?>" name="q" />
+<select name="maxResults" id="maxResults" >
 	<option value="5" <?php if($maxResults==5) echo "selected='selected'" ?>>5</option>
     <option value="10" <?php if($maxResults==10) echo "selected='selected'" ?>>10</option>
     <option value="25" <?php if($maxResults==25) echo "selected='selected'" ?>>25</option>
 </select>
+<input type="submit" value="Change" />
+</form>
 <br/>
 
 <?php
 
-$start = intval(trim(strtolower($_GET['start'])));
+
 //$maxResults = intval(trim(strtolower($_GET['maxResults'])));
 
 if ($maxResults == 0) $maxResults = 5;  // default
