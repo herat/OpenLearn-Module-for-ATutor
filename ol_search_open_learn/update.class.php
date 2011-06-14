@@ -144,7 +144,7 @@ class Update {
                 }
 
                 $index++;
-
+				$tmp= "Success";
                 if(mysql_query($qry,$db)) {
                     $tmp="Success";
                 }
@@ -166,8 +166,22 @@ class Update {
             }
           
         }
-        $qry= "UPDATE ".TABLE_PREFIX."config SET value=CURDATE() WHERE name='ol_last_updation'";
-        mysql_query($qry,$db);
+		define('AT_INCLUDE_PATH', '../../include/');
+		require_once(AT_INCLUDE_PATH . '/classes/Message/Message.class.php');
+		global $savant;
+		$msg = new Message($savant); 
+		
+		if( $tmp != "Failed")
+		{
+        	$qry = "UPDATE ".TABLE_PREFIX."config SET value=CURDATE() WHERE name='ol_last_updation'";
+			$feedback=array('OL_DB_UPDATED');
+			$msg->addFeedback($feedback);		
+        	mysql_query($qry,$db);
+		}
+		else
+		{
+			$msg->addFeedback('OL_DB_NOT_UPDATED');
+		}
     }
 //echo "$res";
 //mysql_close($conn);

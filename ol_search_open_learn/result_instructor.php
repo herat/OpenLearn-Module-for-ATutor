@@ -16,13 +16,32 @@ $maxResults1 = intval(trim(strtolower($_GET['maxResults'])));
 
 ?>
 
+<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php">
+    <table>
+        <tr>
+            <td>
+        	Search OpenLearn:
+            </td>
+            <td>
+                <input type="text" name="q" />
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Search" />
+            </td>
+        </tr>
+    </table>
+</form>
+<br/>
 Maximum Records: 
 <select name="maxResults" id="maxResults" onchange="changeMax()" >
 	<option value="5" <?php if($maxResults==5) echo "selected='selected'" ?>>5</option>
     <option value="10" <?php if($maxResults==10) echo "selected='selected'" ?>>10</option>
     <option value="25" <?php if($maxResults==25) echo "selected='selected'" ?>>25</option>
 </select>
-	
+<br/>
 
 <?php 
 
@@ -48,6 +67,30 @@ if (is_array($rows))
 	else $last_rec_number = $start + $maxResults;
 }
 else $last_rec_number = $total_num;
+
+if( $start > 0 )
+	{
+		$prev = $start-$maxResults;
+		if( $maxResults1 != 0)
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+		}
+		else
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+		}
+	}
+	if( $total_num > $last_rec_number )
+	{
+		if( $maxResults1 != 0)
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
+		}
+		else
+		{
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
+		}
+	}
 
 if( is_array($rows) && count($rows) > 0) {
     $i=$start+1;
@@ -103,29 +146,29 @@ if( is_array($rows) && count($rows) > 0) {
 		$prev = $start-$maxResults;
 		if( $maxResults1 != 0)
 		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/prev.gif' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
 		}
 		else
 		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
 		}
 	}
 	if( $total_num > $last_rec_number )
 	{
 		if( $maxResults1 != 0)
 		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/next.gif' /> </a>";
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
 		}
 		else
 		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' /> </a>";
+			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
 		}
 	}
 	
 	
 }
 else {
-    echo "No results found... for ". $_GET['q'] ." <br/>";
+    echo "<br/>No results found... for ". $_GET['q'] ." <br/>";
 }
 ?>
 <?php

@@ -3,6 +3,12 @@ define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
 admin_authenticate(AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN);
 require (AT_INCLUDE_PATH.'header.inc.php');
+
+require_once(AT_INCLUDE_PATH . '/classes/Message/Message.class.php');
+global $savant;
+$msg = new Message($savant); 
+
+$msg->printFeedbacks();
 ?>
 <div class="admin_container" style="width: 25%;" >
 	<ol id="tools">
