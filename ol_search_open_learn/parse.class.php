@@ -5,6 +5,7 @@ class Parser {
 
     function parse() {
         $xml = new XMLReader();
+		@set_time_limit(0);
         /*$conn=mysql_connect('localhost:3306','root','root');
 		if(!$conn)
 		{
@@ -16,8 +17,20 @@ class Parser {
         //$xml->open("oai2.php.xml");
         $members= array();
         $flag=false;
-
-        while( $xml -> read() ) {
+		$resumption = 'dummy';
+		
+		while( $resumption != '' )
+		{
+			if($resumption == 'dummy')
+			{
+				$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_ilox');	
+			}
+			else 
+			{
+				$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&resumptionToken='.$resumption);
+			}
+		
+        	while( $xml -> read() ) {
 
             if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'record') {
                 $member = array();
@@ -107,16 +120,19 @@ class Parser {
             if($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'record') {
                 $members[]=$member;
             }
-
+			if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'resumptionToken')
+			{
+				$resumption = $xml->readString();	
+			}
         }
+	}
         $res='';
-
+		$index = 1;
         if(count($members) > 0) {
 			
 			//define('AT_INCLUDE_PATH', '../../include/');
 			//require (AT_INCLUDE_PATH.'vitals.inc.php');
-			$index = 1;
-            foreach ( $members as $member) {
+			foreach ( $members as $member) {
 				
                 $qry='INSERT INTO '.TABLE_PREFIX.'ol_search_open_learn VALUES ('.$index.',"'.$member['identifier'].'","'.
 				$member['datestamp'].'","'.$member['catalog'].'","'.$member['entry'].'","'.

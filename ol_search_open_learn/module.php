@@ -64,11 +64,14 @@ if (admin_authenticate(AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN, TRUE) || admin_authen
 /*******
  * instructor Manage section:
  */
+ 
+$_pages['mods/_core/content/index.php']['children'][]  = 'mods/ol_search_open_learn/index_instructor.php';
+ 
 $this->_pages['mods/ol_search_open_learn/index_instructor.php']['title_var'] = 'ol_search_open_learn';
-$this->_pages['mods/ol_search_open_learn/index_instructor.php']['parent']   = 'tools/index.php';
+$this->_pages['mods/ol_search_open_learn/index_instructor.php']['parent']   = 'mods/_core/content/index.php';
 
 $this->_pages['mods/ol_search_open_learn/result_instructor.php']['title_var'] = 'search_results';
-$this->_pages['mods/ol_search_open_learn/result_instructor.php']['parent']   = 'tools/index.php';
+$this->_pages['mods/ol_search_open_learn/result_instructor.php']['parent']   = 'mods/_core/content/index.php';
 
 // ** possible alternative: **
 // $this->pages['./index_instructor.php']['title_var'] = 'hello_world';
