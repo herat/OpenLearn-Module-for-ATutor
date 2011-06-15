@@ -10,7 +10,7 @@ require (AT_INCLUDE_PATH.'header.inc.php');
     <table>
         <tr>
             <td>
-        	Search OpenLearn:
+        	<?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
                 <input type="text" name="q" />

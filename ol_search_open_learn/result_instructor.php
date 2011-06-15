@@ -26,7 +26,7 @@ $start = intval(trim(strtolower($_GET['start'])));
     <table>
         <tr>
             <td>
-        	Search OpenLearn:
+        	<?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
                 <input type="text" name="q" />
@@ -41,7 +41,7 @@ $start = intval(trim(strtolower($_GET['start'])));
     </table>
 </form>
 <br/>
-Maximum Records: 
+<?php echo _AT('ol_max_reco');?>: 
 <form name="max" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
 <input type="hidden" value="<?php echo $_GET['q'];?>" name="q" />
 <select name="maxResults" id="maxResults">

@@ -28,7 +28,6 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_repo_url','Repository UR
 INSERT INTO `language_text` VALUES ('en', '_module','ol_cron_interval','CRON interval',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_min','minutes',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_change','Change',NOW(),'');
-INSERT INTO `language_text` VALUES ('en', '_module','ol_max_reco','Maximum Records',NOW(),'');
 
 
 
