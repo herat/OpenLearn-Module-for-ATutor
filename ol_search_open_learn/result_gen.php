@@ -144,7 +144,7 @@ if( is_array($rows) && count($rows) > 0) {
 				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
           	</a>";
 		
-		$prevw = "<a href=\"javascript: window.open('".$row['website']."', '_blank', 'toolbar=0,menubar=0');\" >Preview on OL</a>";	
+$prevw = "<a href=\"javascript: window.open('".trim($row['website'])."','Preview','toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0');\" >Preview on OL</a>";	
 		//$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
 			
 		echo "<br/>".$prevw;
