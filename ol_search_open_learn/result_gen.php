@@ -106,16 +106,28 @@ if( $start > 0 )
 
 if( is_array($rows) && count($rows) > 0) {
     $i=$start+1;
-	echo "<div id='accordion'>";
+	echo "<dl>";
     foreach( $rows as $row ) {
 		
-		echo "<h3>".$i.". <a href='#section". $i ."' > ".$row['title']." </a></h3>";
+		 $curr_url = $_SERVER[PHP_SELF];
+		 $curr_url .= "?q=".$_GET['q'];
+		 if( $maxResults1 > 0 )
+		 {
+			 $curr_url .= "&maxResults=".$maxResults1;
+		 }
+		 if( $start != 0 )
+		 {
+			 $curr_url .= "&start=".$start;
+		 }
+		 $curr_url .= "#section";
+		
+		echo "<dt>".$i.".<a href='".$curr_url.$i."' >".$row['title']." </a></dt>";
 		
 		/*if( strlen($row['description']) < 300 )
 			echo $row['description']."<br/>";	
 		else
         	echo substr($row['description'],0,300)."...<br/>"; */
-		echo "<div>";
+		echo "<dd id='section".$i."'>";
 		
 		
 		echo "<p>".$row['description']."</p>";
@@ -132,15 +144,15 @@ if( is_array($rows) && count($rows) > 0) {
 				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
           	</a>";
 		
-		//$prevw = "";	
-		$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" rel=\"gb_page_fs[]\">Preview on OL</a>";
+		$prevw = "<a href=\"javascript: window.open('".$row['website']."', '_blank', 'toolbar=0,menubar=0');\" >Preview on OL</a>";	
+		//$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
 			
 		echo "<br/>".$prevw;
 			
-		echo "</div>";	
+		echo "</dd>";	
 		
     }
-	echo "</div>";
+	echo "</dl>";
 	
 	if( $start > 0 )
 	{
@@ -175,27 +187,9 @@ else {
 <?php
 require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 
-<script type="text/javascript">
-    var GB_ROOT_DIR = "mods/ol_search_open_learn/greybox/";
-</script>
-<script type="text/javascript" src="mods/ol_search_open_learn/greybox/AJS.js"></script>
-
-<script type="text/javascript" src="mods/ol_search_open_learn/greybox/gb_scripts.js"></script>
-<link href="mods/ol_search_open_learn/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="mods/ol_search_open_learn/greybox/AJS_fx.js"></script>
+<link rel="stylesheet" type="text/css" href="mods/ol_search_open_learn/_styles.css" media="screen" />
  
-
-<script type="text/javascript" src="jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
-<script type="text/javascript" src="jscripts/infusion/lib/jquery/ui/js/ui.core.js"></script>
-<script type="text/javascript" src="jscripts/infusion/lib/jquery/ui/js/ui.accordion.js"></script>        
-<script type="text/javascript" src="jscripts/infusion/lib/jquery/ui/js/ui.slider.js"></script>  
 <script>
-	$(function() {
-		$( "#accordion" ).accordion({
-			autoHeight: false,
-			navigation: true
-		});
-	});		
 	
 	function changeMax()
 	{
@@ -205,4 +199,6 @@ require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 		window.location = "<?php echo $_SERVER[PHP_SELF]."?q=".$_GET['q']."&maxResults="; ?>"+ele;
  		
 	}
+	
+	
 </script>

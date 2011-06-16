@@ -1,0 +1,65 @@
+/* Just some base styles not needed for example to function */
+*, html { font-family: Verdana, Arial, Helvetica, sans-serif; }
+
+body, form, ul, li, p, h1, h2, h3, h4, h5
+{
+	margin: 0;
+	padding: 0;
+}
+/*body { background-color: #606061; }
+*/
+img { border: none; }
+p
+{
+	font-size: 1em;
+	margin: 0 0 1em 0;
+}
+
+html { font-size: 100%; height: 100%; /* IE hack */ }
+body { font-size: 0.75em; } /* Base font 12px */
+table { font-size: 100%; /* IE hack */ }
+
+input, select, textarea, th, td { font-size:1em; }
+
+/* CSS Accordion styles */
+dl
+{
+	padding: 10px;
+	min-width: 960px;
+}
+	dl dt
+	{
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		border: 1px solid #cccccc;
+		margin: 0;
+	}
+		dl dt a
+		{
+			font-weight: bold;
+			text-decoration: none;
+			padding: 10px;
+			display: inline-block;
+		}
+	dl dd
+	{
+		margin: 0;
+		overflow: hidden;
+		-webkit-transition: height 1s ease;
+		-moz-transition: height 1s ease;
+		-o-transition: height 1s ease;
+	}
+		dl dd p
+		{
+			padding: 10px;
+			margin: 0;
+		}
+	dl dd:not(:target) { height: 0; }
+	dl dd:target { height: auto; }
+	dl a.ie:hover dd,
+	dl a.ie:focus dd
+	{
+		height: auto;
+		color: #cccccc !important;
+	}
