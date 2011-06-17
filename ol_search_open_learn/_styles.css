@@ -25,7 +25,7 @@ input, select, textarea, th, td { font-size:1em; }
 dl
 {
 	padding: 10px;
-	min-width: 960px;
+	min-width: auto;
 }
 	dl dt
 	{
