@@ -106,7 +106,7 @@ if( $start > 0 )
 
 if( is_array($rows) && count($rows) > 0) {
     $i=$start+1;
-	echo "<dl>";
+	echo "<dl id='accordion'>";
     foreach( $rows as $row ) {
 		
 		 $curr_url = $_SERVER[PHP_SELF];
@@ -119,15 +119,15 @@ if( is_array($rows) && count($rows) > 0) {
 		 {
 			 $curr_url .= "&start=".$start;
 		 }
-		 $curr_url .= "#section";
+		 //$curr_url .= "#section";
 		
-		echo "<dt>".$i.".<a href='".$curr_url.$i."' >".$row['title']." </a></dt>";
+		echo "<dt>".$i.".<a href='#' >".$row['title']." </a></dt>";
 		
 		/*if( strlen($row['description']) < 300 )
 			echo $row['description']."<br/>";	
 		else
         	echo substr($row['description'],0,300)."...<br/>"; */
-		echo "<dd id='section".$i."'>";
+		echo "<dd>";
 		
 		
 		echo "<p>".$row['description']."</p>";
@@ -144,7 +144,7 @@ if( is_array($rows) && count($rows) > 0) {
 				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
           	</a>";
 		
-$prevw = "<a href=\"javascript: window.open('".trim($row['website'])."','Preview','toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0');\" >Preview on OL</a>";	
+$prevw = "<a href=\"javascript: void(window.open('".trim($row['website'])."','Preview','toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0'));\" >Preview on OL</a>";	
 		//$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
 			
 		echo "<br/>".$prevw;
@@ -187,8 +187,7 @@ else {
 <?php
 require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 
-<link rel="stylesheet" type="text/css" href="mods/ol_search_open_learn/_styles.css" media="screen" />
- 
+
 <script>
 	
 	function changeMax()
@@ -202,3 +201,7 @@ require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 	
 	
 </script>
+
+<script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/accordion.js"></script>
+
