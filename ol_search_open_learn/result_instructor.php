@@ -105,7 +105,7 @@ if( $start > 0 )
 if( is_array($rows) && count($rows) > 0) {
     $i=$start+1;
 	
-	echo "<dl>";
+	echo "<dl id='accordion'>";
 	
     foreach( $rows as $row ) {
 		
@@ -121,19 +121,14 @@ if( is_array($rows) && count($rows) > 0) {
 		 }
 		 $curr_url .= "#section";
 		
-		$importbutton= "<input type=\"submit\" name=\"submit\" onclick=\"setClickSource('submit');\" value='import' />";
+		$importbutton= "<input type=\"submit\" name=\"submit\" value='import' />";
 		
-		echo "<dt>".$i.". <a href='".$curr_url.$i."' > ".$row['title']." </a></dt>";
+		echo "<dt>".$i.".<a href='#' >".$row['title']." </a></dt>";
 		
-		/*if( strlen($row['description']) < 300 )
-			echo $row['description']."<br/>";	
-		else
-        	echo substr($row['description'],0,300)."...<br/>"; */
-		echo "<dd id='section".$i."'>";
-		echo "<form name=\"form1\" method=\"post\" action=\"mods/_core/imscp/ims_import.php\" enctype=\"multipart/form-data\" onsubmit=\"openWindow('". AT_BASE_HREF . "tools/prog.php');\">";
+		echo "<dd>";
+		echo "<form name=\"form1\" method=\"post\" action=\"mods/ol_search_open_learn/downup.php\" 
+		onsubmit=\"openWindow('". AT_BASE_HREF . "tools/prog.php');\">";
 		echo "<input type=\"hidden\" name=\"url\" id=\"to_url\" value='". trim($row['cc']) ."' />";
-		echo "<input type=\"hidden\" name=\"allow_test_export\" value=1 />";
-		echo "<input type=\"hidden\" name=\"ignore_validation\" value=1 />";
 		echo $importbutton;
 		echo "</form>";
 		
@@ -152,9 +147,7 @@ if( is_array($rows) && count($rows) > 0) {
 				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
           	</a>";
 		
-		//$prevw = "";
-		$prevw = "<a href=\"javascript: window.open('".$row['website']."', '_blank', 'toolbar=0,menubar=0');\" >Preview on OL</a>";	
-		//$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" rel=\"gb_page_fs[]\">Preview on OL</a>";
+		$prevw = "<a href=\"javascript: void(window.open('".trim($row['website'])."','Preview','toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width=350,height=200'));\" >Preview on OL</a>";	
 			
 		echo "<br/>".$imgs.$prevw;
 			
@@ -199,8 +192,6 @@ else {
 <?php
 require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 
-<link rel="stylesheet" type="text/css" href="mods/ol_search_open_learn/_styles.css" media="screen" />
-
 <script>
 	function changeMax()
 	{
@@ -232,3 +223,6 @@ require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 		}
 	}
 </script>
+
+<script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/accordion.js"></script>
