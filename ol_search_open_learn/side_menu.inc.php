@@ -1,8 +1,10 @@
 <?php 
 /* start output buffering: */
-ob_start(); ?>
+ob_start(); 
+global $savant;
+?>
 
-Search OpenLearn
+<a href= "<?php  echo AT_BASE_HREF; ?>mods/ol_search_open_learn/index.php"> <?php echo _AT('ol_search_open_learn'); ?> </a>
 
 <?php
 $savant->assign('dropdown_contents', ob_get_contents());

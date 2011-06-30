@@ -1,55 +1,72 @@
 <?php
 // put your code here
-
+function checkConnection() {
+    //Initiates a socket connection to www.google.com at port 80
+    $conn = @fsockopen("www.google.com", 80, $errno, $errstr, 30);
+    if ($conn) {
+        $status = true;
+        fclose($conn);
+    }
+    else {
+        $status = false;
+    }
+    return $status;
+}
 class Parser {
-
     function parse() {
+        
         $xml = new XMLReader();
-		@set_time_limit(0);
-        /*$conn=mysql_connect('localhost:3306','root','root');
-		if(!$conn)
-		{
-			echo ' database connection failed... <br/> ';
-		}
-		mysql_select_db('atutor',$conn);*/
+        @set_time_limit(0);
         global $db;
-        $xml->open("http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_ilox");
-        //$xml->open("oai2.php.xml");
+        $connS = false;
+        $conn = checkConnection();
+        
+	   
+        $op='';
+	if( $conn ) {
+            $connS = true;
+            $xml->open("http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_ilox");
+            $op = '1';
+        }
+        else {
+			$connS = false;
+            $xml->open("../../ol_search_open_learn/oai2.php.xml");
+            $op = '2';
+        }
+
+        
         $members= array();
         $flag=false;
-		$resumption = 'dummy';
-		
-		while( $resumption != '' )
-		{
-			if($resumption == 'dummy')
-			{
-				$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_ilox');	
-			}
-			else 
-			{
-				$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&resumptionToken='.$resumption);
-			}
-		
-        	while( $xml -> read() ) {
+        $resumption = 'dummy';
 
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'record') {
-                $member = array();
-                $flag = false;
-                //$member['uni']='';
+        while( $resumption != '' ) {
+            if($resumption == 'dummy' && $connS) {
+                $xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_ilox');
             }
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'identifier' && !isset($member['identifier'])) {
-                $member['identifier']=$xml->readString();
+            else if($connS) {
+                $xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&resumptionToken='.$resumption);
             }
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'datestamp' && !isset($member['datestamp'])) {
-                $member['datestamp']=$xml->readString();
-            }
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'entry' && !isset($member['entry'])) {
-                $member['entry']=$xml->readString();
-            }
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'catalog' && !isset($member['catalog'])) {
-                $member['catalog']=$xml->readString();
-            }
-            /*if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'entry')
+
+            while( $xml -> read() ) {
+
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'record') {
+                    $member = array();
+                    $flag = false;
+                    //$member['uni']='';
+                }
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'identifier' && !isset($member['identifier'])) {
+                    $member['identifier']=$xml->readString();
+                }
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'datestamp' && !isset($member['datestamp'])) {
+                    $member['datestamp']=$xml->readString();
+                }
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'entry' && !isset($member['entry'])) {
+                    $member['entry']=$xml->readString();
+                }
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'catalog' && !isset($member['catalog'])) {
+                    $member['catalog']=$xml->readString();
+                }
+                /*if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'entry')
 			{
 				$ty = $xml->readString();
 				if(strpos($ty, 'id'))
@@ -62,85 +79,84 @@ class Parser {
 			{
 				$member['title']=$xml->readString();
 			}*/
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'description' && !isset($member['description'])) {
-                $tag1= '';
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'description' && !isset($member['description'])) {
+                    $tag1= '';
 
-                while($tag1 != 'title') {
-                    $xml->read();
-                    $tag1= $xml->localName;
-                }
-
-                $member['title']=$xml->readString();
-
-                while($tag1 != 'description') {
-                    $xml->read();
-                    $tag1= $xml->localName;
-                }
-
-                $member['description']=$xml->readString();
-
-                $member['keywords']='';
-            }
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'keyword' && !$flag ) {
-                $member['keywords'] .= $xml->readString().", ";
-            }
-            if($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'general' ) {
-                $flag = true;
-                rtrim($member['keywords']);
-                $member['keywords'] = substr($member['keywords'],0,strlen($member['keywords'])-2);
-            }
-            if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'manifestation' ) {
-                $data = $xml->readString();
-                $tag='';
-                if( strpos($data, 'web site') > 0 ) {
-                    //echo 'case 1<br/>';
-                    while($tag != 'location') {
+                    while($tag1 != 'title') {
                         $xml->read();
-                        $tag= $xml->localName;
+                        $tag1= $xml->localName;
                     }
-                    $member['website']=$xml->readString();
-                }
-                else if( strpos($data, 'Common Cartridge') > 0 ) {
-                    //echo 'case 2<br/>';
-                    while($tag != 'location') {
+
+                    $member['title']=$xml->readString();
+
+                    while($tag1 != 'description') {
                         $xml->read();
-                        $tag= $xml->localName;
+                        $tag1= $xml->localName;
                     }
-                    $member['common']=$xml->readString();
+
+                    $member['description']=$xml->readString();
+
+                    $member['keywords']='';
                 }
-                else if(strpos($data, 'Content Package') > 0) {
-                    //echo 'case 3<br/>';
-                    while($tag != 'location') {
-                        $xml->read();
-                        $tag= $xml->localName;
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'keyword' && !$flag ) {
+                    $member['keywords'] .= $xml->readString().", ";
+                }
+                if($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'general' ) {
+                    $flag = true;
+                    rtrim($member['keywords']);
+                    $member['keywords'] = substr($member['keywords'],0,strlen($member['keywords'])-2);
+                }
+                if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'manifestation' ) {
+                    $data = $xml->readString();
+                    $tag='';
+                    if( strpos($data, 'web site') > 0 ) {
+                        //echo 'case 1<br/>';
+                        while($tag != 'location') {
+                            $xml->read();
+                            $tag= $xml->localName;
+                        }
+                        $member['website']=$xml->readString();
                     }
-                    $member['package']=$xml->readString();
+                    else if( strpos($data, 'Common Cartridge') > 0 ) {
+                        //echo 'case 2<br/>';
+                        while($tag != 'location') {
+                            $xml->read();
+                            $tag= $xml->localName;
+                        }
+                        $member['common']=$xml->readString();
+                    }
+                    else if(strpos($data, 'Content Package') > 0) {
+                        //echo 'case 3<br/>';
+                        while($tag != 'location') {
+                            $xml->read();
+                            $tag= $xml->localName;
+                        }
+                        $member['package']=$xml->readString();
+                    }
+                }
+                if($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'record') {
+                    $members[]=$member;
+                }
+                if($connS && $xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'resumptionToken') {
+                    $resumption = $xml->readString();
                 }
             }
-            if($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'record') {
-                $members[]=$member;
-            }
-			if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'resumptionToken')
-			{
-				$resumption = $xml->readString();	
-			}
+            if( !$connS )
+                break;
         }
-	}
         $res='';
-		$index = 1;
+        $index = 1;
         if(count($members) > 0) {
-			
-			//define('AT_INCLUDE_PATH', '../../include/');
-			//require (AT_INCLUDE_PATH.'vitals.inc.php');
-			foreach ( $members as $member) {
-				
+
+            foreach ( $members as $member) {
+
                 $qry='INSERT INTO '.TABLE_PREFIX.'ol_search_open_learn VALUES ('.$index.',"'.$member['identifier'].'","'.
-				$member['datestamp'].'","'.$member['catalog'].'","'.$member['entry'].'","'.
-				$member['title'].'","'.$member['description'].'","'.$member['keywords'].'","'.
-				$member['website'].'","'.$member['common'].'","'.$member['package'].'")';
-				
-				$index++;
-				
+                        $member['datestamp'].'","'.$member['catalog'].'","'.$member['entry'].'","'.
+                        $member['title'].'","'.$member['description'].'","'.$member['keywords'].'","'.
+                        $member['website'].'","'.$member['common'].'","'.$member['package'].'")';
+
+                $index++;
+
                 if(mysql_query($qry,$db)) {
                     $tmp="Success";
                 }
@@ -148,19 +164,20 @@ class Parser {
                     $tmp="Failed";
                 }
 
-                //$res .= "<h3>unique id: </h3>".$member['uni']."   ";
-                $res .= "<h3>identifier: </h3>".$member['identifier']."   ";
-                $res .= "<h3>datestamp: </h3>".$member['datestamp']."   ";
-                $res .= "<h3>catalog: </h3>".$member['catalog']."   ";
-                $res .= "<h3>entry: </h3>".$member['entry']."   ";
-                $res .= "<h3>title: </h3>".$member['title']."   ";
-                $res .= "<h3>description: </h3>".$member['description']."   ";
-                $res .= "<h3>keywords: </h3>".$member['keywords']."   ";
-                $res .= "<h3>Common Cartridge: </h3>".$member['common']."   ";
-                $res .= "<h3>Content Package: </h3>".$member['package']."   ";
-                $res .= "<h3>Website: </h3>".$member['website']."<hr/>".$qry."<br/>"./*$tmp*/"<hr/><br/>";
+
             }
         }
+        if($connS)
+        {
+            $qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_updation',CURDATE())";
+            
+        }
+        else
+        {
+            $qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_updation','2011-06-28')";
+            
+        }
+        mysql_query($qry,$db);
     }
 //echo "$res";
 //mysql_close($conn);

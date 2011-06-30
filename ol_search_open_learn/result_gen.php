@@ -1,5 +1,5 @@
 <?php
-$_user_location	= 'users';
+
 define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
 $_custom_css = $_base_path . 'mods/ol_search_open_learn/module.css'; // use a custom stylesheet
@@ -121,7 +121,7 @@ if( is_array($rows) && count($rows) > 0) {
 		 }
 		 //$curr_url .= "#section";
 		
-		echo "<dt>".$i.".<a href='#' >".$row['title']." </a></dt>";
+		echo "<dt><h3>".$i.".<a href='#' >".$row['title']." </a></h3></dt>";
 		
 		/*if( strlen($row['description']) < 300 )
 			echo $row['description']."<br/>";	

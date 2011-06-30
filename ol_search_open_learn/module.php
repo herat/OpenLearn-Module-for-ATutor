@@ -30,13 +30,13 @@ $this->_stacks['ol_search_open_learn'] = array('title_var'=>'ol_search_open_lear
  * create optional sublinks for module "detail view" on course home page
  * when this line is uncommented, "mods/hello_world/sublinks.php" need to be created to return an array of content to be displayed
  */
-//$this->_list['hello_world'] = array('title_var'=>'hello_world','file'=>'mods/hello_world/sublinks.php');
+$this->_list['ol_search_open_learn'] = array('title_var'=>'ol_search_open_learn','file'=>'mods/ol_search_open_learn/sublinks.php');
 
 // Uncomment for tiny list bullet icon for module sublinks "icon view" on course home page
-//$this->_pages['mods/hello_world/index.php']['icon']      = 'mods/hello_world/hello_world_sm.jpg';
+$this->_pages['mods/ol_search_open_learn/index.php']['icon']      = 'mods/ol_search_open_learn/hello_world.jpg';
 
 // Uncomment for big icon for module sublinks "detail view" on course home page
-//$this->_pages['mods/hello_world/index.php']['img']      = 'mods/hello_world/hello_world.jpg';
+$this->_pages['mods/hol_search_open_learn/index.php']['img']      = 'mods/ol_search_open_learn/hello_world.jpg';
 
 // ** possible alternative: **
 // the text to display on module "detail view" when sublinks are not available
@@ -90,11 +90,11 @@ $this->_pages['mods/hello_world/index_public.php']['parent'] = AT_NAV_PUBLIC;*/
 
 /* my start page pages */
 $this->_pages[AT_NAV_START]  = array('mods/ol_search_open_learn/index_mystart.php');
-$this->_pages['mods/ol_search_open_learn/index_mystart.php']['title_var'] = 'ol_search_open_learn';
-$this->_pages['mods/ol_search_open_learn/index_mystart.php']['parent'] = AT_NAV_START;
+/*$this->_pages['mods/ol_search_open_learn/index_mystart.php']['title_var'] = 'ol_search_open_learn';
+$this->_pages['mods/ol_search_open_learn/index_mystart.php']['parent'] = AT_NAV_START;*/
 
 $this->_pages['mods/ol_search_open_learn/result_gen.php']['title_var'] = 'search_results';
-$this->_pages['mods/ol_search_open_learn/result_gen.php']['parent'] = AT_NAV_START;
+$this->_pages['mods/ol_search_open_learn/result_gen.php']['parent'] = 'mods/ol_search_open_learn/index.php';
 
 
 /*******
