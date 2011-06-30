@@ -121,6 +121,8 @@ if( is_array($rows) && count($rows) > 0) {
         echo "<input type=\"hidden\" name=\"url\" id=\"to_url\" value='". trim($row['cc']) ."' />";
         echo "<input type=\"hidden\" name=\"allow_test_export\" value='1' />";
         echo "<input type=\"hidden\" name=\"ignore_validation\" value='1' />";
+        echo "<input type=\"hidden\" name=\"q\" value=' ".$_GET['q']." ' />";
+        echo "<input type=\"hidden\" name=\"maxResults\" value=' ".$_GET['maxResults']." ' />";
         echo $importbutton;
         echo "</form>";
 

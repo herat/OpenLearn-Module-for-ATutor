@@ -86,6 +86,9 @@ require(AT_INCLUDE_PATH.'../mods/_core/imscc/classes/WeblinksParser.class.php');
 require(AT_INCLUDE_PATH.'../mods/_core/imscc/classes/DiscussionToolsParser.class.php');
 require(AT_INCLUDE_PATH.'../mods/_core/imscc/classes/DiscussionToolsImport.class.php');
 
+$q = trim($_POST['q']);
+$maxResults = $_POST['maxResults'];
+$redirectUrl = AT_BASE_HREF."/mods/ol_search_open_learn/result_instructor.php?q=".$q."&maxResults=".$maxResults;
 
 /* make sure we own this course that we're exporting */
 authenticate(AT_PRIV_CONTENT);
@@ -813,7 +816,7 @@ if (isset($_POST['url']) && ($_POST['url'] != 'http://') ) {
 			exit;
 		}
 		fclose($fp);
-		chmod($full_filename,0777);
+		//chmod($full_filename,0777);
 	$_FILES['file']['name']     = $filename;
 	$_FILES['file']['tmp_name'] = $full_filename;
 	$_FILES['file']['size']     = strlen($content);
@@ -843,7 +846,7 @@ if ($msg->containsErrors()) {
 	if (isset($_GET['tile'])) {
 		header('Location: '.$_base_path.'mods/_standard/tile_search/index.php');
 	} else {
-		header('Location: index_instructor.php');
+		header('Location: '.$redirectUrl );
 	}
 	echo '8';
 	exit;
@@ -872,7 +875,7 @@ if ($msg->containsErrors()) {
 	if (isset($_GET['tile'])) {
 		header('Location: '.$_base_path.'mods/_standard/tile_search/index.php');
 	} else {
-		header('Location: index_instructor.php');
+		header('Location: '.$redirectUrl );
 	}
 	echo '9';
 	exit;
@@ -924,7 +927,7 @@ if ($q_row['max_quota'] != AT_COURSESIZE_UNLIMITED) {
 		if (isset($_GET['tile'])) {
 			header('Location: '.$_base_path.'mods/_standard/tile_search/index.php');
 		} else {
-			header('Location: index_instructor.php');
+			header('Location: '.$redirectUrl );
 		}
 		echo '11';
 		exit;
@@ -981,7 +984,7 @@ if ($ims_manifest_xml === false) {
 	if (isset($_GET['tile'])) {
 		header('Location: '.$_base_path.'mods/_standard/tile_search/index.php');
 	} else {
-		header('Location: index_instructor.php');
+		header('Location: '.$redirectUrl );
 	}
 	echo '12';
 	exit;
@@ -1041,7 +1044,7 @@ if ($msg->containsErrors()) {
 	if (isset($_GET['tile'])) {
 		header('Location: '.$_base_path.'mods/_standard/tile_search/index.php');
 	} else {
-		header('Location: index_instructor.php');
+		header('Location: '.$redirectUrl );
 	}
 	echo '13';
 	exit;
@@ -1537,7 +1540,7 @@ if ($_POST['s_cid']){
 	if (!$msg->containsErrors()) {
 		$msg->addFeedback('ACTION_COMPLETED_SUCCESSFULLY');
 	}
-	header('Location: ../editor/edit_content.php?cid='.intval($_POST['cid']));
+	header('Location: '.$redirectUrl );
 	echo '1';
 	exit;
 } else {
@@ -1547,7 +1550,7 @@ if ($_POST['s_cid']){
 	if ($_GET['tile']) {
 		header('Location: '.AT_BASE_HREF.'mods/_standard/tile_search/index.php');
 	} else {
-		header('Location: ./index.php?cid='.intval($_POST['cid']));
+		header('Location: '.$redirectUrl );
 	}
 	echo '2';
 	exit;
@@ -1566,8 +1569,8 @@ function get_web_page( $url )
         CURLOPT_ENCODING       => "",       // handle all encodings
         CURLOPT_USERAGENT      => "spider", // who am i
         CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-        CURLOPT_COOKIEJAR      => '/tmp/'.$name.'.txt',
-        CURLOPT_COOKIEFILE     => '/tmp/'.$name.'.txt'
+        CURLOPT_COOKIEJAR      => AT_CONTENT_DIR.$name.'.txt',
+        CURLOPT_COOKIEFILE     => AT_CONTENT_DIR.$name.'.txt'
     );
 
     $ch      = curl_init( $url );
