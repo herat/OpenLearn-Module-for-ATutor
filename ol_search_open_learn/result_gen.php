@@ -121,7 +121,7 @@ if( is_array($rows) && count($rows) > 0) {
 		 }
 		 //$curr_url .= "#section";
 		
-		echo "<dt><h3>".$i.".<a href='#' >".$row['title']." </a></h3></dt>";
+		echo "<dt><h3>".$i.".<a href='#' >".stripslashes($row['title'])." </a></h3></dt>";
 		
 		/*if( strlen($row['description']) < 300 )
 			echo $row['description']."<br/>";	
@@ -130,7 +130,7 @@ if( is_array($rows) && count($rows) > 0) {
 		echo "<dd>";
 		
 		
-		echo "<p>".$row['description']."</p>";
+		echo "<p>".stripslashes($row['description'])."</p>";
 		
 			
         $i++;
@@ -144,7 +144,7 @@ if( is_array($rows) && count($rows) > 0) {
 				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
           	</a>";
 		
-$prevw = "<a href=\"javascript: void(window.open('".trim($row['website'])."','Preview','toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width=350,height=200'));\" >Preview on OL</a>";	
+$prevw = "<a href=\"javascript: void(popup('".$row['website']."','Preview',screen.width*0.45,screen.height*0.45));\" >Preview on OL</a>";	
 		//$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
 			
 		echo "<br/>".$prevw;
@@ -198,7 +198,10 @@ require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
 		window.location = "<?php echo $_SERVER[PHP_SELF]."?q=".$_GET['q']."&maxResults="; ?>"+ele;
  		
 	}
-	
+	function popup(pageURL, title,w,h) {
+	//var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+		var newWin = window.open(pageURL,title,'toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width='+w+', height='+h);
+	} 
 	
 </script>
 

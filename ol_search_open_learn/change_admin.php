@@ -13,9 +13,9 @@ $msg = new Message($savant);
 
 if(isset ($_POST['submit'])) {
     global $db;
-    $qry= "UPDATE ".TABLE_PREFIX."config SET value='". $_POST['url'] ."' WHERE name='ol_url'";
+    $qry= "UPDATE ".TABLE_PREFIX."config SET value='". trim($_POST['url']) ."' WHERE name='ol_url'";
     mysql_query($qry,$db);
-    $qry= "UPDATE ".TABLE_PREFIX."modules SET cron_interval=".$_POST['cron']." WHERE dir_name='ol_search_open_learn'";
+    $qry= "UPDATE ".TABLE_PREFIX."modules SET cron_interval=".trim($_POST['cron'])." WHERE dir_name='ol_search_open_learn'";
     mysql_query($qry,$db);
 	$msg->addFeedback('SETTINGS_CHANGED');
     header('Location: index_admin.php');

@@ -55,16 +55,16 @@ class Parser {
                     //$member['uni']='';
                 }
                 if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'identifier' && !isset($member['identifier'])) {
-                    $member['identifier']=$xml->readString();
+                    $member['identifier']=addslashes(trim($xml->readString()));
                 }
                 if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'datestamp' && !isset($member['datestamp'])) {
-                    $member['datestamp']=$xml->readString();
+                    $member['datestamp']=addslashes(trim($xml->readString()));
                 }
                 if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'entry' && !isset($member['entry'])) {
-                    $member['entry']=$xml->readString();
+                    $member['entry']=trim($xml->readString());
                 }
                 if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'catalog' && !isset($member['catalog'])) {
-                    $member['catalog']=$xml->readString();
+                    $member['catalog']= addslashes(trim($xml->readString()));
                 }
                 /*if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'entry')
 			{
@@ -87,19 +87,19 @@ class Parser {
                         $tag1= $xml->localName;
                     }
 
-                    $member['title']=$xml->readString();
+                    $member['title']=addslashes(trim($xml->readString()));
 
                     while($tag1 != 'description') {
                         $xml->read();
                         $tag1= $xml->localName;
                     }
 
-                    $member['description']=$xml->readString();
+                    $member['description']=addslashes(trim($xml->readString()));
 
                     $member['keywords']='';
                 }
                 if($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'keyword' && !$flag ) {
-                    $member['keywords'] .= $xml->readString().", ";
+                    $member['keywords'] .= addslashes(trim($xml->readString())).", ";
                 }
                 if($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'general' ) {
                     $flag = true;
@@ -115,7 +115,7 @@ class Parser {
                             $xml->read();
                             $tag= $xml->localName;
                         }
-                        $member['website']=$xml->readString();
+                        $member['website']=trim($xml->readString());
                     }
                     else if( strpos($data, 'Common Cartridge') > 0 ) {
                         //echo 'case 2<br/>';
@@ -123,7 +123,7 @@ class Parser {
                             $xml->read();
                             $tag= $xml->localName;
                         }
-                        $member['common']=$xml->readString();
+                        $member['common']=trim($xml->readString());
                     }
                     else if(strpos($data, 'Content Package') > 0) {
                         //echo 'case 3<br/>';
@@ -131,7 +131,7 @@ class Parser {
                             $xml->read();
                             $tag= $xml->localName;
                         }
-                        $member['package']=$xml->readString();
+                        $member['package']=trim($xml->readString());
                     }
                 }
                 if($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'record') {

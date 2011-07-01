@@ -114,18 +114,20 @@ if( is_array($rows) && count($rows) > 0) {
 
         $importbutton= "<input type=\"submit\" name=\"submit\" value='import' />";
 
-        echo "<dt><h3>".$i.".<a href='#' >".$row['title']." </a></h3></dt>";
+        echo "<dt><h3>".$i.".<a href='#' >".stripslashes($row['title'])." </a></h3></dt>";
 
         echo "<dd>";
         echo "<form name=\"form1\" method=\"post\" action=\"mods/ol_search_open_learn/downup.php\">";
         echo "<input type=\"hidden\" name=\"url\" id=\"to_url\" value='". trim($row['cc']) ."' />";
         echo "<input type=\"hidden\" name=\"allow_test_export\" value='1' />";
         echo "<input type=\"hidden\" name=\"ignore_validation\" value='1' />";
+        echo "<input type=\"hidden\" name=\"q\" value=' ".$_GET['q']." ' />";
+        echo "<input type=\"hidden\" name=\"maxResults\" value=' ".$_GET['maxResults']." ' />";
         echo $importbutton;
         echo "</form>";
 
 
-        echo "<p>".$row['description']."</p>";
+        echo "<p>".stripslashes($row['description'])."</p>";
 
 
         $i++;
@@ -139,7 +141,7 @@ if( is_array($rows) && count($rows) > 0) {
 				alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> 
           	</a>";
 
-        $prevw = "<a href=\"javascript: void(window.open('".trim($row['website'])."','Preview','toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width=350,height=200'));\" >Preview on OL</a>";
+        $prevw = "<a href=\"javascript: void(popup('".$row['website']."','Preview',screen.width*0.45,screen.height*0.45));\" >Preview on OL</a>";
 
         echo "<br/>".$imgs.$prevw;
 
@@ -208,6 +210,11 @@ require (AT_INCLUDE_PATH.'footer.inc.php'); ?>
             obj.action = "mods/_core/imscp/ims_export.php";
         }
     }
+	
+	function popup(pageURL, title,w,h) {
+	//var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+		var newWin = window.open(pageURL,title,'toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width='+w+', height='+h);
+	} 
 </script>
 
 <script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
