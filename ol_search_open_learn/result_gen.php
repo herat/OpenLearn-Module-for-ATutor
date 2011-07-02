@@ -14,7 +14,24 @@ $obj = new Search();
 
 $maxResults = intval(trim(strtolower($_GET['maxResults'])));
 $maxResults1 = intval(trim(strtolower($_GET['maxResults'])));
-$start = intval(trim(strtolower($_GET['start'])));
+$start1 = intval(trim(strtolower($_GET['p'])));
+if( !$start1 )
+	$start1= 1; 
+$start = intval(trim(strtolower($_GET['p'])))-1;
+if($start < 0)
+	$start = 0;
+//$maxResults = intval(trim(strtolower($_GET['maxResults'])));
+
+if ($maxResults == 0) $maxResults = 5;  // default
+$start = $start * $maxResults;
+$rows = $obj->getSearchResult($_GET['q'],$start,$maxResults);
+//echo count($rows)."<br/>";
+
+$all_results = $obj->getSearchResult($_GET['q']);
+
+if (is_array($all_results)) $total_num = count($all_results);
+else $total_num = 0;
+
 ?>
 
 <form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php">
@@ -43,7 +60,11 @@ $start = intval(trim(strtolower($_GET['start'])));
 </form>
 <br/>
 
-<?php echo _AT('ol_max_reco');?>: 
+
+<?php 
+if ( $total_num > 0 )
+{
+echo _AT('ol_max_reco');?>: 
 <form name="max" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
 <input type="hidden" value="<?php echo $_GET['q'];?>" name="q" />
 <select name="maxResults" id="maxResults" >
@@ -53,22 +74,10 @@ $start = intval(trim(strtolower($_GET['start'])));
 </select>
 <input type="submit" value="Change" />
 </form>
+<?php } ?>
 <br/>
 
 <?php
-
-
-//$maxResults = intval(trim(strtolower($_GET['maxResults'])));
-
-if ($maxResults == 0) $maxResults = 5;  // default
-
-$rows = $obj->getSearchResult($_GET['q'],$start,$maxResults);
-//echo count($rows)."<br/>";
-
-$all_results = $obj->getSearchResult($_GET['q']);
-
-if (is_array($all_results)) $total_num = count($all_results);
-else $total_num = 0;
 
 // calculate the last record number
 if (is_array($rows))
@@ -80,29 +89,15 @@ if (is_array($rows))
 }
 else $last_rec_number = $total_num;
 
-if( $start > 0 )
-	{
-		$prev = $start-$maxResults;
-		if( $maxResults1 != 0)
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-		}
-		else
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-		}
-	}
-	if( $total_num > $last_rec_number )
-	{
-		if( $maxResults1 != 0)
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
-		}
-		else
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
-		}
-	}
+
+if( $maxResults1 == 0 )
+{
+	print_paginator($start1, $total_num, "q=".$_GET['q'] , $maxResults); 
+}
+else
+{
+	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."maxResults=".intval($_GET['maxResults']) , $maxResults); 
+}
 
 if( is_array($rows) && count($rows) > 0) {
     $i=$start+1;
@@ -154,34 +149,21 @@ $prevw = "<a href=\"javascript: void(popup('".$row['website']."','Preview',scree
     }
 	echo "</dl>";
 	
-	if( $start > 0 )
-	{
-		$prev = $start-$maxResults;
-		if( $maxResults1 != 0)
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-		}
-		else
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$prev."'><img src='mods/ol_search_open_learn/prev.gif' alt='Previous' /></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-		}
-	}
-	if( $total_num > $last_rec_number )
-	{
-		if( $maxResults1 != 0)
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."&maxResults=".$_GET['maxResults']."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
-		}
-		else
-		{
-			echo "<a href='".$_SERVER[PHP_SELF]."?q=".$_GET['q']."&start=".$last_rec_number."'><img src='mods/ol_search_open_learn/next.gif' alt='Next' /> </a>";
-		}
-	}
+if( $maxResults1 == 0 )
+{
+	
+	print_paginator($start1, $total_num, "q=".$_GET['q'] , $maxResults); 
+}
+else
+{
+	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."maxResults=".intval($_GET['maxResults']) , $maxResults); 
+}
+
 	
 	
 }
 else {
-    echo "<br/>No results found... for ". $_GET['q'] ." <br/>";
+    echo "No results found for: <b>". $_GET['q'] ."</b> <br/>";
 }
 ?>
 <?php
