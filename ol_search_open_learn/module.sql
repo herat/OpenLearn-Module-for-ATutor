@@ -29,6 +29,7 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_cron_interval','CRON int
 INSERT INTO `language_text` VALUES ('en', '_module','ol_min','minutes',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_change','Change',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_max_reco','Maximum Records',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_order','Order By',NOW(),'');
 
 
 
@@ -36,6 +37,7 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_max_reco','Maximum Recor
 INSERT INTO `language_text` VALUES ('en', '_msgs','AT_FEEDBACK_OL_DB_UPDATED','Database updated successfully',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_msgs','AT_FEEDBACK_OL_DB_NOT_UPDATED','Error in updating database',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_msgs','AT_FEEDBACK_SETTINGS_CHANGED','Settings changed successfully',NOW(),'');
+
 
 
 #configuration data

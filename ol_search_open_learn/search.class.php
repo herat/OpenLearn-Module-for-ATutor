@@ -24,7 +24,7 @@ class Search {
         }
     }
 
-    public function getSearchResult($keywords,$start=0, $maxResults=0) {
+    public function getSearchResult($keywords,$start=0, $maxResults=0,$orderby=1 ) {
         $keywords = trim($keywords);
         $all_key = explode(" ",$keywords);
         list($sql_where, $sql_order) = $this->getSearchSqlParams($all_key);
@@ -37,7 +37,27 @@ class Search {
         if ($sql_where <> '') $sql .= $sql_where;
 
         //echo $sql;
-        if ($sql_order <> '') $sql .= " ORDER BY ".$sql_order." DESC ";
+		switch( $orderby )
+		{
+			case 1:
+				if( $sql_order <> '')
+					$sql_order = $sql_order." DESC ";
+			break;
+			case 2:
+				$sql_order = "title ASC";
+			break;
+			case 3:
+				$sql_order = "title DESC";
+			break;
+			case 4:
+				$sql_order = "datestamp ASC";
+			break;
+			case 5:
+				$sql_order = "datestamp DESC";
+			break;
+		}
+		
+        if ($sql_order <> '') $sql .= " ORDER BY ". $sql_order;
 		
 		if ($maxResults > 0) $sql .= " LIMIT ".$start.", ".$maxResults;
 

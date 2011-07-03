@@ -14,16 +14,18 @@ $obj = new Search();
 $maxResults = intval(trim(strtolower($_GET['maxResults'])));
 $maxResults1 = intval(trim(strtolower($_GET['maxResults'])));
 $start1 = intval(trim(strtolower($_GET['p'])));
+$orderby = intval(trim(strtolower($_GET['orderby'])));
 if( !$start1 )
 	$start1= 1; 
 $start = intval(trim(strtolower($_GET['p'])))-1;
 if($start < 0)
 	$start = 0;
 if ($maxResults == 0) $maxResults = 5;  // default
+if ($orderby == 0) $orderby = 1; 
 
 $start = $start * $maxResults;
 
-$rows = $obj->getSearchResult($_GET['q'],$start,$maxResults);
+$rows = $obj->getSearchResult($_GET['q'],$start,$maxResults,$orderby);
 //echo count($rows)."<br/>";
 
 $all_results = $obj->getSearchResult($_GET['q']);
@@ -38,6 +40,10 @@ else $total_num = 0;
     if( $maxResults1 != 0 ) {
         echo "<input name='maxResults' type='hidden' value='".$_GET['maxResults']."'/>";
     }
+	if( $orderby != 1 )
+	{
+		echo "<input name='orderby' type='hidden' value='".$_GET['orderby']."'/>";
+	}
     ?>
     <table>
         <tr>
@@ -60,20 +66,56 @@ else $total_num = 0;
 
 <?php 
 if ( $total_num > 0 )
-{ 
+{
+echo "<table width='100%'>";
+echo "<tr>";
+echo "<td align='left'>";
 echo _AT('ol_max_reco');?>: 
-<form name="max" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF];
-echo $maxUrl; ?>" >
-    <input type="hidden" value="<?php echo $_GET['q'];?>" name="q" />
-    <select name="maxResults" id="maxResults">
-        <option value="5" <?php if($maxResults==5) echo "selected='selected'" ?>>5</option>
-        <option value="10" <?php if($maxResults==10) echo "selected='selected'" ?>>10</option>
-        <option value="25" <?php if($maxResults==25) echo "selected='selected'" ?>>25</option>
-    </select>
-    <input type="submit" value="Change" />
+<form name="max" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
+<input type="hidden" value="<?php echo $_GET['q'];?>" name="q" />
+<?php 
+if($orderby > 1)
+{ ?>
+<input type="hidden" value="<?php echo $_GET['orderby'];?>" name="orderby" />
+<?php
+}
+?>
+<select name="maxResults" id="maxResults" >
+	<option value="5" <?php if($maxResults==5) echo "selected='selected'" ?>>5</option>
+    <option value="10" <?php if($maxResults==10) echo "selected='selected'" ?>>10</option>
+    <option value="25" <?php if($maxResults==25) echo "selected='selected'" ?>>25</option>
+</select>
+<input type="submit" value="Change" />
 </form>
-<?php } ?>
-<br/>
+</td>
+
+<?php
+echo "<td align='right' >";
+echo _AT('ol_order');
+?>
+<form name="order" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
+<input type="hidden" value="<?php echo $_GET['q'];?>" name="q" />
+<?php 
+if($maxResults1 > 0)
+{ ?>
+<input type="hidden" value="<?php echo $_GET['maxResults'];?>" name="maxResults" />
+<?php
+}
+?>
+<select name="orderby" id="orderby" >
+	<option value="1" <?php if($orderby==1) echo "selected='selected'" ?>>DEFAULT</option>
+	<option value="2" <?php if($orderby==2) echo "selected='selected'" ?>>TITLE ASC</option>
+    <option value="3" <?php if($orderby==3) echo "selected='selected'" ?>>TITLE DESC</option>
+    <option value="4" <?php if($orderby==4) echo "selected='selected'" ?>>DATE ASC</option>
+    <option value="5" <?php if($orderby==5) echo "selected='selected'" ?>>DATE DESC</option>
+</select>
+<input type="submit" value="Change" />
+</form>
+</td>
+</tr>
+</table>
+<?php
+  } ?>
 
 <?php 
 //$maxResults = intval(trim(strtolower($_GET['maxResults'])));
@@ -88,13 +130,21 @@ if (is_array($rows)) {
 }
 else $last_rec_number = $total_num;
 
-if( $maxResults1 == 0 )
+if( $maxResults1 == 0 && $orderby == 1)
 {
 	print_paginator($start1, $total_num, "q=".$_GET['q'] , $maxResults); 
 }
-else
+else if( $orderby == 1 && $maxResults1 > 0)
 {
 	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."maxResults=".intval($_GET['maxResults']) , $maxResults); 
+}
+else if( $maxResults1 == 0  && $orderby > 1 )
+{
+	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."orderby=".intval($_GET['orderby']) , $maxResults); 
+}
+else
+{
+	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."orderby=".intval($_GET['orderby']).SEP."maxResults=".intval($_GET['maxResults']) , $maxResults); 
 }
 
 
@@ -130,7 +180,9 @@ if( is_array($rows) && count($rows) > 0) {
         echo "</form>";
 
 
-        echo "<p>".stripslashes($row['description'])."</p>";
+        echo "<p><b>Description:</b><br/>".stripslashes($row['description'])."</p>";
+		echo "<b>Keywords:</b><br/>".stripslashes($row['keywords'])."</b>";
+		echo "<br/>";
 
 
         $i++;
@@ -156,15 +208,22 @@ if( is_array($rows) && count($rows) > 0) {
 
 
 
-if( $maxResults1 == 0 )
+if( $maxResults1 == 0 && $orderby == 1)
 {
 	print_paginator($start1, $total_num, "q=".$_GET['q'] , $maxResults); 
 }
+else if( $orderby == 1 && $maxResults1 > 0)
+{
+	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."maxResults=".intval($_GET['maxResults']) , $maxResults); 
+}
+else if( $maxResults1 == 0  && $orderby > 1 )
+{
+	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."orderby=".intval($_GET['orderby']) , $maxResults); 
+}
 else
 {
-	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."maxResults=".intval($_GET['maxResults']) , $maxResults);  
+	print_paginator($start1, $total_num, "q=".$_GET['q'].SEP."orderby=".intval($_GET['orderby']).SEP."maxResults=".intval($_GET['maxResults']) , $maxResults); 
 }
-
 
 
 }
