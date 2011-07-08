@@ -24,9 +24,23 @@ class Search {
         }
     }
 
-    public function getSearchResult($keywords,$start=0, $maxResults=0,$orderby=1 ) {
+    public function getSearchResult($keywords,$bool=2,$orderby=1,$start=0, $maxResults=0 ) {
         $keywords = trim($keywords);
         $all_key = explode(" ",$keywords);
+		
+		if( $bool == 1 )
+		{
+			$len=count($all_key);
+			if( count($all_key) > 1)
+			{
+				for($i=0,$j=$i+1 ; $i<$len-1; $i=$i+1, $j=$j+2)
+				{
+					//$all_key[$j]="OR";
+					array_splice($all_key, $j, 0, "OR");
+				}
+			}
+		}
+		
         list($sql_where, $sql_order) = $this->getSearchSqlParams($all_key);
 
         //if ($sql_where <> '') $sql_where = ' AND '. $sql_where;

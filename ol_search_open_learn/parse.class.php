@@ -169,13 +169,13 @@ class Parser {
         }
         if($connS)
         {
-            $qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_updation',CURDATE())";
+			
+            $qry = "UPDATE ".TABLE_PREFIX."config SET value=CURDATE() WHERE name='ol_last_updation'";
             
         }
         else
         {
-            $qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_updation','2011-06-28')";
-            
+            $qry = "UPDATE ".TABLE_PREFIX."config SET value='2011-06-28' WHERE name='ol_last_updation'";
         }
         mysql_query($qry,$db);
     }

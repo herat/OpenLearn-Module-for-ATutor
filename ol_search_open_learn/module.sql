@@ -30,7 +30,9 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_min','minutes',NOW(),'')
 INSERT INTO `language_text` VALUES ('en', '_module','ol_change','Change',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_max_reco','Maximum Records',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_order','Order By',NOW(),'');
-
+INSERT INTO `language_text` VALUES ('en', '_module','ol_bool','Boolean Operation',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_or','OR',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_and','AND',NOW(),'');
 
 
 #adding feedback messages
@@ -42,7 +44,7 @@ INSERT INTO `language_text` VALUES ('en', '_msgs','AT_FEEDBACK_SETTINGS_CHANGED'
 
 #configuration data
 INSERT INTO `config` VALUES ('ol_url','http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_ilox');
-
+INSERT INTO `config` VALUES ('ol_last_updation','');
 
 
 

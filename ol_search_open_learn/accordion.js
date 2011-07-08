@@ -9,7 +9,8 @@ $(document).ready(function() {
 	$('#accordion dd:eq(0)').slideDown();
 	$('#accordion dt:eq(0)').attr('stus', 'active');
 
-	$('#accordion dt').click(function(){
+	$('#accordion dt').click( function(event){
+		event.preventDefault();
 		cur_stus = $(this).attr('stus');
 		if(cur_stus != "active")
 		{
@@ -30,3 +31,4 @@ $(document).ready(function() {
 		return false;
 	});
 });
+

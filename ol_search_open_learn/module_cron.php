@@ -5,17 +5,13 @@
  */
  require('update.class.php');
 
-
 function ol_search_open_learn_cron() {
     global $db;
 
     //debug('yay i am running!');
 
-	define('AT_INCLUDE_PATH', '../../include/');
-	require (AT_INCLUDE_PATH.'vitals.inc.php');
-
 	$obj = new Update();
-	$obj->parse($_config['ol_last_updation']);
+	$obj->parse($_config['ol_last_updation'],trim($_config['ol_url']));
 }
 
 ?>
