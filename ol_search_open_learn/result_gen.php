@@ -207,7 +207,8 @@ if( is_array($rows) && count($rows) > 0) {
 		
 $prevw = "<a href=\"javascript: void(popup('".$row['website']."','Preview',screen.width*0.45,screen.height*0.45));\" >Preview on OL</a>";	
 		//$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
-			
+		
+		
 		echo $prevw;
 			
 		echo "</dd>";	
@@ -254,6 +255,8 @@ function datestamp( $datestamp )
 	$dateandtime[1] = $time;
 	return $dateandtime;
 }
+
+
 ?>
 
 
