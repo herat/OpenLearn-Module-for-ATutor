@@ -179,7 +179,7 @@ if( is_array($rows) && count($rows) > 0) {
 
         $importbutton= "<input type=\"submit\" name=\"submit\" value='import' />";
 
-        echo "<dt><h3>".$i.".<a href='#' >".stripslashes($row['title'])." </a></h3></dt>";
+        echo "<dt> <input class=\"img-ol\" src=\"\" alt=\"\" title=\"\" type=\"image\" /> <a href='#' >".stripslashes($row['title'])." </a></dt>";
 
         echo "<dd>";
         echo "<form name=\"form1\" method=\"post\" action=\"mods/ol_search_open_learn/downup.php\">";
@@ -212,7 +212,7 @@ if( is_array($rows) && count($rows) > 0) {
 
         $prevw = "<a href=\"javascript: void(popup('".$row['website']."','Preview',screen.width*0.45,screen.height*0.45));\" >Preview on OL</a>";
 		$rss="<a href=\"javascript: void(popup('".parseForNumber($row['cc'],$row['entry'])."','RSS',screen.width*0.45,screen.height*0.45));\">RSS for Unit</a>";	
-        echo $imgs.$prevw."&nbsp;&nbsp;".$rss;
+        echo $imgs.$prevw."&nbsp;&nbsp;".$rss."<br/><br/>";
 
         echo "</dd>";
 

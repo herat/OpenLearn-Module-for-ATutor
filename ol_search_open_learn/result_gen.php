@@ -165,7 +165,8 @@ else
 }
 if( is_array($rows) && count($rows) > 0) {
     $i=$start+1;
-	echo "<dl id='accordion'>";
+	
+	echo "<dl id=\"accordion\">";
     foreach( $rows as $row ) {
 		
 		 $curr_url = $_SERVER[PHP_SELF];
@@ -179,8 +180,7 @@ if( is_array($rows) && count($rows) > 0) {
 			 $curr_url .= "&start=".$start;
 		 }
 		 //$curr_url .= "#section";
-		
-		echo "<dt><h3>".$i.".<a href='#' >".stripslashes($row['title'])." </a></h3></dt>";
+		echo "<dt> <input class=\"img-ol\" src=\"\" alt=\"\" title=\"\" type=\"image\" /> <a href='#' >".stripslashes($row['title'])." </a></dt>";
 		
 		/*if( strlen($row['description']) < 300 )
 			echo $row['description']."<br/>";	
@@ -209,7 +209,7 @@ $prevw = "<a href=\"javascript: void(popup('".$row['website']."','Preview',scree
 		//$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
 		
 		
-		echo $prevw;
+		echo $prevw."<br/><br/>";
 			
 		echo "</dd>";	
 		
@@ -259,6 +259,8 @@ function datestamp( $datestamp )
 
 ?>
 
+<script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/accordion.js"></script>
 
 <script>
 	
@@ -274,11 +276,6 @@ function datestamp( $datestamp )
 	//var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		var newWin = window.open(pageURL,title,'toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width='+w+', height='+h);
 	} 
-	
-	
-
 </script>
 
-<script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
-<script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/accordion.js"></script>
 
