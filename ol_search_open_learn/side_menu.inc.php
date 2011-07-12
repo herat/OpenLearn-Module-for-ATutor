@@ -1,4 +1,9 @@
-<?php 
+<?php
+/*
+ * This php file is used for side menu. When instructor allows students to
+ * access this module as a course tool then in side menu of course's home page
+ * one entry will be created.
+ */
 /* start output buffering: */
 ob_start(); 
 global $savant;

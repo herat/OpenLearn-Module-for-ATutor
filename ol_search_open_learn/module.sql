@@ -1,4 +1,4 @@
-# sql file for hello world module
+# sql file for ol_search_open_learn module
 
 CREATE TABLE `ol_search_open_learn` (
       `id` mediumint(8) unsigned NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `ol_search_open_learn` (
    
 );
 
-
+#language text
 INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn','Search OpenLearn',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','update_param','Update Parameters',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn_tool','Search OpenLearn Content Tool',NOW(),'');

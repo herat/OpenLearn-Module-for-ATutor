@@ -1,5 +1,13 @@
 <?php
 /*
+ * This php file is the heart for importing a CC package in a course of
+ * ATutor using ol_search_open_learn module. This file first downloads
+ * cc file using cURL and stores in a temporary location. In the next step
+ * it is uploaded to ATutor. This script simulates default import code.
+ */
+?>
+<?php
+/*
 define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
 
@@ -76,19 +84,26 @@ function get_web_page( $url )
 define('AT_INCLUDE_PATH', '../../include/');
 require(AT_INCLUDE_PATH.'vitals.inc.php');
 
-require_once(AT_INCLUDE_PATH.'../mods/_core/file_manager/filemanager.inc.php'); /* for clr_dir() and preImportCallBack and dirsize() */
+require_once(AT_INCLUDE_PATH.'../mods/_core/file_manager/filemanager.inc.php');
+/* for clr_dir() and preImportCallBack and dirsize() */
 require(AT_INCLUDE_PATH.'classes/pclzip.lib.php');
 require(AT_INCLUDE_PATH.'../mods/_core/imsqti/lib/qti.inc.php'); 
 require(AT_INCLUDE_PATH.'../mods/_core/imsqti/classes/QTIImport.class.php');
 require(AT_INCLUDE_PATH.'../mods/_core/imsafa/classes/A4aImport.class.php');
-require(AT_INCLUDE_PATH.'../mods/_core/imscp/ns.inc.php');	//namespace, no longer needs, delete it after it's stable.
+require(AT_INCLUDE_PATH.'../mods/_core/imscp/ns.inc.php');
+////namespace, no longer needs, delete it after it's stable.
 require(AT_INCLUDE_PATH.'../mods/_core/imscc/classes/WeblinksParser.class.php');
-require(AT_INCLUDE_PATH.'../mods/_core/imscc/classes/DiscussionToolsParser.class.php');
-require(AT_INCLUDE_PATH.'../mods/_core/imscc/classes/DiscussionToolsImport.class.php');
+require(AT_INCLUDE_PATH.
+        '../mods/_core/imscc/classes/DiscussionToolsParser.class.php');
+require(AT_INCLUDE_PATH.
+        '../mods/_core/imscc/classes/DiscussionToolsImport.class.php');
 
 $q = trim($_POST['q']);
 $maxResults = $_POST['maxResults'];
-$redirectUrl = AT_BASE_HREF."/mods/ol_search_open_learn/result_instructor.php?q=".$q."&maxResults=".$maxResults;
+
+$redirectUrl = AT_BASE_HREF.
+    "/mods/ol_search_open_learn/result_instructor.php?q=".
+    $q."&maxResults=".$maxResults;
 
 /* make sure we own this course that we're exporting */
 authenticate(AT_PRIV_CONTENT);
@@ -143,8 +158,9 @@ function libxml_display_error($error)
 
 /**
  * Validate all the XML in the package, including checking XSDs, missing data.
- * @param	string		the path of the directory that contains all the package files
- * @return	boolean		true if every file exists in the manifest, false if any is missing.
+ * @param string the path of the directory that contains all the package files
+ * @return boolean true if every file exists in the manifest,
+ * false if any is missing.
  */
 function checkResources($import_path){
 	global $items, $msg, $skip_ims_validation, $avail_dt;
@@ -178,26 +194,34 @@ function checkResources($import_path){
 					if ($error->level==LIBXML_ERR_WARNING){
 						continue;
 					}
-					$msg->addError(array('IMPORT_CARTRIDGE_FAILED', libxml_display_error($error)));
+					$msg->addError(array(
+                                            'IMPORT_CARTRIDGE_FAILED',
+                                            libxml_display_error($error)));
 				}
 				libxml_clear_errors();
 			}
-			//if this is the manifest file, we do not have to check for its existance.
+			//if this is the manifest file, we do not have
+                        //to check for its existance.
 //			if (preg_match('/(.*)imsmanifest\.xml/', $filepath)){
 //				continue;
 //			}
 		}
 	}
 
-	//Create an array that mimics the structure of the data array, based on the xml items
+	//Create an array that mimics the structure of the data array,
+        //based on the xml items
 	$filearray = array();
 	foreach($items as $name=>$fileinfo){
-		if(isset($fileinfo['file']) && is_array($fileinfo['file']) && !empty($fileinfo['file'])){
+		if(isset($fileinfo['file']) && is_array($fileinfo['file'])
+                        && !empty($fileinfo['file'])){
 			foreach($fileinfo['file'] as $fn){
-				if (!in_array(realpath($import_path.$fn), $filearray)){
+				if (!in_array(realpath($import_path.$fn),
+                                        $filearray)){
 					//if url, skip
-					if (preg_match('/^http[s]?\:/', $fn) == 0){
-						$filearray[] = realpath($import_path. $fn);
+					if (preg_match('/^http[s]?\:/',
+                                                $fn) == 0){
+						$filearray[] =
+                                            realpath($import_path. $fn);
 					}					
 				}
 			}
@@ -206,26 +230,32 @@ function checkResources($import_path){
 		//validate the xml by its schema
 		if (preg_match('/imsqti\_(.*)/', $fileinfo['type'])){
 			$qti = new QTIParser($fileinfo['type']);
-			$xml_content = @file_get_contents($import_path . $fileinfo['href']);
-			$qti->parse($xml_content); //will add error to $msg if failed			
+			$xml_content = @file_get_contents($import_path .
+                                $fileinfo['href']);
+			$qti->parse($xml_content);
+                        //will add error to $msg if failed
 		} 
 
 		//add all dependent discussion tools to a list
-		if(isset($fileinfo['dependency']) && !empty($fileinfo['dependency'])){
-			$avail_dt = array_merge($avail_dt, $fileinfo['dependency']);
+		if(isset($fileinfo['dependency']) &&
+                        !empty($fileinfo['dependency'])){
+			$avail_dt = array_merge($avail_dt,
+                                $fileinfo['dependency']);
 		}
 	}
 
 	//check if all files in the xml is presented in the archieve
 	$result = array_diff($filearray, $data);
 	//using sizeof because array_diff only 
-	//returns an array containing all the entries from array1  that are not present in any of the 
+	//returns an array containing all the entries from array1  that
+        //are not present in any of the
 	//other arrays. 
 	//Using sizeof make sure it's not a subset of array2.
 	//-1 on data because it always contain the imsmanifest.xml file
 	if (!$skip_ims_validation){
 	    if (!empty($result) || sizeof($data)-1>sizeof($filearray)){
-		    $msg->addError(array('IMPORT_CARTRIDGE_FAILED', _AT('ims_missing_references')));
+		    $msg->addError(array('IMPORT_CARTRIDGE_FAILED',
+                        _AT('ims_missing_references')));
 	    }
 	}
 	return true;
@@ -239,8 +269,10 @@ function checkResources($import_path){
  * @return array
  */
 function rscandir($base='', &$data=array()) {
-  $array = array_diff(scandir($base), array('.', '..')); # remove ' and .. from the array */
-  foreach($array as $value) : /* loop through the array at the level of the supplied $base */
+  $array = array_diff(scandir($base), array('.', '..'));
+  /* remove ' and .. from the array */
+  foreach($array as $value) :
+      /* loop through the array at the level of the supplied $base */
  
     if (is_dir($base.$value)) : /* if this is a directory */
 //	  don't save the directory name

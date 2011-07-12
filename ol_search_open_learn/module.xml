@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <module version="0.1"> 
-    <name lang="en">OpenLearn Plugin for ATutor</name> 
-    <description lang="en">This module creates a bridge between OpenLearn and ATutor.This module can be used to import already available content on OpenLearn to ATutor. This module also provides a search facility to search OpenLearn repository to students. 
+    <name lang="en">OpenLearn module for ATutor</name> 
+    <description lang="en">This module creates a bridge between OpenLearn and ATutor.This module can be used to import already available content on OpenLearn to ATutor. This module also provides a search facility to search OpenLearn repository. 
 	</description> 
     <maintainers>
         <maintainer> 
             <name>Herat</name> 
-            <email>heratgandhi@gmail.com</email> 
+            <email>heratgandhi@ymail.com</email> 
         </maintainer>
     </maintainers> 
     <url>http://atutor.ca</url> 

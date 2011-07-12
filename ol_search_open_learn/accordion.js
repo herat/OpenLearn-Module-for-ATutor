@@ -1,5 +1,13 @@
+/*
+ *This javascript file uses jQuery framework. It will format data into an accordion.
+ *It uses following html format
+ *<dl id="accordion">
+ *   <dt> <input src="" title="" alt="" /><a> </a></dt>
+ *   <dd> Data goes here </dd>
+ *</dl>
+ */
 $(document).ready(function() {
-	var cur_stus;
+	var cur_stus;//current status of a link
 	
 	//close all on default
 	$('#accordion dd').hide();
@@ -18,8 +26,9 @@ $(document).ready(function() {
 		$(this).attr('alt', 'Close: '+$(this).next().text());
 		$(this).attr('title', 'Close: '+$(this).next().text());
 	});
-
-	$('#accordion a').click( function(event){
+        
+        //open or close a section based on clicked <A> 
+	$('#accordion dt > a').click( function(event){
 		cur_stus = $(this).attr('stus');
 				
 		if(cur_stus != "active")
@@ -52,7 +61,8 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$('#accordion input').click( function(event){
+	//open or close a section based on clicked image
+	$('#accordion dt > input').click( function(event){
 		cur_stus = $(this).next().attr('stus');
 				
 		if(cur_stus != "active")

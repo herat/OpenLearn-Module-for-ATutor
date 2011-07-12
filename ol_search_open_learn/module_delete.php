@@ -10,10 +10,16 @@ function ol_search_open_learn_delete($course) {
     global $db;
 
     // delete hello_world course table entries
-    $sql = "DELETE FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN";
+    $sql = "DELETE FROM ".TABLE_PREFIX."ol_search_open_learn";
     mysql_query($sql, $db);
 
-    // delete hello_world course files
+    $sql = "DELETE FROM ".TABLE_PREFIX."config where name='ol_url'";
+    mysql_query($sql, $db);
+
+    $sql = "DELETE FROM ".TABLE_PREFIX."config where name='ol_last_updation'";
+    mysql_query($sql, $db);
+    
+    // delete ol_search_open_learn course files
     $path = AT_CONTENT_DIR .'ol_search_open_learn/' . $course .'/';
     clr_dir($path);
 }

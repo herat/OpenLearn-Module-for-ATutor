@@ -1,12 +1,14 @@
 <?php
-
+/*
+ * This is a temporary file used for testing.
+ */
 require ('search.class.php');
 
 $obj = new Search();
 
 $rows = $obj->getSearchResult($_GET['q']);
 
-$_SESSION['rows']=$rows;
+$_SESSION['rows'] = $rows;
 
 header("Location: mods/ol_search_open_learn/result-gen.php?cursor=1");
 ?>

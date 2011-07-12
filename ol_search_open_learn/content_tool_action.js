@@ -26,3 +26,5 @@ ATutor.mods.ol_search_open_learn = ATutor.mods.ol_search_open_learn || {};
     
     jQuery(document).ready(initialize);
 })();
+
+/* Right now this file is not being used */

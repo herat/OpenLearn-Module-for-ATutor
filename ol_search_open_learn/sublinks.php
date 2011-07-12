@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * This file fills the box created for course on homepage of course.
+ */
 if (!defined('AT_INCLUDE_PATH')) { exit; }
 
 /*****

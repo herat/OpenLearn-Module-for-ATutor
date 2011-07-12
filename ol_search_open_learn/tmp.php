@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Just a temporary file used for testing
+ */
 /*define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH.'vitals.inc.php');
 authenticate(AT_PRIV_OL_SEARCH_OPEN_LEARN); */

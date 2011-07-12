@@ -20,7 +20,7 @@ class SearchOpenLearnCallbacks {
 	 * @return: a string, plain or html, to be appended to course content page
 	 */ 
 	public static function appendContent() {
-		return "Output from hello world module!";
+		return "Output from ol_search_open_learn module!";
 	}
 }
 
