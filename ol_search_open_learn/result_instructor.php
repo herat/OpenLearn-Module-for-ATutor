@@ -227,7 +227,9 @@ alt='Download Content Package' title='Download Content Package' border='0' />
 
                 $prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" >Preview on OL</a>";
                 $rss = "<a href=\"javascript: void(popup('" . parseForNumber($row['cc'], $row['entry']) . "','RSS',screen.width*0.45,screen.height*0.45));\">RSS for Unit</a>";
-                echo $imgs . $prevw . "&nbsp;&nbsp;" . $rss . "<br/><br/>";
+				$doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" >Download Unit</a>";
+
+                echo $imgs . $prevw . "&nbsp;&nbsp;" . $rss . "&nbsp;&nbsp;" .$doc_file. "<br/><br/>";
 
                 echo "</dd>";
             }
