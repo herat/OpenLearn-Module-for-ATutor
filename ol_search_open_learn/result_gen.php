@@ -8,6 +8,7 @@ $_custom_css = $_base_path . 'mods/ol_search_open_learn/module.css'; // use a cu
 require (AT_INCLUDE_PATH . 'header.inc.php');
 
 require ('search.class.php');
+
 // create object of search class
 $obj = new Search();
 ?>	
@@ -24,6 +25,8 @@ if (!$start1)
 $start = intval(trim(strtolower($_GET['p']))) - 1;
 if ($start < 0)
     $start = 0;
+	
+$urlforkey = urlencode($_GET['q']);
 //$maxResults = intval(trim(strtolower($_GET['maxResults'])));
 
 if ($maxResults == 0)
@@ -166,13 +169,13 @@ else
 
 
    if ($maxResults1 == 0 && $orderby == 1) {
-       print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'], $maxResults);
+       print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
    } else if ($orderby == 1 && $maxResults1 > 0) {
-       print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'] . SEP . "max=" . intval($_GET['max']), $maxResults);
+       print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "max=" . intval($_GET['max']), $maxResults);
    } else if ($maxResults1 == 0 && $orderby > 1) {
-       print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
+       print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
    } else {
-       print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
+       print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
    }
    if (is_array($rows) && count($rows) > 0) {
        $i = $start + 1;
@@ -181,7 +184,7 @@ else
        foreach ($rows as $row) {
 
            $curr_url = $_SERVER[PHP_SELF];
-           $curr_url .= "?q=" . $_GET['q'];
+           $curr_url .= "?q=" . $urlforkey;
            if ($maxResults1 > 0) {
                $curr_url .= "&max=" . $maxResults1;
            }
@@ -216,22 +219,23 @@ alt='Download Common Cartridge' title='Download Common Cartridge' border='0' />
 
            $prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" >Preview on OL</a>";
            //$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
+		   
+		   $doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" >Download Unit</a>";
 
-
-           echo $prevw . "<br/><br/>";
+           echo $prevw."&nbsp;&nbsp;".$doc_file."<br/><br/>";
 
            echo "</dd>";
        }
        echo "</dl>";
 
        if ($maxResults1 == 0 && $orderby == 1) {
-           print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'], $maxResults);
+           print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
        } else if ($orderby == 1 && $maxResults1 > 0) {
-           print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'] . SEP . "max=" . intval($_GET['max']), $maxResults);
+           print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "max=" . intval($_GET['max']), $maxResults);
        } else if ($maxResults1 == 0 && $orderby > 1) {
-           print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
+           print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
        } else {
-           print_paginator($start1, $total_num, "q=" . $_GET['q'] . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
+           print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
        }
    } else {
        echo "No results found for: <b>" . $_GET['q'] . "</b> <br/>";
