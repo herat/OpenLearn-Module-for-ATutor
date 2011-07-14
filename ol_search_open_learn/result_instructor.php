@@ -46,7 +46,7 @@ else
 //Search form
 ?>
 
-<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php">
+<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php" onsubmit="return validate()">
     <?php
     if ($maxResults1 != 0) {
         echo "<input name='max' type='hidden' value='" . $_GET['max'] . "'/>";
@@ -61,7 +61,7 @@ else
 <?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
-                <input type="text" name="q" value="<?php echo $_GET['q']; ?>" />
+                <input type="text" name="q" value="<?php echo $_GET['q']; ?>" id="key" />
             </td>
 
         </tr>
@@ -163,7 +163,7 @@ else
         }
         else
             $last_rec_number = $total_num;
-
+		//paginator
         if ($maxResults1 == 0 && $orderby == 1) {
             print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
         } else if ($orderby == 1 && $maxResults1 > 0) {
@@ -237,7 +237,7 @@ alt='Download Content Package' title='Download Content Package' border='0' />
             echo "</dl>";
 
 
-
+			//paginator
             if ($maxResults1 == 0 && $orderby == 1) {
                 print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
             } else if ($orderby == 1 && $maxResults1 > 0) {
@@ -318,6 +318,27 @@ alt='Download Content Package' title='Download Content Package' border='0' />
     var newWin = window.open(pageURL,title,'toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width='+w+', height='+h);
     }
 </script>
+<script type="text/javascript">
+	function trim( str )
+	{
+		return str.replace(/^\s+|\s+$/g, "");
+	}
+	function validate()
+	{
+		var key= document.getElementById('key').value;
+		if( key == null || trim(key)=="" )
+		{
+			//alert("Enter keyword.");
+			document.getElementById('key').focus();
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+</script>
+
 
 <script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
 <script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/accordion.js"></script>

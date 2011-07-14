@@ -2,10 +2,21 @@
 /*
  * This php file is used for showing search results to students.
  */
+ 
 define('AT_INCLUDE_PATH', '../../include/');
 require (AT_INCLUDE_PATH . 'vitals.inc.php');
 $_custom_css = $_base_path . 'mods/ol_search_open_learn/module.css'; // use a custom stylesheet
 require (AT_INCLUDE_PATH . 'header.inc.php');
+
+if( $_GET['q'] == null || trim($_GET['q']) == "")
+{
+  require_once(AT_INCLUDE_PATH . '/classes/Message/Message.class.php');
+  global $savant;
+  //feedback messsage for admin
+  $msg = new Message($savant);
+  $msg->addError("Enter keywords");
+  header("Location: index.php");
+}
 
 require ('search.class.php');
 
@@ -49,7 +60,7 @@ else
 //Search form
 ?>
 
-<form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php">
+<form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php" onsubmit="return validate()">
     <?php
     if ($maxResults1 != 0) {
         echo "<input name='max' type='hidden' value='" . $_GET['max'] . "'/>";
@@ -64,7 +75,7 @@ else
                 <?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
-                <input type="text" name="q" value="<?php echo $_GET['q']; ?>" />
+                <input type="text" id="key" name="q" value="<?php echo $_GET['q']; ?>" />
             </td>
 
         </tr>
@@ -167,7 +178,7 @@ else
    else
        $last_rec_number = $total_num;
 
-
+	//paginator
    if ($maxResults1 == 0 && $orderby == 1) {
        print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
    } else if ($orderby == 1 && $maxResults1 > 0) {
@@ -227,7 +238,7 @@ alt='Download Common Cartridge' title='Download Common Cartridge' border='0' />
            echo "</dd>";
        }
        echo "</dl>";
-
+	   //paginator
        if ($maxResults1 == 0 && $orderby == 1) {
            print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
        } else if ($orderby == 1 && $maxResults1 > 0) {
@@ -275,5 +286,26 @@ alt='Download Common Cartridge' title='Download Common Cartridge' border='0' />
     var newWin = window.open(pageURL,title,'toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width='+w+', height='+h);
     }
 </script>
+<script type="text/javascript">
+	function trim( str )
+	{
+		return str.replace(/^\s+|\s+$/g, "");
+	}
+	function validate()
+	{
+		var key= document.getElementById('key').value;
+		if( key == null || trim(key)=="" )
+		{
+			//alert("Enter keyword.");
+			document.getElementById('key').focus();
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+</script>
+
 
 

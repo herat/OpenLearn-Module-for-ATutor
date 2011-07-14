@@ -10,14 +10,14 @@ $_custom_css = $_base_path . 'mods/ol_search_open_learn/module.css'; // use a cu
 require (AT_INCLUDE_PATH . 'header.inc.php');
 ?>
 
-<form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php">
+<form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php" onsubmit="return validate()">
     <table>
         <tr>
             <td>
                 <?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
-                <input type="text" name="q" />
+                <input type="text" name="q" id="key" />
             </td>
 
         </tr>
@@ -67,3 +67,23 @@ require (AT_INCLUDE_PATH . 'header.inc.php');
             </form>
 
 <?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
+<script type="text/javascript">
+	function trim( str )
+	{
+		return str.replace(/^\s+|\s+$/g, "");
+	}
+	function validate()
+	{
+		var key= document.getElementById('key').value;
+		if( key == null || trim(key)=="" )
+		{
+			//alert("Enter keyword.");
+			document.getElementById('key').focus();
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+</script>

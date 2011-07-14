@@ -9,14 +9,14 @@ require (AT_INCLUDE_PATH . 'vitals.inc.php');
 authenticate(AT_PRIV_OL_SEARCH_OPEN_LEARN);
 require (AT_INCLUDE_PATH . 'header.inc.php');
 ?>
-<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php">
+<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php" onsubmit="return validate()">
     <table>
         <tr>
             <td>
                 <?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
-                <input type="text" name="q" />
+                <input id="key" type="text" name="q" />
             </td>
 
         </tr>
@@ -67,3 +67,23 @@ require (AT_INCLUDE_PATH . 'header.inc.php');
                         </table>
                     </form>
 <?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
+<script type="text/javascript">
+	function trim( str )
+	{
+		return str.replace(/^\s+|\s+$/g, "");
+	}
+	function validate()
+	{
+		var key= document.getElementById('key').value;
+		if( key == null || trim(key)=="" )
+		{
+			//alert("Enter keyword.");
+			document.getElementById('key').focus();
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+</script>
