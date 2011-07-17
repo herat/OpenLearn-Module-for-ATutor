@@ -5,6 +5,51 @@
 	 * cc file using cURL and stores in a temporary location. In the next step
 	 * it is uploaded to ATutor. This script simulates default import code.
 	 */
+	define('AT_INCLUDE_PATH', '../../include/');
+	require(AT_INCLUDE_PATH.'vitals.inc.php');
+	
+	require_once(AT_INCLUDE_PATH.'../mods/_core/file_manager/filemanager.inc.php');
+	/* for clr_dir() and preImportCallBack and dirsize() */
+	require(AT_INCLUDE_PATH.'classes/pclzip.lib.php');
+	require(AT_INCLUDE_PATH.'../mods/_core/imsqti/lib/qti.inc.php'); 
+	require(AT_INCLUDE_PATH.'../mods/_core/imsqti/classes/QTIImport.class.php');
+	require(AT_INCLUDE_PATH.'../mods/_core/imsafa/classes/A4aImport.class.php');
+	require(AT_INCLUDE_PATH.'../mods/_core/imscp/ns.inc.php');
+	////namespace, no longer needs, delete it after it's stable.
+	require(AT_INCLUDE_PATH.'../mods/_core/imscc/classes/WeblinksParser.class.php');
+	require(AT_INCLUDE_PATH.
+			'../mods/_core/imscc/classes/DiscussionToolsParser.class.php');
+	require(AT_INCLUDE_PATH.
+			'../mods/_core/imscc/classes/DiscussionToolsImport.class.php');
+	
+	$q = trim($_POST['q']);
+	$maxResults = $_POST['maxResults'];
+	
+	$redirectUrl = AT_BASE_HREF. "/mods/ol_search_open_learn/result_instructor.php?q=". $q."&maxResults=".$maxResults;
+	
+	/* make sure we own this course that we're exporting */
+	authenticate(AT_PRIV_CONTENT);
+	
+	/* to avoid timing out on large files */
+	@set_time_limit(0);
+	$_SESSION['done'] = 1;
+	
+	$html_head_tags = array("style", "script", "link");
+	
+	$package_base_path = '';
+	$package_real_base_path = '';	//the path to save the contents
+	$all_package_base_path = array();
+	$xml_base_path = '';
+	$element_path = array();
+	$imported_glossary = array();
+	$character_data = '';
+	$test_message = '';
+	$test_title = '';
+	$content_type = '';
+	$skip_ims_validation = false;
+	$added_dt = array();	//the mapping of discussion tools that are added
+	$avail_dt = array();	//list of discussion tools that have not been handled
+
 	function libxml_display_error($error){
 		$return = "<br/>\n";
 		switch ($error->level) {
