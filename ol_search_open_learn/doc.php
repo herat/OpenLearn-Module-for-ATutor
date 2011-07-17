@@ -1,6 +1,5 @@
 <?php
-	function getId( $key,$entry )
-	{
+	function getId( $key,$entry ){
 		$posofeq = strpos($key, "=");
 		$key1 = substr($key, $posofeq + 2);
 		//echo $key1."<br/>";
@@ -13,8 +12,7 @@
 		return $key3;
 	}
 	
-	function getURL( $id )
-	{
+	function getURL( $id ){
 		$dom = new DOMDocument();
 		$dom->preserveWhiteSpace = false;
 		
@@ -24,32 +22,28 @@
 		
 		foreach ($members as $member) {
 			$inter = $member->getAttribute('href');
-			if(stripos($inter,".doc") === false)
-			{
+			if(stripos($inter,".doc") === false){
 				
 			}
-			else
-			{
+			else{
 				return $inter;	
 			}
 		}
 		return false;
 	}
-		$key = $_GET['cc'];
-		//echo $key."<br/>";
-		$entry = $_GET['entry'];
-		//echo $entry."<br/>";
-		$id = getId($key,$entry);
-		//echo $id."<br/>";
-		$url = getURL($id);
-		//echo $url."<br/>";
-		if( $url === false )
-		{
-			echo "<h3>Unit does not provide .doc file.</h3>";
-		}
-		else
-		{
-			echo "<h3>The unit is available for download: <a href='".$url."'>Download</a></h3>";
-		}
+	$key = $_GET['cc'];
+	//echo $key."<br/>";
+	$entry = $_GET['entry'];
+	//echo $entry."<br/>";
+	$id = getId($key,$entry);
+	//echo $id."<br/>";
+	$url = getURL($id);
+	//echo $url."<br/>";
+	if( $url === false ){
+		echo "<h3>Unit does not provide .doc file.</h3>";
+	}
+	else{
+		echo "<h3>The unit is available for download: <a href='".$url."'>Download</a></h3>";
+	}
 		
 ?>
