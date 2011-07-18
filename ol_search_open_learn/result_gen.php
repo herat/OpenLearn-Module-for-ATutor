@@ -64,7 +64,7 @@
 	}
 	//Search form
 ?>
-
+<div class="input-form">
 <form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php" onsubmit="return validate()">
     <?php
 		if ($maxResults1 != 0) {
@@ -80,7 +80,7 @@
                 <?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
-                <input type="text" id="key" name="q" value="<?php echo $_GET['q']; ?>" />
+                <input type="text" id="key" name="q" value="<?php echo $_GET['q']; ?>" size="40" />
             </td>
 
         </tr>
@@ -95,7 +95,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Search" />
+                <input type="submit" value="Search" class="button" />
             </td>
         </tr>
     </table>
@@ -125,7 +125,7 @@
            <option value="10" <?php if ($maxResults == 10) echo "selected='selected'" ?>>10</option>
            <option value="25" <?php if ($maxResults == 25) echo "selected='selected'" ?>>25</option>
      </select>
-     <input type="submit" value="Change" />
+     <input type="submit" value="Change" class="button" />
 </form>
 </td>
 
@@ -144,20 +144,20 @@
 		}
     ?>
     <select name="orderby" id="orderby" >
-    	<option value="1" <?php if ($orderby == 1) echo "selected='selected'" ?>>DEFAULT</option>
-		<option value="2" <?php if ($orderby == 2) echo "selected='selected'" ?>>TITLE ASC</option>
-        <option value="3" <?php if ($orderby == 3) echo "selected='selected'" ?>>TITLE DESC</option>
-        <option value="4" <?php if ($orderby == 4) echo "selected='selected'" ?>>DATE ASC</option>
-        <option value="5" <?php if ($orderby == 5) echo "selected='selected'" ?>>DATE DESC</option>
+    	<option value="1" <?php if ($orderby == 1) echo "selected='selected'" ?>><?php echo _AT('ol_def'); ?></option>
+        <option value="2" <?php if ($orderby == 2) echo "selected='selected'" ?>><?php echo _AT('ol_title_asc'); ?></option>
+        <option value="3" <?php if ($orderby == 3) echo "selected='selected'" ?>><?php echo _AT('ol_title_desc'); ?></option>
+        <option value="4" <?php if ($orderby == 4) echo "selected='selected'" ?>><?php echo _AT('ol_date_asc'); ?></option>
+        <option value="5" <?php if ($orderby == 5) echo "selected='selected'" ?>><?php echo _AT('ol_date_desc'); ?></option>
      </select>
-     <input type="submit" value="Change" />
+     <input type="submit" value="Change" class="button" />
      </form>
 </td>
 </tr>
 </table>
 <?php } ?>
 
-
+</div>
 <?php
 	// calculate the last record number
 	if (is_array($rows)) {
@@ -173,7 +173,20 @@
 	else{
 	   $last_rec_number = $total_num;
 	}
-	
+	//start-end of total
+	if($total_num > 0) {
+		echo "<div align=\"center\" >";
+		if( count($rows) == $maxResults ){
+			echo ($start+1)."-".($maxResults+$start)." of ".$total_num;
+		}
+		else if( ($start+1) != $total_num ){
+			echo ($start+1)."-".$total_num." of ".$total_num;
+		}
+		else{
+			echo ($start+1)." of ".$total_num;
+		}
+		echo "</div>";
+	}
 	//paginator
 	if ($maxResults1 == 0 && $orderby == 1) {
 	   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
@@ -191,7 +204,7 @@
 	//Print Search results if number of results > 0
 	if (is_array($rows) && count($rows) > 0) {
 	   $i = $start + 1;
-	
+	   echo "<div id='container'>";
 	   echo "<dl id=\"accordion\">";
 	   foreach ($rows as $row) {
 	
@@ -221,16 +234,17 @@
 		   $i++;
 		   $imgs = "<a href='" . $row['cp'] . "'> <img src='mods/ol_search_open_learn/cp.png' alt='Download Content Package' title='Download Content Package' border='0' /> </a> <a href='" . $row['cc'] . "'> <img src='mods/ol_search_open_learn/cc.png' alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> </a>";
 	
-		   $prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" >Preview on OL</a>";
+		   $prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" ><img src='mods/ol_search_open_learn/popup.gif' alt='Preview on OpenLearn(popup window)' title='Preview on OpenLearn(popup window)' border='0' /></a>";
 		   //$prevw = "<a href=\"".$row['website']."\" title=\"".$row['title']."\" >Preview on OL</a>";
 		   
-		   $doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" >Download Unit</a>";
+		   $doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" ><img src='mods/ol_search_open_learn/word.gif' alt='Download doc file(popup window)' title='Download doc file(popup window)' border='0' /></a>";
 	
-		   echo $prevw."&nbsp;&nbsp;".$doc_file."<br/><br/>";
+		   echo "<div align='left' class='menuitems'>".$prevw."&nbsp;&nbsp;".$doc_file."</div><br/>";
 	
 		   echo "</dd>";
 	   }
 	   echo "</dl>";
+	   echo "</div>";
 	   //paginator
 	   if ($maxResults1 == 0 && $orderby == 1) {
 		   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
@@ -297,3 +311,10 @@
 		}
 	}
 </script>
+<style type="text/css">
+	div.menuitems{
+		float:left;
+		margin-top:-1.2em;
+		border:1px solid #cccccc;
+	}
+</style>

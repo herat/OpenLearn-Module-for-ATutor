@@ -9,7 +9,7 @@
 	$_custom_css = $_base_path . 'mods/ol_search_open_learn/module.css'; // use a custom stylesheet
 	require (AT_INCLUDE_PATH . 'header.inc.php');
 ?>
-
+<div class="input-form">
 <form id="search" name="search" method="get" action="mods/ol_search_open_learn/result_gen.php" onsubmit="return validate()">
     <table>
         <tr>
@@ -17,7 +17,7 @@
                 <?php echo _AT('ol_search_open_learn'); ?>:
             </td>
             <td>
-                <input type="text" name="q" id="key" />
+                <input type="text" name="q" id="key" size="40" />
             </td>
 
         </tr>
@@ -47,22 +47,22 @@
             </td>
             <td>
                 <select name="orderby" id="orderby" >
-                    <option value="1" <?php if ($orderby == 1) echo "selected='selected'" ?>>DEFAULT</option>
-                    <option value="2" <?php if ($orderby == 2) echo "selected='selected'" ?>>TITLE ASC</option>
-                    <option value="3" <?php if ($orderby == 3) echo "selected='selected'" ?>>TITLE DESC</option>
-                    <option value="4" <?php if ($orderby == 4) echo "selected='selected'" ?>>DATE ASC</option>
-                    <option value="5" <?php if ($orderby == 5) echo "selected='selected'" ?>>DATE DESC</option>
+                    <option value="1" <?php if ($orderby == 1) echo "selected='selected'" ?>><?php echo _AT('ol_def'); ?></option>
+                    <option value="2" <?php if ($orderby == 2) echo "selected='selected'" ?>><?php echo _AT('ol_title_asc'); ?></option>
+                    <option value="3" <?php if ($orderby == 3) echo "selected='selected'" ?>><?php echo _AT('ol_title_desc'); ?></option>
+                    <option value="4" <?php if ($orderby == 4) echo "selected='selected'" ?>><?php echo _AT('ol_date_asc'); ?></option>
+                    <option value="5" <?php if ($orderby == 5) echo "selected='selected'" ?>><?php echo _AT('ol_date_desc'); ?></option>
                  </select>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-	            <input type="submit" value="Search" />
+	            <input type="submit" value="Search" class="button" />
             </td>
         </tr>
     </table>
 </form>
-
+</div>
 <?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
 <script type="text/javascript">
 	function trim( str ){

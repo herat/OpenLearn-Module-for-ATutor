@@ -33,7 +33,11 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_order','Order By',NOW(),
 INSERT INTO `language_text` VALUES ('en', '_module','ol_bool','Boolean Operation',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_or','OR',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_and','AND',NOW(),'');
-
+INSERT INTO `language_text` VALUES ('en', '_module','ol_def','Default',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_title_asc','Title Ascending',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_title_desc','Title Descending',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_date_asc','Date Ascending',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_date_desc','Date Descending',NOW(),'');
 
 #adding feedback messages
 INSERT INTO `language_text` VALUES ('en', '_msgs','AT_FEEDBACK_OL_DB_UPDATED','Database updated successfully',NOW(),'');

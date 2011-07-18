@@ -38,7 +38,7 @@
 	$this->_list['ol_search_open_learn'] = array('title_var' => 'ol_search_open_learn', 'file' => 'mods/ol_search_open_learn/sublinks.php');
 	
 	// Uncomment for tiny list bullet icon for module sublinks "icon view" on course home page
-	$this->_pages['mods/ol_search_open_learn/index.php']['icon'] = 'mods/ol_search_open_learn/hello_world.jpg';
+	$this->_pages['mods/ol_search_open_learn/index.php']['icon'] = 'mods/ol_search_open_learn/bullet.gif';
 	
 	// Uncomment for big icon for module sublinks "detail view" on course home page
 	$this->_pages['mods/hol_search_open_learn/index.php']['img'] = 'mods/ol_search_open_learn/hello_world.jpg';

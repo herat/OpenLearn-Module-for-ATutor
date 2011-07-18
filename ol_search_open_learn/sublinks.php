@@ -14,7 +14,7 @@
 	
 	//$link_limit = 3;		// Number of links to be displayed on "detail view" box
 	
-	$list[0] = "<a href='".AT_BASE_HREF."mods/ol_search_open_learn/index.php'> "._AT('ol_search_open_learn')." </a>";
+	$list[0] = "This module allows you to search OpenLearn repository. You can reach your required content using this module.";
 	return $list;
 	
 	/*$sql = "SELECT id, value FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN WHERE course_id=".$_SESSION[course_id].
