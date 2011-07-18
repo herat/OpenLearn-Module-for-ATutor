@@ -61,7 +61,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" name="submit" value="<?php echo _AT('ol_change'); ?>"/>
+                    <input type="submit" name="submit" value="<?php echo _AT('ol_save'); ?>"/>
                 </td>
             </tr>
         </table>

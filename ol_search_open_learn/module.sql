@@ -27,7 +27,7 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_last_update','Last Updat
 INSERT INTO `language_text` VALUES ('en', '_module','ol_repo_url','Repository URL',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_cron_interval','CRON interval',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_min','minutes',NOW(),'');
-INSERT INTO `language_text` VALUES ('en', '_module','ol_change','Change',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_save','Save',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_max_reco','Maximum Records',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_order','Order By',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_bool','Boolean Operation',NOW(),'');

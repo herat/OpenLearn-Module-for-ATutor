@@ -7,7 +7,7 @@
 	require (AT_INCLUDE_PATH . 'vitals.inc.php');
 	admin_authenticate(AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN);
 	require (AT_INCLUDE_PATH . 'header.inc.php');
-	
+
 	//Include message class for providing feedback to the admin.
 	require_once(AT_INCLUDE_PATH . '/classes/Message/Message.class.php');
 	global $savant;
@@ -19,13 +19,11 @@
 	if (isset($_POST['submit'])) {
 		global $db;
 		//Updtae URL and cron interval of module
-		$qry = "UPDATE " . TABLE_PREFIX . "config SET value='" .
-		trim($_POST['url']) . "' WHERE name='ol_url'";
+		$qry = "UPDATE " . TABLE_PREFIX . "config SET value='" . trim($_POST['url']) . "' WHERE name='ol_url'";
 	
 		mysql_query($qry, $db);
 	
-		$qry = "UPDATE " . TABLE_PREFIX . "modules SET cron_interval=" . trim($_POST['cron']) .
-		" WHERE dir_name='ol_search_open_learn'";
+		$qry = "UPDATE " . TABLE_PREFIX . "modules SET cron_interval=" . trim($_POST['cron']) . " WHERE dir_name='ol_search_open_learn'";
 	
 		mysql_query($qry, $db);
 	
