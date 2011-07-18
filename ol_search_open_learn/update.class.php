@@ -148,9 +148,9 @@
 								$member['datestamp'] . '","' . $member['catalog'] . '","' . $member['entry'] . '","' .
 								$member['title'] . '","' . $member['description'] . '","' . $member['keywords'] . '","' .
 								$member['website'] . '","' . $member['common'] . '","' . $member['package'] . '")';
+						$index++;
 					}
-	
-					$index++;
+					
 					$tmp = "Success";
 	
 					if (mysql_query($qry, $db)) {
