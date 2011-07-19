@@ -177,6 +177,8 @@
 				$qry = "UPDATE " . TABLE_PREFIX . "config SET value='2011-06-28' WHERE name='ol_last_updation'";
 			}
 			mysql_query($qry, $db);
+			$qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_time','".date('H:i:s')."')";
+			mysql_query($qry, $db);
 		}
 	
 	//echo "$res";

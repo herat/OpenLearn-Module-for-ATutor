@@ -16,56 +16,64 @@
 	
 	$msg->printFeedbacks();
 ?>
-<div class="admin_container" style="width: 25%;" >
-   <ol id="tools">
-        <li class="child-tool">
-            <a href="mods/ol_search_open_learn/update_admin.php"><?php echo _AT('ol_update'); ?></a>
+<div class="input-form">
+	<p>
+    	<?php 
+			echo _AT('ol_admin_main');
+		?>
+    </p>
+	<ul>
+    	<li>
+        	<?php 
+				echo _AT('ol_admin_lpanel');
+			?>
         </li>
-    </ol>
-    <ol id="tools">
-        <li class="child-tool">
-            <?php echo _AT('ol_last_update'); ?>:
-            <?php echo $_config['ol_last_updation']; ?>
+        <li>
+        	<?php 
+				echo _AT('ol_admin_rpanel');
+			?>
         </li>
-    </ol>
+    </ul>
 </div>
-<br/>
-<br/>
-<div class="input-form" > 
-	<form name="change" action="mods/ol_search_open_learn/change_admin.php" method="post">
-    	<table>
-        	<tr>
-                <td>
-                    <?php echo _AT('ol_repo_url'); ?>:
-                </td>
-                <td>
-                    <input type="text" name="url" size="150" value="<?php echo $_config['ol_url']; ?>" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <?php echo _AT('ol_cron_interval'); ?>:
-                </td>
-                <td>
-                    <?php
-						global $db;
-						$query = "SELECT * FROM " . TABLE_PREFIX . "modules WHERE dir_name='ol_search_open_learn'";
-						$res = mysql_query($query, $db);
-						$tmp = '';
-						$rows = mysql_fetch_assoc($res);
-                    ?>
-                    <input type="text" name="cron" value="<?php echo $rows['cron_interval']; ?>" />
-                    <?php echo _AT('ol_min'); ?>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" name="submit" value="<?php echo _AT('ol_save'); ?>"/>
-                </td>
-            </tr>
-        </table>
-    </form>
+<div class="container" style="width: 50%;  float: left;"> 
+    <div class="input-form">
+           <div class="row">
+				<?php echo _AT('ol_last_update'); ?>:
+                <?php echo $_config['ol_last_updation']; echo "  "._AT('ol_at'); ?>
+                <?php echo $_config['ol_last_time'];?>
+            </div>
+            <div class="row">
+                <form name="updateoldb" action="mods/ol_search_open_learn/update_admin.php" method="get">
+                    <input type="submit" value="<?php echo _AT('ol_update'); ?>" name="updatereq" class="button"/>
+                </form>
+                    <!--<a href=""><?php echo _AT('ol_update'); ?></a> -->
+            </div>
+     </div>
+</div>
+<div class="container" style="width: 50%; float: right;"> 
+    <div class="input-form"> 
+        <form name="changeadminsett" action="mods/ol_search_open_learn/change_admin.php" method="post">
+            <div class="row">
+                  <?php echo _AT('ol_repo_url'); ?>:
+                  <input size="60" type="text" name="url" value="<?php echo $_config['ol_url']; ?>" />
+            </div>
+            <div class="row">
+                  <?php echo _AT('ol_cron_interval'); ?>:
+                  <?php
+					  global $db;
+					  $query = "SELECT * FROM " . TABLE_PREFIX . "modules WHERE dir_name='ol_search_open_learn'";
+					  $res = mysql_query($query, $db);
+					  $tmp = '';
+					  $rows = mysql_fetch_assoc($res);
+                   ?>
+                   <input size="10" type="text" name="cron" value="<?php echo $rows['cron_interval']; ?>" />
+                   <?php echo _AT('ol_min'); ?>
+            </div>  
+            <div class="row">
+            	<input type="submit" class="button" name="submit" value="<?php echo _AT('ol_save'); ?>"/>
+            </div>    
+        </form>
+    </div>
 </div>
 <?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
 

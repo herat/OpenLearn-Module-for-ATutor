@@ -132,7 +132,7 @@
 <?php
    echo "<td align='right' >";
    echo _AT('ol_order');
-?>
+?>:
 <form name="order" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
 	<input type="hidden" value="<?php echo $_GET['q']; ?>" name="q" />
     <input type="hidden" value="<?php echo $_GET['b']; ?>" name="b" />
@@ -177,13 +177,13 @@
 	if($total_num > 0) {
 		echo "<div align=\"center\" >";
 		if( count($rows) == $maxResults ){
-			echo ($start+1)."-".($maxResults+$start)." of ".$total_num;
+			echo ($start+1)."-".($maxResults+$start)."  "._AT('ol_of')."  ".$total_num;
 		}
 		else if( ($start+1) != $total_num ){
-			echo ($start+1)."-".$total_num." of ".$total_num;
+			echo ($start+1)."-".$total_num."  "._AT('ol_of')."  ".$total_num;
 		}
 		else{
-			echo ($start+1)." of ".$total_num;
+			echo ($start+1)."  "._AT('ol_of')."  ".$total_num;
 		}
 		echo "</div>";
 	}
@@ -226,10 +226,10 @@
 		   echo "<dd>";
 	
 	
-		   echo "<p><b>Description:</b><br/>" . stripslashes($row['description']) . "</p>";
-		   echo "<p><b>Keywords:</b><br/>" . stripslashes($row['keywords']) . "</p>";
+		   echo "<p><b>"._AT('ol_descri')."</b><br/>" . stripslashes($row['description']) . "</p>";
+		   echo "<p><b>"._AT('ol_keywords')."</b><br/>" . stripslashes($row['keywords']) . "</p>";
 		   $datentime = datestamp(stripslashes($row['datestamp']));
-		   echo "<p><b>Last modified on(DD-MM-YYYY):</b><br/>" . $datentime[0] . " at " . $datentime[1] . "</p>";
+		   echo "<p><b>"._AT('ol_last_modi')."</b><br/>" . $datentime[0]."  " . _AT('ol_at') ."  ". $datentime[1] . "</p>";
 		   echo "<br/>";
 		   $i++;
 		   $imgs = "<a href='" . $row['cp'] . "'> <img src='mods/ol_search_open_learn/cp.png' alt='Download Content Package' title='Download Content Package' border='0' /> </a> <a href='" . $row['cc'] . "'> <img src='mods/ol_search_open_learn/cc.png' alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> </a>";
@@ -260,7 +260,7 @@
 	   }
 	} 
 	else {
-	   echo "No results found for: <b>" . $_GET['q'] . "</b> <br/>";
+	   echo _AT('ol_no')."<b>" . $_GET['q'] . "</b> <br/>";
 	}
 ?>
 <?php

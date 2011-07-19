@@ -6,8 +6,7 @@
 	define('AT_INCLUDE_PATH', '../../include/');
 	require (AT_INCLUDE_PATH . 'vitals.inc.php');
 	admin_authenticate(AT_ADMIN_PRIV_OL_SEARCH_OPEN_LEARN);
-	require (AT_INCLUDE_PATH . 'header.inc.php');
-
+	
 	//Include message class for providing feedback to the admin.
 	require_once(AT_INCLUDE_PATH . '/classes/Message/Message.class.php');
 	global $savant;
@@ -36,5 +35,5 @@
 
 <?php
 
-	require (AT_INCLUDE_PATH . 'footer.inc.php');
+	
 ?>

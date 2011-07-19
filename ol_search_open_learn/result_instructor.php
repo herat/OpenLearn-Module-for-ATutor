@@ -167,13 +167,13 @@
 	if($total_num > 0) {
 		echo "<div align=\"center\" >";
 		if( count($rows) == $maxResults ){
-			echo ($start+1)."-".($maxResults+$start)." of ".$total_num;
+			echo ($start+1)."-".($maxResults+$start)."  "._AT('ol_of')."  ".$total_num;
 		}
 		else if( ($start+1) != $total_num ){
-			echo ($start+1)."-".$total_num." of ".$total_num;
+			echo ($start+1)."-".$total_num."  "._AT('ol_of')."  ".$total_num;
 		}
 		else{
-			echo ($start+1)." of ".$total_num;
+			echo ($start+1)."  "._AT('ol_of')."  " .$total_num;
 		}
 		echo "</div>";
 	}
@@ -225,10 +225,10 @@
 			echo "</form>";
 	
 	
-			echo "<p><b>Description:</b><br/>" . stripslashes($row['description']) . "</p>";
-			echo "<p><b>Keywords:</b><br/>" . stripslashes($row['keywords']) . "</p>";
+			echo "<p><b>"._AT('ol_descri')."</b><br/>" . stripslashes($row['description']) . "</p>";
+			echo "<p><b>"._AT('ol_keywords')."</b><br/>" . stripslashes($row['keywords']) . "</p>";
 			$datentime = datestamp(stripslashes($row['datestamp']));
-			echo "<p><b>Last modified on(DD-MM-YYYY):</b><br/>" . $datentime[0] . " at " . $datentime[1] . "</p>";
+			echo "<p><b>"._AT('ol_last_modi')."</b><br/>" . $datentime[0] . "  ". _AT('ol_at') ."  ". $datentime[1] . "</p>";
 			echo "<br/>";
 	
 	
@@ -264,7 +264,7 @@
 		}
 	} 
 	else {
-		echo "No results found for: <b>" . $_GET['q'] . "</b> <br/>";
+		echo _AT('ol_no')." <b>" . $_GET['q'] . "</b> <br/>";
 	}
 ?>
 <?php

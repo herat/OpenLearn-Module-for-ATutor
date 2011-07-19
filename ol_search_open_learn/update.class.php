@@ -186,9 +186,11 @@
 				$feedback = array('OL_DB_UPDATED');
 				$msg->addFeedback($feedback);
 				mysql_query($qry, $db);
+				$qry = "UPDATE " . TABLE_PREFIX . "config SET value='".date('H:i:s')."' WHERE name='ol_last_time'";
+				mysql_query($qry, $db);
 			} 
 			else {
-				$msg->addFeedback('OL_DB_NOT_UPDATED');
+				$msg->addError('OL_DB_NOT_UPDATED');
 			}
 		}
 	
