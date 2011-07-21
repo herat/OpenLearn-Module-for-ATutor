@@ -14,15 +14,25 @@
 ?>
 
 <?php
-
-	if (isset($_POST['submit'])) {
+	$url_r = trim($_POST['url']);
+	$cron_v = intval(trim($_POST['cron']));
+	
+	if($cron_v < 0 || $url_r == null || $url_r == "" ){
+		$msg->addError('OL_DB_NOT_UPDATED');
+		header('Location: index_admin.php');
+	}
+	/*else if($cron_v != 0 && ($url_r == null || $url_r == "" )){
+		$msg->addError('OL_DB_NOT_UPDATED');
+		header('Location: index_admin.php');
+	}*/
+	else if (isset($_POST['submit'])) {
 		global $db;
 		//Updtae URL and cron interval of module
-		$qry = "UPDATE " . TABLE_PREFIX . "config SET value='" . trim($_POST['url']) . "' WHERE name='ol_url'";
+		$qry = "UPDATE " . TABLE_PREFIX . "config SET value='" . $url_r . "' WHERE name='ol_url'";
 	
 		mysql_query($qry, $db);
 	
-		$qry = "UPDATE " . TABLE_PREFIX . "modules SET cron_interval=" . trim($_POST['cron']) . " WHERE dir_name='ol_search_open_learn'";
+		$qry = "UPDATE " . TABLE_PREFIX . "modules SET cron_interval=" . $cron_v . " WHERE dir_name='ol_search_open_learn'";
 	
 		mysql_query($qry, $db);
 	
@@ -32,8 +42,3 @@
 	}
 ?>
 
-
-<?php
-
-	
-?>
