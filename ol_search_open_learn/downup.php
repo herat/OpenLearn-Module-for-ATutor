@@ -1,9 +1,23 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+	
+	/**
 	 * This php file is the heart for importing a CC package in a course of
 	 * ATutor using ol_search_open_learn module. This file first downloads
 	 * cc file using cURL and stores in a temporary location. In the next step
-	 * it is uploaded to ATutor. This script simulates default import code.
+	 * it is uploaded to ATutor. This script simulates default import code. 
+	 * This code is modified version of default import code. Just code for
+	 * downloading CC package is modified. 
 	 */
 	define('AT_INCLUDE_PATH', '../../include/');
 	require(AT_INCLUDE_PATH.'vitals.inc.php');
@@ -1501,7 +1515,13 @@
 	}
 	
 	
-	/* Herat */
+	/**
+	 * Download CC package
+	 * 
+	 * This function downloads CC package using cURL.
+	 * @param string URL of cc package
+	 * @return file zip file containing CC package  
+	 */
 	
 	function get_web_page( $url )
 	{

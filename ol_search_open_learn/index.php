@@ -1,7 +1,19 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+	
+	/**
 	 * This php file will be displayed to students when they click on one of the "Search OpenLearn"
-	 * links provided as a course tool by the instructor of the course. It will display one form for
+	 * link provided as a course tool by the instructor of the course. It will display one form for
 	 * searching OpenLearn's repository.
 	 */
 	define('AT_INCLUDE_PATH', '../../include/');
@@ -24,7 +36,7 @@
         <tr>
             <td>
                 <?php
-                /*
+                /**
                  * Display option for selecting boolean operation for
                  * multiple keywords : "And"/"Or"
                  */
@@ -40,7 +52,7 @@
         <tr>
             <td>
                 <?php
-                /*
+                /**
                  * Display option for selecting sorting order of search results
                  */
                 echo _AT('ol_order'); ?>:
@@ -65,9 +77,18 @@
 </div>
 <?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
 <script type="text/javascript">
+	/**
+	 * Function to trim a string
+	 * @param string input string
+	 * @return string trimmed string	
+	 */
 	function trim( str ){
 		return str.replace(/^\s+|\s+$/g, "");
 	}
+	/**
+	 * Function for validating whether input field is empty or not
+	 * @return boolean True if input field is not empty
+	 */
 	function validate(){
 		var key= document.getElementById('key').value;
 		if( key == null || trim(key)=="" ) {

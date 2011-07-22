@@ -1,9 +1,20 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+	
+	/**
 	 * This php file contains all the configurations for the module.
 	 */
-	 
-	 
+	
 	/* * *****
 	 * doesn't allow this file to be loaded with a browser.
 	 */
@@ -28,19 +39,13 @@
 	 * create a side menu box/stack.
 	 */
 	$this->_stacks['ol_search_open_learn'] = array('title_var' => 'ol_search_open_learn', 'file' => 'mods/ol_search_open_learn/side_menu.inc.php');
-	// ** possible alternative: **
-	// $this->addStack('hello_world', array('title_var' => 'hello_world', 'file' => './side_menu.inc.php');
-	
+		
 	/* * *****
 	 * create optional sublinks for module "detail view" on course home page
-	 * when this line is uncommented, "mods/hello_world/sublinks.php" need to be created to return an array of content to be displayed
+	 * 
 	 */
 	$this->_list['ol_search_open_learn'] = array('title_var' => 'ol_search_open_learn', 'file' => 'mods/ol_search_open_learn/sublinks.php');
-	
-	// Uncomment for tiny list bullet icon for module sublinks "icon view" on course home page
 	$this->_pages['mods/ol_search_open_learn/index.php']['icon'] = 'mods/ol_search_open_learn/bullet.gif';
-	
-	// Uncomment for big icon for module sublinks "detail view" on course home page
 	$this->_pages['mods/hol_search_open_learn/index.php']['img'] = 'mods/ol_search_open_learn/hello_world.jpg';
 	
 	// ** possible alternative: **
@@ -78,20 +83,11 @@
 	$this->_pages['mods/ol_search_open_learn/result_instructor.php']['title_var'] = 'search_results';
 	$this->_pages['mods/ol_search_open_learn/result_instructor.php']['parent'] = 'mods/_core/content/index.php';
 	
-	// ** possible alternative: **
-	// $this->pages['./index_instructor.php']['title_var'] = 'hello_world';
-	// $this->pages['./index_instructor.php']['parent']    = 'tools/index.php';
-	
 	/* * *****
 	 * student page.
 	 */
 	$this->_pages['mods/ol_search_open_learn/index.php']['title_var'] = 'ol_search_open_learn';
 	$this->_pages['mods/ol_search_open_learn/index.php']['img'] = 'mods/ol_search_open_learn/hello_world.jpg';
-	
-	/* public pages
-	  $this->_pages[AT_NAV_PUBLIC] = array('mods/hello_world/index_public.php');
-	  $this->_pages['mods/hello_world/index_public.php']['title_var'] = 'ol_search_open_learn';
-	  $this->_pages['mods/hello_world/index_public.php']['parent'] = AT_NAV_PUBLIC; */
 	
 	/* my start page pages */
 	$this->_pages[AT_NAV_START] = array('mods/ol_search_open_learn/index_mystart.php');
@@ -101,18 +97,6 @@
 	$this->_pages['mods/ol_search_open_learn/result_gen.php']['title_var'] = 'search_results';
 	$this->_pages['mods/ol_search_open_learn/result_gen.php']['parent'] = 'mods/ol_search_open_learn/index.php';
 	
-	
-	/* * *****
-	 * Use the following array to define a tool to be added to the Content Editor's icon toolbar.
-	 * id = a unique identifier to be referenced by javascript or css, prefix with the module name
-	 * class = reference to a css class in the module.css or the primary theme styles.css to style the tool icon etc
-	 * src = the src attribute for an HTML img element, referring to the icon to be embedded in the Content Editor toolbar
-	 * title = reference to a language token rendered as an HTML img title attribute
-	 * alt = reference to a language token rendered as an HTML img alt attribute
-	 * text = reference to a language token rendered as the text of a link that appears below the tool icon
-	 * js = reference to the script that provides the tool's functionality
-	 */
-	
 	$this->_content_tools[] = array("id" => "ol_search_open_learn_tool",
 		"class" => "fl-col clickable",
 		"src" => AT_BASE_HREF . "mods/ol_search_open_learn/hello_world.jpg",
@@ -121,12 +105,6 @@
 		"text" => _AT('ol_search_open_learn'),
 		"js" => AT_BASE_HREF . "mods/ol_search_open_learn/content_tool_action.js");
 	
-	/* * *****
-	 * Register the entry of the callback class. Make sure the class name is properly namespaced,
-	 * for instance, prefixed with the module name, to enforce its uniqueness.
-	 * This class must be defined in "ModuleCallbacks.class.php".
-	 * This class is an API that contains the static methods to act on core functions.
-	 */
 	$this->_callbacks['ol_search_open_learn'] = 'SearchOpenLearnCallbacks';
 	
 	function ol_search_open_learn_get_group_url($group_id) {

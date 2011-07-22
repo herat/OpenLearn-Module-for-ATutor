@@ -1,36 +1,57 @@
-/*
- *This javascript file uses jQuery framework. It will format data into an accordion.
- *It uses following html format
- *<dl id="accordion">
+/****************************************************************/
+/* OpenLearn module for ATutor                                  */
+/* http://atutoropenlearn.wordpress.com                         */
+/*                                                              */
+/* This module allows to search OpenLearn for educational       */
+/* content.														*/
+/* Author: Herat Gandhi											*/
+/* This program is free software. You can redistribute it and/or*/
+/* modify it under the terms of the GNU General Public License  */
+/* as published by the Free Software Foundation.				*/
+/****************************************************************/
+
+/**
+ * This javascript file uses jQuery framework. It will format data into an accordion.
+ * It uses following html format:
+ * <dl id="accordion">
  *   <dt> <input src="" title="" alt="" /><a> </a></dt>
  *   <dd> Data goes here </dd>
- *</dl>
+ * </dl>
  */
+ 
+ /**
+  * Initialize Accordion
+  *
+  * This function sets accordion when page is loaded. It opens first content panel 
+  * and hides all other content panels.
+  * 
+  */
 $(document).ready(function() {
 	var cur_stus;//current status of a link
 	
 	//close all on default
-	$('#accordion dd').hide();
-	$('#accordion dt a').attr('stus', '');
+	$('#accordion dd').hide();//hide all content
+	$('#accordion dt a').attr('stus', '');//set stus attribute to null to indicate panel is closed
 	$('#accordion dt input').each(function(index) {
-		$(this).attr('src', 'mods/ol_search_open_learn/plus.gif');
-		$(this).attr('alt', 'Open: '+$(this).next().text());
-		$(this).attr('title', 'Open: '+$(this).next().text());
+		$(this).attr('src', 'mods/ol_search_open_learn/plus.gif'); //set image of '+' to all closed panels
+		$(this).attr('alt', 'Open: '+$(this).next().text()); //alt attribute is set to "open"+ title of particular result
+		$(this).attr('title', 'Open: '+$(this).next().text()); //title attribute is set to "open"+ title of particular result
   	});
 	       
 	//open default data
-	$('#accordion dd:eq(0)').slideDown();
-	$('#accordion dt:eq(0) a').attr('stus', 'active');
+	$('#accordion dd:eq(0)').slideDown();//open first panel
+	$('#accordion dt:eq(0) a').attr('stus', 'active');//set stus to indicate panel is open
 	$('#accordion dt:eq(0) input').each(function(index) {
-		$(this).attr('src', 'mods/ol_search_open_learn/minus.gif');
-		$(this).attr('alt', 'Close: '+$(this).next().text());
-		$(this).attr('title', 'Close: '+$(this).next().text());
+		$(this).attr('src', 'mods/ol_search_open_learn/minus.gif'); //set image of '-' to show panel is open
+		$(this).attr('alt', 'Close: '+$(this).next().text()); //alt attribute is set to "close"+ title of first result
+		$(this).attr('title', 'Close: '+$(this).next().text()); //title attribute is set to "close"+ title of first result
 	});
         
-        //open or close a section based on clicked <A> 
+    //open or close a section based on clicked <A> 
 	$('#accordion dt > a').click( function(event){
-		cur_stus = $(this).attr('stus');
+		cur_stus = $(this).attr('stus'); //get status of focused section
 				
+		//focused section is currently closed	
 		if(cur_stus != "active")
 		{
 			//reset everthing - content and attribute
@@ -58,12 +79,12 @@ $(document).ready(function() {
 			$(this).prev().attr('alt', 'Open: '+$(this).text());
 			$(this).prev().attr('title', 'Open: '+$(this).text());
 		}
-		return false;
+		return false; //false is returned to prevent browser to change URL
 	});
 	
 	//open or close a section based on clicked image
 	$('#accordion dt > input').click( function(event){
-		cur_stus = $(this).next().attr('stus');
+		cur_stus = $(this).next().attr('stus'); //get status of focused section
 				
 		if(cur_stus != "active")
 		{
@@ -92,7 +113,7 @@ $(document).ready(function() {
 			$(this).attr('alt', 'Open: '+$(this).next().text());
 			$(this).attr('title', 'Open: '+$(this).next().text());
 		}
-		return false;
+		return false; //false is returned to prevent page to change URL
 	});
 	
 });

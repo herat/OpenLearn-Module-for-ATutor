@@ -1,5 +1,17 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+	
+	/**
 	 * This php file presents basic UI shown to the admin.
 	 * Using this panel admin can change cron interval of module and URL
 	 * of OpenLearn's repository. Admin can also update his database.
@@ -19,6 +31,7 @@
 <div class="input-form">
 	<p>
     	<?php 
+			//display instructions to admin
 			echo _AT('ol_admin_main');
 		?>
     </p>
@@ -46,7 +59,7 @@
                 <form name="updateoldb" action="mods/ol_search_open_learn/update_admin.php" method="get">
                     <input type="submit" value="<?php echo _AT('ol_update'); ?>" name="updatereq" class="button"/>
                 </form>
-                    <!--<a href=""><?php echo _AT('ol_update'); ?></a> -->
+                    <!--<a href=""><?php //echo _AT('ol_update'); ?></a> -->
             </div>
      </div>
 </div>

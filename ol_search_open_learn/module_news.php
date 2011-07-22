@@ -1,8 +1,20 @@
 <?php
-	/*
-	* Rename the function to match the name of the module. Names of all news functions must be unique
-	* across all modules installed on a system. Return a variable called $news
-	*/
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+   	
+	/**
+	 * Rename the function to match the name of the module. Names of all news functions must be unique
+	 * across all modules installed on a system. Return a variable called $news
+	 */
 	
 	function ol_search_open_learn_news() {
 		/*global $db;

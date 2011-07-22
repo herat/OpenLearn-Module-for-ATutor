@@ -1,4 +1,16 @@
 <?php
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+	
 	/*******
 	 * the line below safe-guards this file from being accessed directly from
 	 * a web browser. It will only execute if required from within an ATutor script,
@@ -32,7 +44,7 @@
 	 */
 	$_course_privilege = TRUE; // possible values: FALSE | AT_PRIV_ADMIN | TRUE
 	$_admin_privilege  = TRUE; // possible values: FALSE | TRUE
-	$_cron_interval    = 1440; // run every 30 minutes
+	$_cron_interval    = 1440; // run every 24 hours
 	
 	
 	/********
