@@ -1,5 +1,17 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+
+	/**
 	 * This file fills the box created for course on homepage of course.
 	 */
 	if (!defined('AT_INCLUDE_PATH')) { exit; }
@@ -14,7 +26,7 @@
 	
 	//$link_limit = 3;		// Number of links to be displayed on "detail view" box
 	
-	$list[0] = "This module allows you to search OpenLearn repository. You can reach your required content using this module.";
+	$list[0] = _AT('ol_mod_def');
 	return $list;
 	
 	/*$sql = "SELECT id, value FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN WHERE course_id=".$_SESSION[course_id].

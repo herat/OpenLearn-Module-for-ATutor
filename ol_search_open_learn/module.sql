@@ -46,6 +46,7 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_date_asc','Date Ascendin
 INSERT INTO `language_text` VALUES ('en', '_module','ol_date_desc','Date Descending',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_not_doc','Unit does not provide .doc file.',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_doc_avail','The unit is available for download:',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_mod_def','This module allows you to search OpenLearn repository. You can reach your required content using this module.',NOW(),'');
 
 INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_main','This is the admin panel of Search OpenLearn module. Here you can change different settings of this module. There are two panels below this text. Working of each panel is described below:',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_lpanel','The panel on left side can be used to update database used for searching OpenLearn. While installing module the table was created using OpenLearn\'s repository.  The first row shows when database was updated. The second row has a button when you click on it, the database will be updated. This update procedure will modify existing records if they are changed and will install new records from repository.',NOW(),'');

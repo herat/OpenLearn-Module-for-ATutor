@@ -1,12 +1,36 @@
-
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+
+	/**
 	 * This file contains class which includes code for searching database tables based on
 	 * users' keywords.
 	 */
 	
+	/**
+	  * Class for retrieving search results from database
+	  * 
+	  * This class constructs queries based on keywords. 
+	  * After constructing queries this class
+	  * also executes them and returns results.
+	  * @access	public
+	  */
 	class Search {
-		//execute SQL query passed to it.
+		/**
+		 * Execute SQL query
+		 * 
+		 * @param string SQL Query
+		 * @return mixed boolean or array of results
+		 */
 		function execute($sql) {
 			$sql = trim($sql);
 			global $db;
@@ -15,13 +39,16 @@
 			// for 'select' SQL, return retrieved rows
 			if (strtolower(substr($sql, 0, 6)) == 'select') {
 				if (mysql_num_rows($result) > 0) {
+					//get all results in an array
 					for ($i = 0; $i < mysql_num_rows($result); $i++) {
 						$rows[] = mysql_fetch_assoc($result);
 					}
 					mysql_free_result($result);
+					//return array
 					return $rows;
 				} 
 				else {
+					//query did not retrieve any rows
 					return false;
 				}
 			} 
@@ -29,14 +56,16 @@
 				return true;
 			}
 		}
-		/*
+		/**
+		 * main function of this class
+		 *
 		 * This is the function which is invoked by scripts. It expects following arguments:
-		 * 1. keywords entered by users
-		 * 2. boolean operation whether all keywords are joined by "OR" or "AND". default is "AND"
-		 * 3. order by condition
-		 * 4. starting point of results
-		 * 5. maximum number of results allowed
-		 * Returns: Array containing all search results
+		 * @param string keywords entered by users
+		 * @param boolean operation whether all keywords are joined by "OR" or "AND". default is "AND"
+		 * @param int order by condition
+		 * @param int starting point of results
+		 * @param int maximum number of results allowed
+		 * @return mixed Array containing all search results or false
 		 */
 		public function getSearchResult($keywords, $bool=2, $orderby=1, $start=0, $maxResults=0) {
 			$keywords = trim($keywords);
@@ -63,6 +92,7 @@
 				$sql .= $sql_where;
 	
 			//echo $sql;
+			//append orderby to the query based upon user's request
 			switch ($orderby) {
 				case 1:
 					if ($sql_order <> '')
@@ -101,19 +131,25 @@
 			return $this->execute($sql);
 		}
 	
-		//This function returns SQL parameters
+		/**
+		 * This function returns SQL parameters
+		 *
+		 * @param array keywords
+		 * @return array where and orderby parts of queries 
+		 */
 		private function getSearchSqlParams($all_keywords) {
 			if (!is_array($all_keywords) || count($all_keywords) == 0){
+				//no parameters
 				return array();
 			}
-			
+			//templates
 			$sql_search_template = "(title like '%{KEYWORD}%' " .
 					"OR description like '%{KEYWORD}%' " .
 					"OR keywords like '%{KEYWORD}%' )";
 	
 			$sql_order_template = " 15* ((LENGTH(title) - LENGTH(REPLACE(lower(title),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + " . " 12* ((LENGTH(description) - LENGTH(REPLACE(lower(description),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + " . " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}')))  ";
 	
-			// get all OR conditions
+			//get all OR conditions
 			$found_first_or_item = false;
 			foreach ($all_keywords as $i => $keyword) {
 				if ($keyword == 'OR') {

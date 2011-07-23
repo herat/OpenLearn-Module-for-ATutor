@@ -1,11 +1,32 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+	
+	/**
 	 * This file parses OpenLearn repository. It can work in either online or offline mode.
 	 */
-	// Checks whethet internet connection is available or not
+	 
+	/** 
+	 * Checks whether internet connection is available or not
+	 *
+	 * This function tries to open a socket connection to www.google.com.
+	 * If connection establishment is successful then we may know that internet 
+	 * connection is available.
+	 * @return boolean status of connection
+	 */
 	function checkConnection() {
 		//Initiates a socket connection to www.google.com at port 80
 		$conn = @fsockopen("www.google.com", 80, $errno, $errstr, 30);
+		//check if $conn is not null
 		if ($conn) {
 			$status = true;
 			fclose($conn);
@@ -16,9 +37,26 @@
 		return $status;//returns status of internet connection
 	}
 	
+	/**
+	  * Class for parsing XML file of repository
+	  * 
+	  * This class parses XML file and creates initial database used for searching. 
+	  * It may work on both online and offline modes. If internet connection is not
+	  * available then XML file attached in the module is used.
+	  *
+	  * @access	public
+	  */
 	class Parser {
-	
+		/**
+		  * Function for parsing XML file of repository
+		  * 
+		  * This function parses XML file and creates initial database used for searching. 
+		  * It may work on both online and offline modes. If internet connection is not
+		  * available then XML file attached in the module is used.
+		  *
+		  */
 		function parse() {	
+		    //create object of class XMLReader for reading XML file
 			$xml = new XMLReader();
 			//Parsing may take a few minutes because OL repository is quite large.
 			@set_time_limit(0);
@@ -45,7 +83,7 @@
 			$members = array();//main array which will contain all entries of repo.
 			$flag = false;
 			$resumption = 'dummy';//resumption token of repository
-	
+			//parse while resumption token is not null.
 			while ($resumption != '') {
 				if ($resumption == 'dummy' && $connS) {
 					//if this is first iteration then use following URL
@@ -137,9 +175,11 @@
 							$member['package'] = trim($xml->readString());
 						}
 					}
+					//record ends insert record to the main array
 					if ($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'record') {
 						$members[] = $member;
 					}
+					//read resumption token
 					if ($connS && $xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'resumptionToken') {
 						$resumption = $xml->readString();
 					}
@@ -171,12 +211,15 @@
 			}
 			//enter date when database last updated in config table which will be used by admin later on
 			if ($connS) {
+				//online mode
 				$qry = "UPDATE " . TABLE_PREFIX . "config SET value=CURDATE() WHERE name='ol_last_updation'";
 			} 
 			else {
+				//offline mode
 				$qry = "UPDATE " . TABLE_PREFIX . "config SET value='2011-06-28' WHERE name='ol_last_updation'";
 			}
 			mysql_query($qry, $db);
+			//insert current time of installation in database
 			$qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_time','".date('H:i:s')."')";
 			mysql_query($qry, $db);
 		}

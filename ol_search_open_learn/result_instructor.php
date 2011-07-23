@@ -1,5 +1,17 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+
+	/**
 	 * This php file is used for showing search results to instructors.
 	 */
 	define('AT_INCLUDE_PATH', '../../include/');
@@ -27,17 +39,17 @@
 	$start = intval(trim(strtolower($_GET['p']))) - 1;
 	
 	if ($start < 0){
-		$start = 0;
+		$start = 0; // default
 	}
 	if ($maxResults == 0){
 		$maxResults = 10;  // default
 	}
 	if ($orderby == 0){
-		$orderby = 1;
+		$orderby = 1; // default
 	}
 	$urlforkey = urlencode($_GET['q']);
 	
-	$start = $start * $maxResults;
+	$start = $start * $maxResults; //get starting result number from page number
 	//get search results using all parameters
 	$rows = $obj->getSearchResult($_GET['q'], $bool, $orderby, $start, $maxResults);
 	//echo count($rows)."<br/>";
@@ -46,6 +58,7 @@
 	$all_results = $obj->getSearchResult($_GET['q'], $bool, $orderby);
 	
 	if (is_array($all_results)){
+		//count total results
 		$total_num = count($all_results);
 	}
 	else{
@@ -151,19 +164,21 @@
 	//$maxResults = intval(trim(strtolower($_GET['maxResults'])));
 	// calculate the last record number
 	if (is_array($rows)) {
-		$num_of_results = count($rows);
+		$num_of_results = count($rows); //calculate total no. of rows
 	
 		if ($maxResults > $num_of_results){
+			//if maximum allowed records > number of retrieved records then
 			$last_rec_number = $start + $num_of_results;
 		}
 		else{
+			//if maximum allowed records <= number of retrieved records then
 			$last_rec_number = $start + $maxResults;
 		}
 	}
 	else{
 		$last_rec_number = $total_num;
 	}
-	//start-end of total
+	//display "start-end of total"
 	if($total_num > 0) {
 		echo "<div align=\"center\" >";
 		if( count($rows) == $maxResults ){
@@ -195,6 +210,7 @@
 	//display search results
 	if (is_array($rows) && count($rows) > 0) {
 		$i = $start + 1;
+		//starting of accordion
 		echo "<div id='container'>";
 		echo "<dl id='accordion'>";
 	
@@ -233,12 +249,13 @@
 	
 	
 			$i++;
+			//link for CC & CP files of unit
 			$imgs = "<a href='" . $row['cp'] . "'> <img src='mods/ol_search_open_learn/cp.png' alt='Download Content Package' title='Download Content Package' border='0' /> </a> <a href='" . $row['cc'] . "'> <img src='mods/ol_search_open_learn/cc.png' alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> </a>";
-	
+			//link for popup window of unit
 			$prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" ><img src='mods/ol_search_open_learn/popup.gif' alt='Preview on OpenLearn(popup window)' title='Preview on OpenLearn(popup window)' border='0' /> </a>";
-			
+			//link for RSS of unit
 			$rss = "<a href=\"javascript: void(popup('" . parseForNumber($row['cc'], $row['entry']) . "','RSS',screen.width*0.45,screen.height*0.45));\"><img src='mods/ol_search_open_learn/rss.gif' alt='RSS for Unit(popup window)' title='RSS for Unit(popup window)' border='0' /></a>";
-			
+			//link for .doc file of unit
 			$doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" ><img src='mods/ol_search_open_learn/word.gif' alt='Download doc file(popup window)' title='Download doc file(popup window)' border='0' /></a>";
 	
 			echo "<div align='left' class='menuitems'>".$imgs . $prevw . $rss . $doc_file. "</div><br/>";
@@ -269,7 +286,11 @@
 ?>
 <?php
     require (AT_INCLUDE_PATH . 'footer.inc.php');
-
+	/**
+	 * Get date from stored datestamp
+	 * @param string datestamp of unit
+	 * @return string date
+	 */
     function datestamp($datestamp) {
         $ind = strpos($datestamp, 'T');
         $date = substr($datestamp, 0, $ind);
@@ -281,7 +302,14 @@
         $dateandtime[1] = $time;
         return $dateandtime;
     }
-
+	/**
+	 * Function for getting Identifier
+	 * 
+	 * This function filters Identifier from the Common Cartridge URL.
+	 * @param string URL of CC package
+	 * @param string Entry of article
+	 * @return string Identifier of article
+	 */
     function parseForNumber($key, $entry) {
         $posofeq = strpos($key, "=");
         $key1 = substr($key, $posofeq + 2);
@@ -327,16 +355,25 @@
 		obj.action = "mods/_core/imscp/ims_export.php";
 		}
     }
-
+	//open popup window
     function popup(pageURL, title,w,h) {
 		//var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		var newWin = window.open(pageURL,title,'toolbar=no,menubar=0,status=0,copyhistory=0,scrollbars=yes,resizable=1,location=0,width='+w+', height='+h);
     }
 </script>
 <script type="text/javascript">
+	/**
+	 * Function to trim a string
+	 * @param string input string
+	 * @return string trimmed string	
+	 */
 	function trim( str ) {
 		return str.replace(/^\s+|\s+$/g, "");
 	}
+	/**
+	 * Function for validating whether input field is empty or not
+	 * @return boolean True if input field is not empty
+	 */
 	function validate() {
 		var key= document.getElementById('key').value;
 		if( key == null || trim(key)=="" ) {

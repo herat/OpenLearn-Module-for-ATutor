@@ -1,21 +1,48 @@
 <?php
-	/*
+	/****************************************************************/
+	/* OpenLearn module for ATutor                                  */
+	/* http://atutoropenlearn.wordpress.com                         */
+	/*                                                              */
+	/* This module allows to search OpenLearn for educational       */
+	/* content.														*/
+	/* Author: Herat Gandhi											*/
+	/* This program is free software. You can redistribute it and/or*/
+	/* modify it under the terms of the GNU General Public License  */
+	/* as published by the Free Software Foundation.				*/
+	/****************************************************************/
+	
+	/**
 	 * This file updates database from recent OpenLearn repository changes.
 	 */
+	/**
+	  * Class for parsing XML file of repository( for updating database from repository )
+	  * 
+	  * This class parses XML file and updates database used for searching. 
+	  * 
+	  * @access	public
+	  */
 	class Update {
-	
+		
+		/**
+		  * Function for parsing XML file of repository
+		  * 
+		  * This function parses XML file and updates database used for searching. 
+		  * @param string last modified date
+		  * @param string URL of OL repository
+		  */
 		function parse($date, $urlforrepo) {
+			//create object of class XMLReader for reading XML file
 			$xml = new XMLReader();
 			//Parsing may take a few minutes because OL repository is quite large.
 			@set_time_limit(0);
 			global $db;
-	
+			//open XML file
 			$xml->open($urlforrepo . "&from=" . $date . "T00:00:00Z");
 			//$xml->open("oai2.php.xml");
-			$members = array();
+			$members = array(); //main array which will contain all entries of repo.
 			$flag = false;
 			$resumption = 'dummy';//resumption token of repository
-	
+			//parse while resumption token is not null.
 			while ($resumption != '') {
 				if ($resumption == 'dummy') {
 					$xml->open($urlforrepo . "&from=" . $date . "T00:00:00Z");
@@ -105,6 +132,7 @@
 							$member['package'] = trim($xml->readString());
 						}
 					}
+					//record ends insert record to the main array
 					if ($xml->nodeType == XMLReader::END_ELEMENT && $xml->localName == 'record') {
 						$members[] = $member;
 						if ($resumption == 'dummy'){
@@ -125,13 +153,13 @@
 	
 				$qry = "SELECT * FROM " . TABLE_PREFIX . "ol_search_open_learn";
 				$result = mysql_query($qry, $db);
-	
+				//index starts from last number of record in database + 1	
 				$index = mysql_num_rows($result) + 1;
 	
 				foreach ($members as $member) {
 	
 					$qry = "SELECT * FROM " . TABLE_PREFIX . "ol_search_open_learn where ENTRY='" . $member['entry'] . "' ";
-	
+					//try to get record from database having same entry
 					$result = mysql_query($qry, $db);
 					//if record exists in database then update it else insert it in database
 					if (mysql_num_rows($result) > 0) {
@@ -162,7 +190,7 @@
 						$tmp = "Failed";
 					}
 	
-					//$res .= "<h3>unique id: </h3>".$member['uni']."   ";
+					/*$res .= "<h3>unique id: </h3>".$member['uni']."   ";
 					$res .= "<h3>identifier: </h3>" . $member['identifier'] . "   ";
 					$res .= "<h3>datestamp: </h3>" . $member['datestamp'] . "   ";
 					$res .= "<h3>catalog: </h3>" . $member['catalog'] . "   ";
@@ -172,7 +200,7 @@
 					$res .= "<h3>keywords: </h3>" . $member['keywords'] . "   ";
 					$res .= "<h3>Common Cartridge: </h3>" . $member['common'] . "   ";
 					$res .= "<h3>Content Package: </h3>" . $member['package'] . "   ";
-					$res .= "<h3>Website: </h3>" . $member['website'] . "<hr/>" . $qry . "<br/>" . /* $tmp */"<hr/><br/>";
+					$res .= "<h3>Website: </h3>" . $member['website'] . "<hr/>" . $qry . "<br/>" . /* $tmp "<hr/><br/>";*/
 				}
 			}
 			define('AT_INCLUDE_PATH', '../../include/');
@@ -180,7 +208,7 @@
 			global $savant;
 			//feedback messsage for admin
 			$msg = new Message($savant);
-			// change date of last updation
+			//change date of last updation
 			if ($tmp != "Failed") {
 				$qry = "UPDATE " . TABLE_PREFIX . "config SET value=CURDATE() WHERE name='ol_last_updation'";
 				$feedback = array('OL_DB_UPDATED');
