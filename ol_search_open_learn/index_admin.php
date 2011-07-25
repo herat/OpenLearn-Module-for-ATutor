@@ -67,11 +67,11 @@
     <div class="input-form"> 
         <form name="changeadminsett" action="mods/ol_search_open_learn/change_admin.php" method="post">
             <div class="row">
-                  <?php echo _AT('ol_repo_url'); ?>:
-                  <input size="60" type="text" name="url" value="<?php echo $_config['ol_url']; ?>" />
+                  <label for="form_url"><?php echo _AT('ol_repo_url'); ?>:</label>
+                  <input size="60" id="form_url" type="text" name="url" value="<?php echo $_config['ol_url']; ?>" />
             </div>
             <div class="row">
-                  <?php echo _AT('ol_cron_interval'); ?>:
+                  <label for="form_cron"><?php echo _AT('ol_cron_interval'); ?>:</label>
                   <?php
 					  global $db;
 					  $query = "SELECT * FROM " . TABLE_PREFIX . "modules WHERE dir_name='ol_search_open_learn'";
@@ -79,7 +79,7 @@
 					  $tmp = '';
 					  $rows = mysql_fetch_assoc($res);
                    ?>
-                   <input size="10" type="text" name="cron" value="<?php echo $rows['cron_interval']; ?>" />
+                   <input size="10" type="text" id="form_cron" name="cron" value="<?php echo $rows['cron_interval']; ?>" />
                    <?php echo _AT('ol_min'); ?>
             </div>  
             <div class="row">

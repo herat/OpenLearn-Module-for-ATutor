@@ -19,8 +19,8 @@ CREATE TABLE `ol_search_open_learn` (
 #language text
 INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn','Search OpenLearn',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','update_param','Update Parameters',NOW(),'');
-INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn_tool','Search OpenLearn Content Tool',NOW(),'');
-INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn_text','A sample Search OpenLearn text for detailed homepage.',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn_tool','Search OpenLearn Tool',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn_text','Search OpenLearn',NOW(),'');
 
 INSERT INTO `language_text` VALUES ('en', '_module','ol_update','Update Now',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_last_update','Last Updated on',NOW(),'');
@@ -57,6 +57,8 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_rpanel','The panel
 #adding feedback messages
 INSERT INTO `language_text` VALUES ('en', '_msgs','AT_FEEDBACK_OL_DB_UPDATED','Database updated successfully',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_msgs','AT_ERROR_OL_DB_NOT_UPDATED','Error in updating database',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_msgs','AT_ERROR_OL_URL_NOT_VAL','Entered URL is not valid',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_msgs','AT_ERROR_OL_CRON_NOT_VAL','Update database interval is not valid',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_msgs','AT_FEEDBACK_SETTINGS_CHANGED','Settings changed successfully',NOW(),'');
 
 

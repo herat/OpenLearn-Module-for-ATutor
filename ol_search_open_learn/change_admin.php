@@ -31,14 +31,14 @@
 	
 	//if cron interval is negative or repository URL is blank then return
 	//error and redirect to admin panel. 
-	if($cron_v < 0 || $url_r == null || $url_r == "" ){
-		$msg->addError('OL_DB_NOT_UPDATED');
+	if($cron_v < 0){
+		$msg->addError('OL_CRON_NOT_VAL');
 		header('Location: index_admin.php');
 	}
-	/*else if($cron_v != 0 && ($url_r == null || $url_r == "" )){
-		$msg->addError('OL_DB_NOT_UPDATED');
+	else if(($cron_v != 0 && ($url_r == null || $url_r == "" )) || ($cron_v != 0 && !url_exist( $url_r ))){
+		$msg->addError('OL_URL_NOT_VAL');
 		header('Location: index_admin.php');
-	}*/
+	}
 	//if parameters are set correctly then update database
 	else if (isset($_POST['submit'])) {
 		global $db;
@@ -56,4 +56,29 @@
 		header('Location: index_admin.php');
 	}
 ?>
-
+<?php
+	/**
+	 * Verify URL
+	 * 
+	 * This function verifies URL entered by Admin.
+	 * @param string URL to be verified
+	 * @return boolean FALSE for error
+	 */ 
+	function url_exist($url){
+		$c=curl_init();
+		curl_setopt($c,CURLOPT_URL,$url);
+		curl_setopt($c,CURLOPT_HEADER,1);//get the header
+		curl_setopt($c,CURLOPT_NOBODY,1);//and *only* get the header
+		curl_setopt($c,CURLOPT_RETURNTRANSFER,1);//get the response as a string from curl_exec(), rather than echoing it
+		curl_setopt($c,CURLOPT_FRESH_CONNECT,1);//don't use a cached version of the url
+		if(!curl_exec($c)){
+			//echo $url.' inexists';
+			//return false;
+		}else{
+			//echo $url.' exists';
+			//return true;
+		}
+		$httpcode=curl_getinfo($c,CURLINFO_HTTP_CODE);
+		return ($httpcode<400);
+	}
+?>

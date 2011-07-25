@@ -189,18 +189,6 @@
 						exit;
 						$tmp = "Failed";
 					}
-	
-					/*$res .= "<h3>unique id: </h3>".$member['uni']."   ";
-					$res .= "<h3>identifier: </h3>" . $member['identifier'] . "   ";
-					$res .= "<h3>datestamp: </h3>" . $member['datestamp'] . "   ";
-					$res .= "<h3>catalog: </h3>" . $member['catalog'] . "   ";
-					$res .= "<h3>entry: </h3>" . $member['entry'] . "   ";
-					$res .= "<h3>title: </h3>" . $member['title'] . "   ";
-					$res .= "<h3>description: </h3>" . $member['description'] . "   ";
-					$res .= "<h3>keywords: </h3>" . $member['keywords'] . "   ";
-					$res .= "<h3>Common Cartridge: </h3>" . $member['common'] . "   ";
-					$res .= "<h3>Content Package: </h3>" . $member['package'] . "   ";
-					$res .= "<h3>Website: </h3>" . $member['website'] . "<hr/>" . $qry . "<br/>" . /* $tmp "<hr/><br/>";*/
 				}
 			}
 			define('AT_INCLUDE_PATH', '../../include/');

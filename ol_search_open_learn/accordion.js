@@ -26,9 +26,13 @@
   * and hides all other content panels.
   * 
   */
+
 $(document).ready(function() {
 	var cur_stus;//current status of a link
 	
+ 	//focus on anchor just before search results
+	$('#focus_here').focus();	
+
 	//close all on default
 	$('#accordion dd').hide();//hide all content
 	$('#accordion dt a').attr('stus', '');//set stus attribute to null to indicate panel is closed

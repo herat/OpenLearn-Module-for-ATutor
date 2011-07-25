@@ -22,11 +22,11 @@
 	require (AT_INCLUDE_PATH . 'header.inc.php');
 ?>
 <div class="input-form">
-<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php" onsubmit="return validate()">
+<form name="search" method="get" action="mods/ol_search_open_learn/result_instructor.php" >
     <table>
         <tr>
             <td>
-                <?php echo _AT('ol_search_open_learn'); ?>:
+                <label for="key"><?php echo _AT('ol_search_open_learn'); ?>:</label>
             </td>
             <td>
                 <input id="key" type="text" name="q" size="40" />
@@ -35,6 +35,7 @@
         </tr>
         <tr>
             <td>
+                <label for="bool">
                 <?php
                 /**
                  * Display option for selecting boolean operation for
@@ -42,6 +43,7 @@
                  */
                 echo _AT('ol_bool');
                 ?>:
+                </label>
             </td>
             <td>
                 <input type="radio" name="b" id="bool" value="1" /><?php echo _AT('ol_or'); ?>
@@ -50,12 +52,14 @@
         </tr>
         <tr>
             <td>
+                <label for="orderby">
                 <?php 
                 /**
                  * Display option for selecting sorting order of search results
                  */
                 echo _AT('ol_order');
                 ?>:
+                </label>
             </td>
             <td>
                 <select name="orderby" id="orderby" > 
@@ -77,6 +81,7 @@
 </div>
 <?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
 <script type="text/javascript">
+    document.getElementById('key').focus();
 	/**
 	 * Function to trim a string
 	 * @param string input string
