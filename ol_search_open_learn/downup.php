@@ -40,7 +40,7 @@
 	$maxResults = trim($_POST['max']);
 	$pagh = trim($_POST['p']);
 	$boolnh = trim($_POST['b']);
-	
+	$_SESSION['n_val'] = trim($_POST['n_val']); 
 	$redirectUrl = AT_BASE_HREF. "mods/ol_search_open_learn/result_instructor.php?q=". $q."&max=".$maxResults."&p=".$pagh."&b=".$boolnh;
 	
 	/* make sure we own this course that we're exporting */

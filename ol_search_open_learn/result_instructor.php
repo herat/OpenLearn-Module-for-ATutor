@@ -217,6 +217,7 @@
 	//display search results
 	if (is_array($rows) && count($rows) > 0) {
 		$i = $start + 1;
+		$iter = 0;
 		//starting of accordion
         echo "<a href='#' id='focus_here'></a>";
 		echo "<div id='container'>";
@@ -247,6 +248,7 @@
 			echo "<input type=\"hidden\" name=\"b\" value=' " . $bool . " ' />";
 			echo "<input type=\"hidden\" name=\"p\" value=' " . intval(trim(strtolower($_GET['p']))) . " ' />";
 			echo "<input type=\"hidden\" name=\"max\" value=' " . $_GET['max'] . " ' />";
+			echo "<input type=\"hidden\" name=\"n_val\" value='".$iter."'/>";
 			echo $importbutton;
 			echo "</form>";
 	
@@ -259,6 +261,7 @@
 	
 	
 			$i++;
+			$iter++;
 			//link for CC & CP files of unit
 			$imgs = "<a href='" . $row['cp'] . "'> <img src='mods/ol_search_open_learn/cp.png' alt='Download Content Package' title='Download Content Package' border='0' /> </a> <a href='" . $row['cc'] . "'> <img src='mods/ol_search_open_learn/cc.png' alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> </a>";
 			//link for popup window of unit
@@ -396,9 +399,24 @@
 		}
 	}
 </script>
-
 <script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
+<?php 
+	if( $_SESSION['n_val'] == '' || $_SESSION['n_val'] == null ) {
+?>
 <script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/accordion.js"></script>
+<?php
+	}
+	else {
+?>
+<input type="hidden" id="n_val" value="<?php echo $_SESSION['n_val']; ?>" />
+<script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/accordion_import.js"></script>
+<?php		
+		$_SESSION['n_val']="";
+	}	
+	
+?>
+
+
 <style type="text/css">
 	div.menuitems{
 		float:left;
