@@ -31,7 +31,7 @@ $(document).ready(function() {
 	var cur_stus;//current status of a link
 	var n=document.getElementById('n_val').value;	
  	//focus on anchor just before search results
-	$('#focus_here').focus();	
+	$('#accordion dt:eq('+n+') a').focus();	
 
 	//close all on default
 	$('#accordion dd').hide();//hide all content
