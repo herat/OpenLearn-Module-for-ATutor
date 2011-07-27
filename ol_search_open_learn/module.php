@@ -45,8 +45,8 @@
 	 * 
 	 */
 	$this->_list['ol_search_open_learn'] = array('title_var' => 'ol_search_open_learn', 'file' => 'mods/ol_search_open_learn/sublinks.php');
-	$this->_pages['mods/ol_search_open_learn/index.php']['icon'] = 'mods/ol_search_open_learn/bullet.gif';
-	$this->_pages['mods/hol_search_open_learn/index.php']['img'] = 'mods/ol_search_open_learn/ol_logo.jpg';
+	$this->_pages['mods/ol_search_open_learn/index.php']['icon'] = 'mods/ol_search_open_learn/images/bullet.gif';
+	$this->_pages['mods/hol_search_open_learn/index.php']['img'] = 'mods/ol_search_open_learn/images/ol_logo.jpg';
 	
 	// ** possible alternative: **
 	// the text to display on module "detail view" when sublinks are not available
@@ -87,7 +87,7 @@
 	 * student page.
 	 */
 	$this->_pages['mods/ol_search_open_learn/index.php']['title_var'] = 'ol_search_open_learn';
-	$this->_pages['mods/ol_search_open_learn/index.php']['img'] = 'mods/ol_search_open_learn/ol_logo.jpg';
+	$this->_pages['mods/ol_search_open_learn/index.php']['img'] = 'mods/ol_search_open_learn/images/ol_logo.jpg';
 	
 	/* my start page pages */
 	$this->_pages[AT_NAV_START] = array('mods/ol_search_open_learn/index_mystart.php');
@@ -99,11 +99,11 @@
 	
 	$this->_content_tools[] = array("id" => "ol_search_open_learn_tool",
 		"class" => "fl-col clickable",
-		"src" => AT_BASE_HREF . "mods/ol_search_open_learn/ol_logo.jpg",
+		"src" => AT_BASE_HREF . "mods/ol_search_open_learn/images/ol_logo.jpg",
 		"title" => _AT('ol_search_open_learn_tool'),
 		"alt" => _AT('ol_search_open_learn_tool'),
 		"text" => _AT('ol_search_open_learn'),
-		"js" => AT_BASE_HREF . "mods/ol_search_open_learn/content_tool_action.js");
+		"js" => AT_BASE_HREF . "mods/ol_search_open_learn/js/content_tool_action.js");
 	
 	
 	function ol_search_open_learn_get_group_url($group_id) {
