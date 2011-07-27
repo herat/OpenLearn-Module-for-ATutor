@@ -45,6 +45,7 @@
 			while ($resumption != '') {
 				if ($resumption == 'dummy') {
 					$xml->open($urlforrepo . "&from=" . $date . "T00:00:00Z");
+					$resumption = '';
 				} 
 				else {
 					$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&resumptionToken=' . $resumption);
@@ -154,7 +155,7 @@
 				$result = mysql_query($qry, $db);
 				//index starts from last number of record in database + 1	
 				$index = mysql_num_rows($result) + 1;
-	
+				$tmp = "";
 				foreach ($members as $member) {
 	
 					$qry = "SELECT * FROM " . $prefix . "ol_search_open_learn where ENTRY='" . $member['entry'] . "' ";
