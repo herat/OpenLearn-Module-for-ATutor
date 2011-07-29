@@ -63,11 +63,30 @@
             </td>
             <td>
                 <select name="orderby" id="orderby" >
-                    <option value="1" <?php if ($orderby == 1) echo "selected='selected'" ?>><?php echo _AT('ol_def'); ?></option>
-                    <option value="2" <?php if ($orderby == 2) echo "selected='selected'" ?>><?php echo _AT('ol_title_asc'); ?></option>
-                    <option value="3" <?php if ($orderby == 3) echo "selected='selected'" ?>><?php echo _AT('ol_title_desc'); ?></option>
-                    <option value="4" <?php if ($orderby == 4) echo "selected='selected'" ?>><?php echo _AT('ol_date_asc'); ?></option>
-                    <option value="5" <?php if ($orderby == 5) echo "selected='selected'" ?>><?php echo _AT('ol_date_desc'); ?></option>
+                    <option value="1" selected="selected"><?php echo _AT('ol_def'); ?></option>
+                    <option value="2" ><?php echo _AT('ol_title_asc'); ?></option>
+                    <option value="3" ><?php echo _AT('ol_title_desc'); ?></option>
+                    <option value="4" ><?php echo _AT('ol_date_asc'); ?></option>
+                    <option value="5" ><?php echo _AT('ol_date_desc'); ?></option>
+                 </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <label for="sf" >
+                <?php
+                /**
+                 * Display option for selecting search fields
+                 */
+                echo _AT('ol_search_fields_form'); ?>:
+                </label>
+            </td>
+            <td>
+                <select name="sf" id="sf" >
+                    <option value="1" selected="selected"><?php echo _AT('ol_all_form'); ?></option>
+                    <option value="2" ><?php echo _AT('ol_title_form'); ?></option>
+                    <option value="3" ><?php echo _AT('ol_desc_form'); ?></option>
+                    <option value="4" ><?php echo _AT('ol_key_form'); ?></option>
                  </select>
             </td>
         </tr>

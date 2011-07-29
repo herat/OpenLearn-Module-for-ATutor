@@ -22,6 +22,11 @@ INSERT INTO `language_text` VALUES ('en', '_module','update_param','Update Param
 INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn_tool','Search OpenLearn Tool',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_search_open_learn_text','Search OpenLearn',NOW(),'');
 
+INSERT INTO `language_text` VALUES ('en', '_module','ol_key_form','Keywords',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_desc_form','Description',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_title_form','Title',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_all_form','All',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_search_fields_form','Search fields',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_update','Update Now',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_last_update','Last Updated on',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_at','at',NOW(),'');

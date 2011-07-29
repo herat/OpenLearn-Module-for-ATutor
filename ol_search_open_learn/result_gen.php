@@ -33,6 +33,7 @@
 	$bool = intval(trim(strtolower($_GET['b'])));
 	$orderby = intval(trim(strtolower($_GET['orderby'])));
     $qry = addslashes(filter_input(INPUT_GET,'q',FILTER_SANITIZE_SPECIAL_CHARS));
+    $sf = intval(trim($_GET['sf']));
 	
 	if (!$start1){
 		//default
@@ -42,6 +43,10 @@
 	if ($start < 0){
 		//default
 		$start = 0;
+	}
+	if ($sf == 0){
+		//default
+		$sf = 1;
 	}
 	$urlforkey = urlencode($qry);//encode string so that it can be passed using URL
 	//$maxResults = intval(trim(strtolower($_GET['maxResults'])));
@@ -58,11 +63,11 @@
 	$start = $start * $maxResults; //get starting result number from page number
 	
 	//get search results using all parameters
-	$rows = $obj->getSearchResult($qry, $bool, $orderby, $start, $maxResults);
+	$rows = $obj->getSearchResult($qry, $bool, $orderby, $sf, $start, $maxResults);
 	//echo count($rows)."<br/>";
 	
 	//get all search results without any conditions
-	$all_results = $obj->getSearchResult($qry, $bool, $orderby);
+	$all_results = $obj->getSearchResult($qry, $bool, $orderby, $sf);
 	
 	if (is_array($all_results)){
 		//count total results
@@ -103,6 +108,25 @@
             </td>
         </tr>
         <tr>
+            <td>
+               <label for="sf" >
+                <?php
+                /**
+                 * Display option for selecting search fields
+                 */
+                echo _AT('ol_search_fields_form'); ?>:
+                </label>
+            </td>
+            <td>
+                <select name="sf" id="sf" >
+                    <option value="1" <?php if ($sf == 1) echo "selected='selected'" ?>><?php echo _AT('ol_all_form'); ?></option>
+                    <option value="2" <?php if ($sf == 2) echo "selected='selected'" ?>><?php echo _AT('ol_title_form'); ?></option>
+                    <option value="3" <?php if ($sf == 3) echo "selected='selected'" ?>><?php echo _AT('ol_desc_form'); ?></option>
+                    <option value="4" <?php if ($sf == 4) echo "selected='selected'" ?>><?php echo _AT('ol_key_form'); ?></option>
+                 </select>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <input type="submit" value="Search" class="button" />
             </td>
@@ -124,6 +148,8 @@
 <form name="max" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
      <input type="hidden" value="<?php echo $qry; ?>" name="q" />
      <input type="hidden" value="<?php echo $_GET['b']; ?>" name="b" />
+     <input type="hidden" value="<?php echo $_GET['sf']; ?>" name="sf" />
+
      <?php
        if ($orderby > 1) {
      ?>
@@ -149,6 +175,7 @@
 <form name="order" method="get" action="<?php $maxUrl = $_SERVER[PHP_SELF]; echo $maxUrl; ?>" >
 	<input type="hidden" value="<?php echo $qry; ?>" name="q" />
     <input type="hidden" value="<?php echo $_GET['b']; ?>" name="b" />
+    <input type="hidden" value="<?php echo $_GET['sf']; ?>" name="sf" />
     <?php
        if ($maxResults1 > 0) {
     ?>
@@ -203,22 +230,21 @@
 		}
 		echo "</div>";
 	}
-	//paginator
-	if ($maxResults1 == 0 && $orderby == 1) {
-	   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
-	} 
-	else if ($orderby == 1 && $maxResults1 > 0) {
-	   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "max=" . intval($_GET['max']), $maxResults);
-	} 
-	else if ($maxResults1 == 0 && $orderby > 1) {
-	   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
-	} 
-	else {
-	   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
-	}
-	
 	//Print Search results if number of results > 0
 	if (is_array($rows) && count($rows) > 0) {
+	   //paginator
+	   if ($maxResults1 == 0 && $orderby == 1) {
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b']. SEP . "sf=" . $_GET['sf'], $maxResults);
+	   } 
+	   else if ($orderby == 1 && $maxResults1 > 0) {
+		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "max=" . intval($_GET['max']), $maxResults);
+	   } 
+	   else if ($maxResults1 == 0 && $orderby > 1) {
+		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
+	   } 
+	   else {
+		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
+	   }	
 	   $i = $start + 1;
 	   //starting of accordion
        echo "<a href='#' id='focus_here'></a>";
@@ -268,16 +294,16 @@
 	   echo "</div>";
 	   //paginator
 	   if ($maxResults1 == 0 && $orderby == 1) {
-		   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'], $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b']. SEP . "sf=" . $_GET['sf'], $maxResults);
 	   } 
 	   else if ($orderby == 1 && $maxResults1 > 0) {
-		   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "max=" . intval($_GET['max']), $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "max=" . intval($_GET['max']), $maxResults);
 	   } 
 	   else if ($maxResults1 == 0 && $orderby > 1) {
-		   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
 	   } 
 	   else {
-		   print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
 	   }
 	} 
 	else {

@@ -22,13 +22,11 @@
 	require (AT_INCLUDE_PATH . 'header.inc.php');
 ?>
 <div class="input-form">
-<form name="search" method="get" action="mods/ol_search_open_learn/result_gen.php" >
+<form id="search" name="search" method="get" action="mods/ol_search_open_learn/result_gen.php">
     <table>
         <tr>
             <td>
-                <label for="key">
-                <?php echo _AT('ol_search_open_learn'); ?>:
-                </label>
+                <label for="key"><?php echo _AT('ol_search_open_learn'); ?>: </label>
             </td>
             <td>
                 <input type="text" name="q" id="key" size="40" />
@@ -47,13 +45,15 @@
                 </label>
             </td>
             <td>
-                <input type="radio" name="b" id="bool" value="1" /><?php echo _AT('ol_or'); ?>
-                <input type="radio" name="b" id="bool" value="2" checked="checked" /><?php echo _AT('ol_and'); ?>
+                <input type="radio" name="b" id="bool" value="1" />
+                <?php echo _AT('ol_or'); ?>
+                <input type="radio" name="b" id="bool" value="2" checked="checked" />
+                <?php echo _AT('ol_and'); ?>
             </td>
         </tr>
         <tr>
             <td>
-                <label for="orderby">
+               <label for="orderby" >
                 <?php
                 /**
                  * Display option for selecting sorting order of search results
@@ -63,17 +63,36 @@
             </td>
             <td>
                 <select name="orderby" id="orderby" >
-                    <option value="1" <?php if ($orderby == 1) echo "selected='selected'" ?>><?php echo _AT('ol_def'); ?></option>
-                    <option value="2" <?php if ($orderby == 2) echo "selected='selected'" ?>><?php echo _AT('ol_title_asc'); ?></option>
-                    <option value="3" <?php if ($orderby == 3) echo "selected='selected'" ?>><?php echo _AT('ol_title_desc'); ?></option>
-                    <option value="4" <?php if ($orderby == 4) echo "selected='selected'" ?>><?php echo _AT('ol_date_asc'); ?></option>
-                    <option value="5" <?php if ($orderby == 5) echo "selected='selected'" ?>><?php echo _AT('ol_date_desc'); ?></option>
+                    <option value="1" selected="selected"><?php echo _AT('ol_def'); ?></option>
+                    <option value="2" ><?php echo _AT('ol_title_asc'); ?></option>
+                    <option value="3" ><?php echo _AT('ol_title_desc'); ?></option>
+                    <option value="4" ><?php echo _AT('ol_date_asc'); ?></option>
+                    <option value="5" ><?php echo _AT('ol_date_desc'); ?></option>
+                 </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <label for="sf" >
+                <?php
+                /**
+                 * Display option for selecting search fields
+                 */
+                echo _AT('ol_search_fields_form'); ?>:
+                </label>
+            </td>
+            <td>
+                <select name="sf" id="sf" >
+                    <option value="1" selected="selected"><?php echo _AT('ol_all_form'); ?></option>
+                    <option value="2" ><?php echo _AT('ol_title_form'); ?></option>
+                    <option value="3" ><?php echo _AT('ol_desc_form'); ?></option>
+                    <option value="4" ><?php echo _AT('ol_key_form'); ?></option>
                  </select>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-            <input type="submit" value="Search" class="button" />
+	            <input type="submit" value="Search" class="button" />
             </td>
         </tr>
     </table>

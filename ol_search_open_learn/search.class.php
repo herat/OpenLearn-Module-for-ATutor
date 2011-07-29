@@ -67,7 +67,7 @@
 		 * @param int maximum number of results allowed
 		 * @return mixed Array containing all search results or false
 		 */
-		public function getSearchResult($keywords, $bool=2, $orderby=1, $start=0, $maxResults=0) {
+		public function getSearchResult($keywords, $bool=2, $orderby=1, $fld=1, $start=0, $maxResults=0) {
 			$keywords = trim($keywords);
 			//extract all keywords seperated by space
 			$all_key = explode(" ", $keywords);
@@ -82,7 +82,7 @@
 				}
 			}
 			//get SQL parameters using following function
-			list($sql_where, $sql_order) = $this->getSearchSqlParams($all_key);
+			list($sql_where, $sql_order) = $this->getSearchSqlParams($all_key,$fld);
 	
 			//if ($sql_where <> '') $sql_where = ' AND '. $sql_where;
 	
@@ -135,19 +135,38 @@
 		 * This function returns SQL parameters
 		 *
 		 * @param array keywords
+		 * @param integer field/s to search
 		 * @return array where and orderby parts of queries 
 		 */
-		private function getSearchSqlParams($all_keywords) {
+		private function getSearchSqlParams($all_keywords, $fld = 1) {
 			if (!is_array($all_keywords) || count($all_keywords) == 0){
 				//no parameters
 				return array();
 			}
 			//templates
-			$sql_search_template = "(title like '%{KEYWORD}%' " .
+			if( $fld == 1 ) {
+				$sql_search_template = "(title like '%{KEYWORD}%' " .
 					"OR description like '%{KEYWORD}%' " .
 					"OR keywords like '%{KEYWORD}%' )";
 	
-			$sql_order_template = " 15* ((LENGTH(title) - LENGTH(REPLACE(lower(title),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + " . " 12* ((LENGTH(description) - LENGTH(REPLACE(lower(description),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + " . " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}')))  ";
+				$sql_order_template = " 15* ((LENGTH(title) - LENGTH(REPLACE(lower(title),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + " . " 12* ((LENGTH(description) - LENGTH(REPLACE(lower(description),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}'))) + " . " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}')))  ";
+			}
+			else if( $fld == 2 ) {
+				$sql_search_template = "(title like '%{KEYWORD}%')";
+	
+				$sql_order_template = " 15* ((LENGTH(title) - LENGTH(REPLACE(lower(title),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}')))";
+			}
+			else if( $fld == 3 ) {
+				$sql_search_template = "(description like '%{KEYWORD}%')";
+	
+				$sql_order_template = " 12* ((LENGTH(description) - LENGTH(REPLACE(lower(description),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}')))";
+			}
+			else if( $fld == 4 ) {
+				$sql_search_template = "(keywords like '%{KEYWORD}%')";
+	
+				$sql_order_template = " 8* ((LENGTH(keywords) - LENGTH(REPLACE(lower(keywords),lower('{KEYWORD}'), ''))) / LENGTH(lower('{KEYWORD}')))";
+			}
+		
 	
 			//get all OR conditions
 			$found_first_or_item = false;
