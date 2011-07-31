@@ -1,0 +1,107 @@
+MODULE DETAILS:
+---------------
+Description:
+Search OpenLearn module allows you to search OpenLearn's wide range of 
+units in ATutor. This module will be a great help to students as well as
+instructors. It enables to search articles based entered keywords. 
+An instructors can directly import units in his course. Students and 
+instructors can download .doc file of unit, view RSS file, download 
+Common Cartridge and Content Package. 
+
+Website:
+http://atutoropenlearn.wordpress.com/
+
+About OpenLearn:
+* OpenLearn is the UK Open University's contribution to the Open 
+Educational Resources (OER) project. It is part-funded by 
+the William and Flora Hewlett Foundation. OpenLearn is a member of the 
+OpenCourseWare Consortium (OCWC).  
+* Open Education materials make three contributions. They make new 
+knowledge available to all (not just the few who can pay for it). 
+They allow users to download, modify, translate and adapt to their 
+culture to the material to enhance its usefulness. They provide the 
+opportunity for people to work together to co-modify, co-produce, 
+test and co-produce again, retesting derivative material which generates 
+a cycle of rapid continuous improvement. Using technology Open Educational 
+Resources aim to remove access barriers to knowledge and educational 
+opportunities around the world.
+For more information: http://en.wikipedia.org/wiki/OpenLearn
+
+Version:
+Beta
+
+License:
+BSD
+
+Notes:
+This module requires cURL extension.   
+
+
+INSTALLATION
+------------
+1. Download the appropriate version of the module from the ATutor 
+modules site.
+ATutor Modules
+http://www.atutor.ca/atutor/modules.php
+
+2. Uninstall any previous version of the module. 
+
+3. Extract/Unzip the downloaded file into the mods/ directory of 
+your ATutor installation. 
+This will create a directory called ol_search_open_learn/. 
+
+4. Login to ATutor as the administrator
+
+5. Choose the Modules Tab, then choose Install Modules. 
+
+6. Select  from list of uninstalled modules, then press Install. 
+Confirm by clicking the Yes button to complete the installation.
+
+7. Now installation process starts. There are two modes of 
+installation: online and offline. In online mode, installation 
+process uses internet connection to get repository file of 
+OpenLearn. In offline mode, it uses already available XML file.
+Online mode takes a few minutes while offline mode is quick.     
+
+8. From the Module Manager select the Search OpenLearn module then 
+press Enable to make module available to users on the system.
+
+9. Now enjoy module!
+
+FEATURES:
+------------------
+Common features for students & instructors:
+
+   * Search: 
+	- Get records based on entered keywords
+   	- Apply OR/AND operator to multiple keywords:
+          When you have multiple keywords then either "AND" or "OR"
+          operator can be applied. "AND" operator extracts records that 
+          contain all of the entered terms. "OR" operator extracts 
+          records that contain one or all of the entered terms.
+        - Order by field:
+          Users may change order of displayed search results. They may 
+          change order based on title of record or date of record. If user 
+          does not change this input then default order is used.
+        - Search by field:
+          Users may change fileds which are used for searching. If they do 
+          not change input then all fields are used for searching process.
+        - Change maximum number of results displayed:
+          10 results are shown by default. This module allows to change 
+          this number.
+   
+    * Download Common Cartridge of the unit:
+      Users can download cc packages using first icon shown       
+
+Instructors
+
+    * Turn off ATutor Social: ATutor Social runs both inside or outside of courses. Instructors may choose to disable social networking in their courses.
+
+Administrators
+
+    * ShinDig Location: The ShinDig server acts as a hub for a social network. By default social.atutor.ca acts as the central hub for the ATutor social network. Administrators may choose to point to a different ShinDig server to create a private network.
+
+Developers
+
+    * OpenSocial Standard: Develop your own OpenSocial Gadgets that will plugin to ATutor, or into other OpenSocial container applications.
+    * Public Source Code: All ATutor Social source code is available for public checkout from the Subversion version control repository.
