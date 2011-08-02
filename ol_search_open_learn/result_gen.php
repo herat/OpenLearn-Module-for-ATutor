@@ -352,7 +352,7 @@
     }
 ?>
 
-<script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
 <script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/js/accordion.js"></script>
 
 <script>

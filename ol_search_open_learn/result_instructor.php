@@ -424,7 +424,7 @@
 		}
 	}
 </script>
-<script language="javascript" type="text/javascript" src="/ATutor/jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
 <?php 
 	if( $_SESSION['n_val'] == '' || $_SESSION['n_val'] == null ) {
 ?>

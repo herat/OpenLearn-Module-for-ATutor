@@ -105,7 +105,7 @@ $(document).ready(function() {
 			//then open the clicked data
 			$(this).parents('dt:first').next().slideDown();
 			$(this).next().attr('stus', 'active');
-			$(this).attr('src', 'mods/ol_search_open_learn/minus.gif');
+			$(this).attr('src', 'mods/ol_search_open_learn/images/minus.gif');
 			$(this).attr('alt', 'Close: '+$(this).next().text());
 			$(this).attr('title', 'Close: '+$(this).next().text());
 		}
