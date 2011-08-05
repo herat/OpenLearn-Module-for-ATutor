@@ -275,6 +275,7 @@
 			echo "<input type=\"hidden\" name=\"b\" value=' " . $bool . " ' />";
 			echo "<input type=\"hidden\" name=\"p\" value=' " . intval(trim(strtolower($_GET['p']))) . " ' />";
 			echo "<input type=\"hidden\" name=\"max\" value=' " . $_GET['max'] . " ' />";
+			echo "<input type=\"hidden\" name=\"sf\" value=' " . $_GET['sf'] . " ' />";
 			echo "<input type=\"hidden\" name=\"n_val\" value='".$iter."'/>";
 			echo $importbutton;
 			echo "</form>";
