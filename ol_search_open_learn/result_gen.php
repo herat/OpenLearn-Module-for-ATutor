@@ -128,7 +128,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Search" class="button" />
+                <input type="submit" value="<?php echo _AT('ol_search_btn'); ?>" class="button" />
             </td>
         </tr>
     </table>
@@ -162,7 +162,7 @@
            <option value="10" <?php if ($maxResults == 10) echo "selected='selected'" ?>>10</option>
            <option value="25" <?php if ($maxResults == 25) echo "selected='selected'" ?>>25</option>
      </select>
-     <input type="submit" value="Change" class="button" />
+     <input type="submit" value="<?php echo _AT('ol_change_btn'); ?>" class="button" />
 </form>
 </td>
 
@@ -190,7 +190,7 @@
         <option value="4" <?php if ($orderby == 4) echo "selected='selected'" ?>><?php echo _AT('ol_date_asc'); ?></option>
         <option value="5" <?php if ($orderby == 5) echo "selected='selected'" ?>><?php echo _AT('ol_date_desc'); ?></option>
      </select>
-     <input type="submit" value="Change" class="button" />
+     <input type="submit" value="<?php echo _AT('ol_change_btn'); ?>" class="button" />
      </form>
 </td>
 </tr>
@@ -277,16 +277,17 @@
 		   echo "<br/>";
 		   $i++;
 		   
-            //link for CC & CP files of unit
-			$imgs = "<a href='" . $row['cp'] . "'> <img src='mods/ol_search_open_learn/images/cp.png' alt='Download Content Package' title='Download Content Package' border='0' /> </a> <a href='" . $row['cc'] . "'> <img src='mods/ol_search_open_learn/images/cc.png' alt='Download Common Cartridge' title='Download Common Cartridge' border='0' /> </a>";
-			//link for popup window of unit
-			$prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" ><img src='mods/ol_search_open_learn/images/popup.gif' alt='Preview on OpenLearn(popup window)' title='Preview on OpenLearn(popup window)' border='0' /> </a>";
-			//link for RSS of unit
-			$rss = "<a href=\"javascript: void(popup('" . parseForNumber($row['cc'], $row['entry']) . "','RSS',screen.width*0.45,screen.height*0.45));\"><img src='mods/ol_search_open_learn/images/rss.gif' alt='RSS for Unit(popup window)' title='RSS for Unit(popup window)' border='0' /></a>";
-			//link for .doc file of unit
-			$doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" ><img src='mods/ol_search_open_learn/images/word.gif' alt='Download doc file(popup window)' title='Download doc file(popup window)' border='0' /></a>";
+	           //link for CC & CP files of unit
+		   $imgs = "<a href='" . $row['cp'] . "'> <img src='mods/ol_search_open_learn/images/cp.png' alt='"._AT('ol_tool_1')."' title='"._AT('ol_tool_1')."' border='0' /> </a> <a href='" . $row['cc'] . "'> <img src='mods/ol_search_open_learn/images/cc.png' alt='"._AT('ol_tool_2')."' title='"._AT('ol_tool_2')."' border='0' /> </a>";
+		   //link for popup window of unit
+		   $prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" ><img src='mods/ol_search_open_learn/images/popup.gif' alt='"._AT('ol_tool_3')."' title='"._AT('ol_tool_3')."' border='0' /> </a>";
+		   //link for RSS of unit
+		   $rss = "<a href=\"javascript: void(popup('" . parseForNumber($row['cc'], $row['entry']) . "','RSS',screen.width*0.45,screen.height*0.45));\"><img src='mods/ol_search_open_learn/images/rss.gif' alt='"._AT('ol_tool_4')."' title='"._AT('ol_tool_4')."' border='0' /></a>";
+		   //link for .doc file of unit
+		   $doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" ><img src='mods/ol_search_open_learn/images/word.gif' alt='"._AT('ol_tool_5')."' title='"._AT('ol_tool_5')."' border='0' /></a>";
+            
 	
-			echo "<div align='left' class='menuitems'>".$imgs . $prevw . $rss . $doc_file. "</div><br/>";
+		   echo "<div align='left' class='menuitems'>".$imgs . $prevw . $rss . $doc_file. "</div><br/>";
 	
 		   echo "</dd>";
 	   }

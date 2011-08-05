@@ -47,7 +47,7 @@
             </td>
             <td>
                 <input type="radio" name="b" id="bool" value="1" /><?php echo _AT('ol_or'); ?>
-                <input type="radio" name="b" id="bool" value="2" checked="checked" /><?php echo _AT('ol_and'); ?>
+                <input type="radio" name="b" id="bool1" value="2" checked="checked" /><?php echo _AT('ol_and'); ?>
             </td>
         </tr>
         <tr>
@@ -92,7 +92,7 @@
         </tr>
         <tr>
             <td colspan="2">
-	            <input type="submit" value="Search" class="button" />
+	            <input type="submit" value="<?php echo _AT('ol_search_btn'); ?>" class="button" />
             </td>
         </tr>
     </table>

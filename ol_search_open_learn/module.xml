@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?> 
 <module version="0.1"> 
     <name lang="en">OpenLearn module for ATutor</name> 
-    <description lang="en">This module creates a bridge between OpenLearn and ATutor.This module can be used to import already available content on OpenLearn to ATutor. This module also provides a search facility to search OpenLearn repository. 
+    <description lang="en">This module creates a link between OpenLearn and ATutor. It can be used to search for open learning resources, import content from OpenLearn into ATutor courses, or to preview content or download it in standard reusable content packages and common cartridges.  
 	</description> 
     <maintainers>
         <maintainer> 
@@ -9,12 +9,12 @@
             <email>heratgandhi@ymail.com</email> 
         </maintainer>
     </maintainers> 
-    <url>http://atutor.ca</url> 
-    <license>BSD</license> 
+    <url>http://atutoropenlearn.wordpress.com/</url> 
+    <license>GPL</license> 
 	<release> 
-        <version>0.1</version> 
-        <date>2011-05-14</date> 
-        <state>Beta</state> 
+        <version>1.0</version> 
+        <date>2011-08-22</date> 
+        <state>Stable</state> 
         <notes></notes> 
     </release> 
 </module>
