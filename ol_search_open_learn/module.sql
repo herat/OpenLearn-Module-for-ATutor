@@ -27,6 +27,9 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_change_btn','Change',NOW
 INSERT INTO `language_text` VALUES ('en', '_module','ol_import_btn','Import',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_import_unit','Import Unit',NOW(),'');
 
+INSERT INTO `language_text` VALUES ('en', '_module','ol_open_tip','Open: ',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_close_tip','Close: ',NOW(),'');
+
 INSERT INTO `language_text` VALUES ('en', '_module','ol_tool_1','Download Content Package',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_tool_2','Download Common Cartridge',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_tool_3','Preview on OpenLearn(popup window)',NOW(),'');

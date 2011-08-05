@@ -193,6 +193,8 @@
 </table>
 <?php } ?>
 </div>
+<input type="hidden" id="opentip" value="<?php echo _AT('ol_open_tip'); ?>" />
+<input type="hidden" id="closetip" value="<?php echo _AT('ol_close_tip'); ?>" />
 <?php
 	//$maxResults = intval(trim(strtolower($_GET['maxResults'])));
 	// calculate the last record number

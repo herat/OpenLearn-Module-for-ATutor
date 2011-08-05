@@ -1,28 +1,149 @@
-This project is under Google Summer of Code 2011.
+MODULE DETAILS:
+---------------
+Description:
+Search OpenLearn module allows you to search OpenLearn's wide range of 
+units in ATutor. This module will be a great help to instructors as well as
+students. It enables to search articles based entered keywords. 
+An instructor can directly import units in his course. Students and 
+instructors can download .doc file of unit, view RSS file, download 
+Common Cartridge and Content Package. 
 
-OpenLearn Module for ATutor aims at developing a module for ATutor. 
+Website:
+http://atutoropenlearn.wordpress.com/
 
-Purpose:
-I like the whole idea of OpenLearn. The OpenLearn website gives free access to Open University 
-course materials. This is the place where we can find hundreds of free study units, each with a discussion forum. 
-Study independently at our own pace or join a group and use the free learning tools to work with others. 
-This is a great idea. The purpose of my project is to develop OpenLearn module for ATutor which will allow 
-ATutor to search and retrieve OpenLearn content.
+About OpenLearn:
+* OpenLearn is the UK Open University's contribution to the Open 
+Educational Resources (OER) project. It is part-funded by 
+the William and Flora Hewlett Foundation. OpenLearn is a member of the 
+OpenCourseWare Consortium (OCWC).  
+* Open Education materials make three contributions. They make new 
+knowledge available to all (not just the few who can pay for it). 
+They allow users to download, modify, translate and adapt to their 
+culture to the material to enhance its usefulness. They provide the 
+opportunity for people to work together to co-modify, co-produce, 
+test and co-produce again, retesting derivative material which generates 
+a cycle of rapid continuous improvement. Using technology Open Educational 
+Resources aim to remove access barriers to knowledge and educational 
+opportunities around the world.
+For more information: http://en.wikipedia.org/wiki/OpenLearn
 
-Deliverables:
-->	A module for ATutor
-->	Search OpenLearn for content based upon users' requests
-->	Retrieve content from OpenLearn
-->	Fill content in common cartridge or content package
-->	Use of pre available courses from OpenLearn on ATutor
-->	ATutor template module
-->	Testing
-->	Documentation
+Version:
+Beta
 
-Benefits:
-->	As OpenLearn contains a lot of courses and open learning material, it is very nice thought to use them in ATutor. 
-->	OpenLearn repository has too many of articles on variety of subjects, intelligent use of the content will make ATutor more useful.
-->	OpenLearn already provides different mechanisms to interact with its repository so it will be not be tough to interact with it from ATutor.
-->	Searching for particular topics will be made easier.
-->	Integration of OpenLearn and ATutor will add a new dimension to ATutor.
+License:
+GPL/ATutor
 
+Notes:
+This module requires cURL extension and cron support.   
+
+
+INSTALLATION
+------------
+1. Download the appropriate version of the module from the ATutor 
+modules site.
+ATutor Modules
+http://www.atutor.ca/atutor/modules.php
+
+2. Uninstall any previous version of the module. 
+
+3. Extract/Unzip the downloaded file into the mods/ directory of 
+your ATutor installation. 
+This will create a directory called ol_search_open_learn/. 
+
+4. Login to ATutor as the administrator
+
+5. Choose the Modules Tab, then choose Install Modules. 
+
+6. Select  from list of uninstalled modules, then press Install. 
+Confirm by clicking the Yes button to complete the installation.
+
+7. Now installation process starts. There are two modes of 
+installation: online and offline. In online mode(when internet 
+connection is available), installation process uses internet 
+connection to get repository file of OpenLearn. In offline mode
+(when internet connection is not available), it uses already downloaded 
+XML file. Time taken for installation depends on speed of internet 
+connection. Generally it takes a few minutes.    
+
+8. From the Module Manager select the Search OpenLearn module then 
+press Enable to make module available to users on the system.
+
+9. Now enjoy module!
+
+FEATURES:
+------------------
+Common features for students & instructors:
+
+   * Search: 
+	- Get records based on entered keywords
+   	- Apply OR/AND operator to multiple keywords:
+          When you have multiple keywords then either "AND" or "OR"
+          operator can be applied. "AND" operator extracts records that 
+          contain all of the entered terms. "OR" operator extracts 
+          records that contain one or all of the entered terms. Default
+          operation is "AND".
+        - Order by field:
+          Users may change order of displayed search results. They may 
+          change order based on title of record or date of record. If user 
+          does not change this input then default order is used.
+        - Search by field:
+          Users may change fileds which are used for searching. They may 
+          search based on title, description and keywords of units. If they 
+	  do not change input then all fields are used for searching process.
+        - Change maximum number of results displayed:
+          10 results are shown by default. This module allows to change 
+          this number. If a user wants more or less number of results to be 
+          displayed on one page then he can change this number.
+
+    * Download Content Package of the unit:
+      Users can download cp packages using first icon shown in toolbar below 
+      each search result.      
+
+    * Download Common Cartridge of the unit:
+      Users can download cc packages using second icon shown in toolbar below 
+      each search result.      
+
+    * Preview unit:
+      Users can view unit on OpenLearn's website using third icon shown in toolbar 
+      below each search result. When user clicks on this tool, a popup window 
+      appears which displays OpenLearn page of unit.
+
+    * View RSS feeds of unit:
+      Users can view RSS feeds of unit using fourth icon shown in toolbar below 
+      each search result. This tool opens a new popup window with RSS feeds in it.
+
+    * Download .doc file of the unit:
+      Users can download .doc file using fifth icon shown in toolbar below 
+      each search result. This tool opens a new popup window. It first checks whether 
+      unit provides .doc file or not. If it provides .doc file then a download link 
+      appears. Otherwise an error message is displayed.    
+
+Instructors:
+
+    * Import unit:
+      An instructor can import unit's CC package in his course. Each search result 
+      displayed on instructor's page has a button named "Import". When instructor clicks 
+      on this button, respective unit is first downloaded and then gets imported in 
+      course. When this process finishes, it displays a feedback message to him. 
+
+Administrators:
+
+    This module works on a table created using OpenLearn's repository. This 
+    repository is dynamic. To include changes from repository to ATutor's database, 
+    there are two modes: automatic update using cron and manual update. 
+
+    * Update Now:
+      This button is provided in left side of administrator panel. The text shown above this 
+      button shows when database was last updated. When administrator clicks on "Update Now"
+      button, all changes from repository are included in database. This forms manual type of 
+      update. 
+  
+    * Cron settings:
+      On right side of administrator panel, a form is displayed. First row shows URL of 
+      repository and second row shows update database interval( cron interval ) in minutes.
+      Administrator may change both or either one of the input fields. To disable automatic 
+      updates enter 0 in update database interval. Cron needs to be setup on server before 
+      automatic update process begins. For cron setup you may browse ATutor handbook or a link
+      is provided on administrator panel of this module. If cron is setup and update database
+      interval is non zero then automatic update process runs at specified interval. Default 
+      value for update database interval is 1440 minutes( 24 hours ).

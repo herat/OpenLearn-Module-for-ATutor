@@ -30,7 +30,10 @@
 $(document).ready(function() {
 	var cur_stus;//current status of a link
 	var n = 0;
-	
+
+	var openval = document.getElementById("opentip").value;
+	var closeval = document.getElementById("closetip").value;
+
  	//focus on anchor just before search results
 	$('#focus_here').focus();	
 
@@ -39,8 +42,8 @@ $(document).ready(function() {
 	$('#accordion dt a').attr('stus', '');//set stus attribute to null to indicate panel is closed
 	$('#accordion dt input').each(function(index) {
 		$(this).attr('src', 'mods/ol_search_open_learn/images/plus.gif'); //set image of '+' to all closed panels
-		$(this).attr('alt', 'Open: '+$(this).next().text()); //alt attribute is set to "open"+ title of particular result
-		$(this).attr('title', 'Open: '+$(this).next().text()); //title attribute is set to "open"+ title of particular result
+		$(this).attr('alt', openval +$(this).next().text()); //alt attribute is set to "open"+ title of particular result
+		$(this).attr('title', openval+$(this).next().text()); //title attribute is set to "open"+ title of particular result
   	});
 	       
 	//open default data
@@ -48,8 +51,8 @@ $(document).ready(function() {
 	$('#accordion dt:eq('+n+') a').attr('stus', 'active');//set stus to indicate panel is open
 	$('#accordion dt:eq('+n+') input').each(function(index) {
 		$(this).attr('src', 'mods/ol_search_open_learn/images/minus.gif'); //set image of '-' to show panel is open
-		$(this).attr('alt', 'Close: '+$(this).next().text()); //alt attribute is set to "close"+ title of first result
-		$(this).attr('title', 'Close: '+$(this).next().text()); //title attribute is set to "close"+ title of first result
+		$(this).attr('alt', closeval +$(this).next().text()); //alt attribute is set to "close"+ title of first result
+		$(this).attr('title', closeval +$(this).next().text()); //title attribute is set to "close"+ title of first result
 	});
         
     //open or close a section based on clicked <A> 
@@ -64,16 +67,16 @@ $(document).ready(function() {
 			$('#accordion dt a').attr('stus', '');
 			$('#accordion dt input').each(function(index) {
     			$(this).attr('src', 'mods/ol_search_open_learn/images/plus.gif');
-				$(this).attr('alt', 'Open: '+$(this).next().text());
-				$(this).attr('title', 'Open: '+$(this).next().text());
+				$(this).attr('alt', openval+$(this).next().text());
+				$(this).attr('title', openval+$(this).next().text());
   			});
 			
 			//then open the clicked data
 			$(this).parents('dt:first').next().slideDown();
 			$(this).attr('stus', 'active');
 			$(this).prev().attr('src', 'mods/ol_search_open_learn/images/minus.gif');
-			$(this).prev().attr('alt', 'Close: '+$(this).text());
-			$(this).prev().attr('title', 'Close: '+$(this).text());
+			$(this).prev().attr('alt', closeval+$(this).text());
+			$(this).prev().attr('title', closeval+$(this).text());
 		}
 		//Remove else part if do not want to close the current opened data
 		else
@@ -81,8 +84,8 @@ $(document).ready(function() {
 			$(this).parents('dt:first').next().slideUp();
 			$(this).attr('stus', '');
 			$(this).prev().attr('src', 'mods/ol_search_open_learn/images/plus.gif');
-			$(this).prev().attr('alt', 'Open: '+$(this).text());
-			$(this).prev().attr('title', 'Open: '+$(this).text());
+			$(this).prev().attr('alt', openval+$(this).text());
+			$(this).prev().attr('title', openval+$(this).text());
 		}
 		return false; //false is returned to prevent browser to change URL
 	});
@@ -98,16 +101,16 @@ $(document).ready(function() {
 			$('#accordion dt a').attr('stus', '');
 			$('#accordion dt input').each(function(index) {
     			$(this).attr('src', 'mods/ol_search_open_learn/images/plus.gif');
-				$(this).attr('alt', 'Open: '+$(this).next().text());
-				$(this).attr('title', 'Open: '+$(this).next().text());
+				$(this).attr('alt', openval+$(this).next().text());
+				$(this).attr('title', openval+$(this).next().text());
   			});
 			
 			//then open the clicked data
 			$(this).parents('dt:first').next().slideDown();
 			$(this).next().attr('stus', 'active');
 			$(this).attr('src', 'mods/ol_search_open_learn/images/minus.gif');
-			$(this).attr('alt', 'Close: '+$(this).next().text());
-			$(this).attr('title', 'Close: '+$(this).next().text());
+			$(this).attr('alt', closeval+$(this).next().text());
+			$(this).attr('title', closeval+$(this).next().text());
 		}
 		//Remove else part if do not want to close the current opened data
 		else
@@ -115,8 +118,8 @@ $(document).ready(function() {
 			$(this).parents('dt:first').next().slideUp();
 			$(this).next().attr('stus', '');
 			$(this).attr('src', 'mods/ol_search_open_learn/images/plus.gif');
-			$(this).attr('alt', 'Open: '+$(this).next().text());
-			$(this).attr('title', 'Open: '+$(this).next().text());
+			$(this).attr('alt', openval+$(this).next().text());
+			$(this).attr('title', openval+$(this).next().text());
 		}
 		return false; //false is returned to prevent page to change URL
 	});
