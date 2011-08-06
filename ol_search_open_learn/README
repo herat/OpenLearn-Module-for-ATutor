@@ -1,34 +1,27 @@
 MODULE DETAILS:
 ---------------
 Description:
-Search OpenLearn module allows you to search OpenLearn's wide range of 
-units in ATutor. This module will be a great help to instructors as well as
-students. It enables to search articles based entered keywords. 
-An instructor can directly import units in his course. Students and 
-instructors can download .doc file of unit, view RSS file, download 
-Common Cartridge and Content Package. 
+This module creates a link between OpenLearn and ATutor. It can be used 
+to search for open learning resources, import content from OpenLearn into 
+ATutor courses, or to preview content or download it in standard reusable 
+content packages and common cartridges.  
+	 
 
 Website:
 http://atutoropenlearn.wordpress.com/
 
 About OpenLearn:
-* OpenLearn is the UK Open University's contribution to the Open 
-Educational Resources (OER) project. It is part-funded by 
-the William and Flora Hewlett Foundation. OpenLearn is a member of the 
-OpenCourseWare Consortium (OCWC).  
-* Open Education materials make three contributions. They make new 
-knowledge available to all (not just the few who can pay for it). 
-They allow users to download, modify, translate and adapt to their 
-culture to the material to enhance its usefulness. They provide the 
-opportunity for people to work together to co-modify, co-produce, 
-test and co-produce again, retesting derivative material which generates 
-a cycle of rapid continuous improvement. Using technology Open Educational 
-Resources aim to remove access barriers to knowledge and educational 
-opportunities around the world.
+* OpenLearn gives free access to learning materials from The Open 
+  University. It was launched back in October 2006. 
+* OpenLearn's goals are free online education, open to anyone and 
+  anywhere in the world. 
+* In the first two years, OpenLearn grew to include over 8000 study hours of 
+  learning materials from Open University courses. The website continues to grow 
+  with new course materials being published regularly in LearningSpace.
 For more information: http://en.wikipedia.org/wiki/OpenLearn
 
 Version:
-Beta
+Stable
 
 License:
 GPL/ATutor
@@ -39,16 +32,14 @@ This module requires cURL extension and cron support.
 
 INSTALLATION
 ------------
-1. Download the appropriate version of the module from the ATutor 
-modules site.
-ATutor Modules
-http://www.atutor.ca/atutor/modules.php
+1. Download the appropriate version of the module from the module's site.
+http://atutoropenlearn.wordpress.com/
 
 2. Uninstall any previous version of the module. 
 
 3. Extract/Unzip the downloaded file into the mods/ directory of 
 your ATutor installation. 
-This will create a directory called ol_search_open_learn/. 
+This will create a directory called ol_search_open_learn. 
 
 4. Login to ATutor as the administrator
 
@@ -57,18 +48,15 @@ This will create a directory called ol_search_open_learn/.
 6. Select  from list of uninstalled modules, then press Install. 
 Confirm by clicking the Yes button to complete the installation.
 
-7. Now installation process starts. There are two modes of 
-installation: online and offline. In online mode(when internet 
-connection is available), installation process uses internet 
-connection to get repository file of OpenLearn. In offline mode
-(when internet connection is not available), it uses already downloaded 
-XML file. Time taken for installation depends on speed of internet 
-connection. Generally it takes a few minutes.    
+7. There are two modes of installation: either online or offline. 
+In online mode(when internet connection is available), installation process 
+uses internet connection to get repository file from OpenLearn. 
+In offline mode (when internet connection is not available), it uses already 
+downloaded repository file. Installation process takes a few minutes.    
 
 8. From the Module Manager select the Search OpenLearn module then 
 press Enable to make module available to users on the system.
 
-9. Now enjoy module!
 
 FEATURES:
 ------------------
@@ -81,26 +69,26 @@ Common features for students & instructors:
           operator can be applied. "AND" operator extracts records that 
           contain all of the entered terms. "OR" operator extracts 
           records that contain one or all of the entered terms. Default
-          operation is "AND".
+          operator is "AND".
         - Order by field:
           Users may change order of displayed search results. They may 
           change order based on title of record or date of record. If user 
           does not change this input then default order is used.
         - Search by field:
           Users may change fileds which are used for searching. They may 
-          search based on title, description and keywords of units. If they 
-	  do not change input then all fields are used for searching process.
+          search using title, description and keywords of units. If they 
+	  do not change input then all fields are used for searching.
         - Change maximum number of results displayed:
           10 results are shown by default. This module allows to change 
           this number. If a user wants more or less number of results to be 
           displayed on one page then he can change this number.
 
     * Download Content Package of the unit:
-      Users can download cp packages using first icon shown in toolbar below 
+      Users can download content package using first icon shown in toolbar below 
       each search result.      
 
     * Download Common Cartridge of the unit:
-      Users can download cc packages using second icon shown in toolbar below 
+      Users can download common cartridge using second icon shown in toolbar below 
       each search result.      
 
     * Preview unit:
@@ -110,7 +98,7 @@ Common features for students & instructors:
 
     * View RSS feeds of unit:
       Users can view RSS feeds of unit using fourth icon shown in toolbar below 
-      each search result. This tool opens a new popup window with RSS feeds in it.
+      each search result. This tool opens a new popup window.
 
     * Download .doc file of the unit:
       Users can download .doc file using fifth icon shown in toolbar below 
@@ -121,24 +109,24 @@ Common features for students & instructors:
 Instructors:
 
     * Import unit:
-      An instructor can import unit's CC package in his course. Each search result 
-      displayed on instructor's page has a button named "Import". When instructor clicks 
-      on this button, respective unit is first downloaded and then gets imported in 
-      course. When this process finishes, it displays a feedback message to him. 
+      An instructor can import unit's common cartridge in his course. Each search result 
+      on instructor's page has a button called "Import". When instructor clicks 
+      this button, respective common cartridge file is first downloaded and then gets 
+      imported in course. When this process finishes, a feedback message is displayed. 
 
 Administrators:
 
     This module works on a table created using OpenLearn's repository. This 
-    repository is dynamic. To include changes from repository to ATutor's database, 
-    there are two modes: automatic update using cron and manual update. 
+    repository is dynamic. To include changes in ATutor's database, there are two 
+    methods: automatic update using crontab and manual update using administrator panel. 
 
-    * Update Now:
-      This button is provided in left side of administrator panel. The text shown above this 
-      button shows when database was last updated. When administrator clicks on "Update Now"
-      button, all changes from repository are included in database. This forms manual type of 
-      update. 
+    * Administrator Panel:
+      "Update Now" button is provided in left side of administrator panel. The text shown 
+      above it shows when database was last updated. When administrator clicks 
+      this button, all changes from repository are included in database. This method forms 
+      manual update. 
   
-    * Cron settings:
+    * Crontab:
       On right side of administrator panel, a form is displayed. First row shows URL of 
       repository and second row shows update database interval( cron interval ) in minutes.
       Administrator may change both or either one of the input fields. To disable automatic 
@@ -146,4 +134,4 @@ Administrators:
       automatic update process begins. For cron setup you may browse ATutor handbook or a link
       is provided on administrator panel of this module. If cron is setup and update database
       interval is non zero then automatic update process runs at specified interval. Default 
-      value for update database interval is 1440 minutes( 24 hours ).
+      value for update database interval is 1440 minutes( once per day ).

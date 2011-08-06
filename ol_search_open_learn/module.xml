@@ -15,6 +15,6 @@
         <version>1.0</version> 
         <date>2011-08-22</date> 
         <state>Stable</state> 
-        <notes></notes> 
+        <notes>This module requires cURL extension and cron support.</notes> 
     </release> 
 </module>
