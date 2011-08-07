@@ -46,13 +46,17 @@
 			while ($resumption != '') {
 				if ($resumption == 'dummy') {
 					$xml->open($urlforrepo . "&from=" . $date . "T00:00:00Z");
+					$resumption = '';
 				} 
 				else {
 					$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&resumptionToken=' . $resumption);
 				}
 				//main logic starts
 				while ($xml->read()) {
-	
+					if ($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'error') {
+						//error in parsing
+						$resumption = '';
+					}
 					if ($xml->nodeType == XMLReader::ELEMENT && $xml->localName == 'record') {
 						//starting of a new record
 						$member = array();
