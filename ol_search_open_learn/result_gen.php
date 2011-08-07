@@ -19,7 +19,7 @@
 	require (AT_INCLUDE_PATH . 'vitals.inc.php');
 	$_custom_css = $_base_path . 'mods/ol_search_open_learn/module.css'; // use a custom stylesheet
 	require (AT_INCLUDE_PATH . 'header.inc.php');
-	
+	define('SEP1','&amp;');
 	require ('search.class.php');
 	// create object of search class
 	$obj = new Search();
@@ -100,11 +100,15 @@
         </tr>
         <tr>
             <td>
-                <label for="bool"><?php echo _AT('ol_bool'); ?>:</label>
+                <?php echo _AT('ol_bool'); ?>:
             </td>
             <td>
-                <input type="radio" name="b" id="bool" value="1" <?php if ($bool == 1) echo "checked=\"checked\""; ?> /><?php echo _AT('ol_or'); ?>
-                <input type="radio" name="b" id="bool" value="2" <?php if ($bool == 2) echo "checked=\"checked\""; ?> /><?php echo _AT('ol_and'); ?>
+                <fieldset id="toc">
+                <input type="radio" name="b" id="bool" value="1" <?php if ($bool == 1) echo "checked=\"checked\""; ?> />
+                <label for="bool"><?php echo _AT('ol_or'); ?></label>
+                <input type="radio" name="b" id="bool1" value="2" <?php if ($bool == 2) echo "checked=\"checked\""; ?> />
+		<label for="bool1"><?php echo _AT('ol_and'); ?></label>
+		</fieldset>
             </td>
         </tr>
         <tr>
@@ -236,20 +240,20 @@
 	if (is_array($rows) && count($rows) > 0) {
 	   //paginator
 	   if ($maxResults1 == 0 && $orderby == 1) {
-			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b']. SEP . "sf=" . $_GET['sf'], $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b']. SEP1 . "sf=" . $_GET['sf'], $maxResults);
 	   } 
 	   else if ($orderby == 1 && $maxResults1 > 0) {
-		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "max=" . intval($_GET['max']), $maxResults);
+		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b'] . SEP1 . "sf=" . $_GET['sf']. SEP1 . "max=" . intval($_GET['max']), $maxResults);
 	   } 
 	   else if ($maxResults1 == 0 && $orderby > 1) {
-		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
+		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b'] . SEP1 . "sf=" . $_GET['sf']. SEP1 . "orderby=" . intval($_GET['orderby']), $maxResults);
 	   } 
 	   else {
-		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
+		    print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b'] . SEP1 . "sf=" . $_GET['sf']. SEP1 . "orderby=" . intval($_GET['orderby']) . SEP1 . "max=" . intval($_GET['max']), $maxResults);
 	   }	
 	   $i = $start + 1;
 	   //starting of accordion
-       echo "<a href='#' id='focus_here'></a>";
+       echo "<a href='#' id='focus_here' title='dummy-link'></a>";
 	   echo "<div id='container'>";
 	   echo "<dl id=\"accordion\">";
 	   foreach ($rows as $row) {
@@ -272,10 +276,10 @@
 		   echo "<dd>";
 	
 	
-		   echo "<p><b>"._AT('ol_descri')."</b><br/>" . stripslashes($row['description']) . "</p>";
-		   echo "<p><b>"._AT('ol_keywords')."</b><br/>" . stripslashes($row['keywords']) . "</p>";
+		   echo "<p><strong>"._AT('ol_descri')."</strong><br/>" . stripslashes($row['description']) . "</p>";
+		   echo "<p><strong>"._AT('ol_keywords')."</strong><br/>" . stripslashes($row['keywords']) . "</p>";
 		   $datentime = datestamp(stripslashes($row['datestamp']));
-		   echo "<p><b>"._AT('ol_last_modi')."</b><br/>" . $datentime[0]."  " . _AT('ol_at') ."  ". $datentime[1] . "</p>";
+		   echo "<p><strong>"._AT('ol_last_modi')."</strong><br/>" . $datentime[0]."  " . _AT('ol_at') ."  ". $datentime[1] . "</p>";
 		   echo "<br/>";
 		   $i++;
 		   
@@ -286,7 +290,7 @@
 		   //link for RSS of unit
 		   $rss = "<a href=\"javascript: void(popup('" . parseForNumber($row['cc'], $row['entry']) . "','RSS',screen.width*0.45,screen.height*0.45));\"><img src='mods/ol_search_open_learn/images/rss.gif' alt='"._AT('ol_tool_4')."' title='"._AT('ol_tool_4')."' border='0' /></a>";
 		   //link for .doc file of unit
-		   $doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" ><img src='mods/ol_search_open_learn/images/word.gif' alt='"._AT('ol_tool_5')."' title='"._AT('ol_tool_5')."' border='0' /></a>";
+		   $doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&amp;entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" ><img src='mods/ol_search_open_learn/images/word.gif' alt='"._AT('ol_tool_5')."' title='"._AT('ol_tool_5')."' border='0' /></a>";
             
 	
 		   echo "<div align='left' class='menuitems'>".$imgs . $prevw . $rss . $doc_file. "</div><br/>";
@@ -297,16 +301,16 @@
 	   echo "</div>";
 	   //paginator
 	   if ($maxResults1 == 0 && $orderby == 1) {
-			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b']. SEP . "sf=" . $_GET['sf'], $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b']. SEP1 . "sf=" . $_GET['sf'], $maxResults);
 	   } 
 	   else if ($orderby == 1 && $maxResults1 > 0) {
-			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "max=" . intval($_GET['max']), $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b'] . SEP1 . "sf=" . $_GET['sf']. SEP1 . "max=" . intval($_GET['max']), $maxResults);
 	   } 
 	   else if ($maxResults1 == 0 && $orderby > 1) {
-			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']), $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b'] . SEP1 . "sf=" . $_GET['sf']. SEP1 . "orderby=" . intval($_GET['orderby']), $maxResults);
 	   } 
 	   else {
-			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP . "b=" . $_GET['b'] . SEP . "sf=" . $_GET['sf']. SEP . "orderby=" . intval($_GET['orderby']) . SEP . "max=" . intval($_GET['max']), $maxResults);
+			print_paginator($start1, $total_num, "q=" . $urlforkey . SEP1 . "b=" . $_GET['b'] . SEP1 . "sf=" . $_GET['sf']. SEP1 . "orderby=" . intval($_GET['orderby']) . SEP1 . "max=" . intval($_GET['max']), $maxResults);
 	   }
 	} 
 	else {
@@ -314,7 +318,7 @@
 	}
 ?>
 <?php
-	require (AT_INCLUDE_PATH . 'footer.inc.php');
+	
 	/**
 	 * Get date from stored datestamp
 	 * @param string datestamp of unit
@@ -358,13 +362,13 @@
 <script language="javascript" type="text/javascript" src="jscripts/infusion/lib/jquery/core/js/jquery.js"></script>
 <script language="javascript" type="text/javascript" src="mods/ol_search_open_learn/js/accordion.js"></script>
 
-<script>
+<script type="text/javascript">
 
     function changeMax() {
 		var e = document.getElementById("maxResults");
 		var ele= e.options[e.selectedIndex].value;
 	
-		window.location = "<?php echo $_SERVER[PHP_SELF] . "?q=" . $qry . "&max="; ?>"+ele;
+		window.location = "<?php echo $_SERVER[PHP_SELF] . "?q=" . $qry . "&amp;max="; ?>"+ele;
 
     }
 	//open popup window
@@ -397,10 +401,4 @@
 		}
 	}
 </script>
-<style type="text/css">
-	div.menuitems{
-		float:left;
-		margin-top:-1.2em;
-		border:1px solid #cccccc;
-	}
-</style>
+<?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>

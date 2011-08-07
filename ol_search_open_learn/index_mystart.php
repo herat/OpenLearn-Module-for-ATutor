@@ -35,20 +35,20 @@
         </tr>
         <tr>
             <td>
-                <label for="bool">
                 <?php
                 /**
                  * Display option for selecting boolean operation for
                  * multiple keywords : "And"/"Or"
                  */
                 echo _AT('ol_bool'); ?>:
-                </label>
             </td>
             <td>
+		<fieldset id="toc">
                 <input type="radio" name="b" id="bool" value="1" />
-                <?php echo _AT('ol_or'); ?>
+                <label for="bool"><?php echo _AT('ol_or'); ?></label>
                 <input type="radio" name="b" id="bool1" value="2" checked="checked" />
-                <?php echo _AT('ol_and'); ?>
+                <label for="bool1"><?php echo _AT('ol_and'); ?></label>
+		</fieldset>
             </td>
         </tr>
         <tr>
@@ -98,7 +98,7 @@
     </table>
 </form>
 </div>
-<?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
+
 <script type="text/javascript">
     document.getElementById('key').focus();
 	/**
@@ -125,3 +125,4 @@
 		}
 	}
 </script>
+<?php require (AT_INCLUDE_PATH . 'footer.inc.php'); ?>
