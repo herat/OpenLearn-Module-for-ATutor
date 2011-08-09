@@ -106,6 +106,10 @@ Common features for students & instructors:
       unit provides .doc file or not. If it provides .doc file then a download link 
       appears. Otherwise an error message is displayed.    
 
+    * Browse all units:
+      If a user does not enter keyword in textbox of search form then all units 
+      are displayed in result. 
+
 Instructors:
 
     * Import unit:
