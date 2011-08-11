@@ -273,6 +273,7 @@
 			echo "<dt> <input class=\"img-ol\" src=\"\" alt=\"\" title=\"\" type=\"image\" /> <a href='#' >" . stripslashes($row['title']) . " </a></dt>";
 	
 			echo "<dd>";
+			echo "<br/>";
 			echo "<form name=\"form1\" method=\"post\" action=\"mods/ol_search_open_learn/downup.php\">";
 			echo "<input type=\"hidden\" name=\"url\" id=\"to_url".$i."\" value='" . trim($row['cc']) . "' />";
 			echo "<input type=\"hidden\" name=\"allow_test_export\" value='1' />";

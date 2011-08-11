@@ -27,6 +27,12 @@
 	//$link_limit = 3;		// Number of links to be displayed on "detail view" box
 	
 	$list[0] = _AT('ol_mod_def');
+	/*$list[] = ' <form id="search_ol1" name="search_ol1" method="get" action="../mods/ol_search_open_learn/result_gen.php">
+	<input type="text" name="q" id="key" />
+	<br/>
+	<br/>
+	<input type="submit" value="'. _AT('ol_search_btn') .'" class="button" />
+	</form> ';*/
 	return $list;
 	
 	/*$sql = "SELECT id, value FROM ".TABLE_PREFIX."OL_SEARCH_OPEN_LEARN WHERE course_id=".$_SESSION[course_id].

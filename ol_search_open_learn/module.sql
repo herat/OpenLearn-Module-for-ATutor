@@ -27,6 +27,8 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_change_btn','Change',NOW
 INSERT INTO `language_text` VALUES ('en', '_module','ol_import_btn','Import',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_import_unit','Import Unit',NOW(),'');
 
+INSERT INTO `language_text` VALUES ('en', '_module','ol_dwnld','Download',NOW(),'');
+
 INSERT INTO `language_text` VALUES ('en', '_module','ol_open_tip','Open: ',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_close_tip','Close: ',NOW(),'');
 
@@ -67,9 +69,9 @@ INSERT INTO `language_text` VALUES ('en', '_module','ol_not_doc','Unit does not 
 INSERT INTO `language_text` VALUES ('en', '_module','ol_doc_avail','The unit is available for download:',NOW(),'');
 INSERT INTO `language_text` VALUES ('en', '_module','ol_mod_def','This module allows you to search the OpenLearn repository, and find Open Education Resources (OERs) on a wide range of topics. ',NOW(),'');
 
-INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_main','This is the admin panel of Search OpenLearn module, where you can change the settings for the module. The two panels are described below:',NOW(),'');
-INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_lpanel','The panel on left side shows when the local ATutor database was last updated. To manually update the database to include the most recent changes on OpenLearn, then click the \'Update Now\' button.',NOW(),'');
-INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_rpanel','The panel on right side shows parameters for the module. On first line you can modify the OpenLearn repository URL. On second line you can modify how often the local ATutor database is automatically updated with new information from OpenLearn. The default time between updates is set to 1440 minutes (once per day).  If you want to disable automatic updates then enter 0 in textbox. For automatic updates you need to setup cron. For more information see the  <a href=\'documentation/admin/cron_setup.php?\' onclick=\"poptastic(\'documentation/admin/cron_setup.php?); return false;\" target=\'_new\'> Cron Setup </a> page in the Administrator Handbook',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_main','This is admin panel of Search OpenLearn module, where you can change settings for the module. The two panels are described below:',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_lpanel','The panel on the left side shows when the local ATutor database was last updated. To manually update the database to include the most recent changes on OpenLearn, then click the \'Update Now\' button.',NOW(),'');
+INSERT INTO `language_text` VALUES ('en', '_module','ol_admin_rpanel','The panel on the right side shows parameters for the module. On the first line you can modify the OpenLearn repository URL. On the second line you can modify how often the local ATutor database is automatically updated with new information from OpenLearn. The default time between updates is set to 1440 minutes (once per day).  If you want to disable automatic updates then enter 0 in the textbox. For automatic updates you need to setup cron. For more information see the  <a href=\'documentation/admin/cron_setup.php?\' onclick=\"poptastic(\'documentation/admin/cron_setup.php?); return false;\" target=\'_new\'> Cron Setup </a> page in the Administrator Handbook',NOW(),'');
 
 
 #adding feedback messages

@@ -86,7 +86,7 @@
 	}
 	//else display option for downloading .doc file
 	else{
-		echo "<h3>"._AT('ol_doc_avail')." <a href='".$url."'>Download</a></h3>";
+		echo "<h3>"._AT('ol_doc_avail')." <a href='".$url."'>"._AT('ol_dwnld')."</a></h3>";
 	}
 		
 ?>

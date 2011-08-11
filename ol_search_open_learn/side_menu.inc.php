@@ -21,7 +21,12 @@
 	global $savant;
 ?>
 
-<a href= "<?php  echo AT_BASE_HREF; ?>mods/ol_search_open_learn/index.php"> <?php echo _AT('ol_search_open_learn'); ?> </a>
+<form id="search_ol" name="search_ol" method="get" action="../mods/ol_search_open_learn/result_gen.php">
+	<input type="text" name="q" id="key" />
+	<br/>
+	<br/>
+	<input type="submit" value="<?php echo _AT('ol_search_btn'); ?>" class="button" />
+</form>
 
 <?php
 	$savant->assign('dropdown_contents', ob_get_contents());
