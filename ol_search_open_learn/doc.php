@@ -48,12 +48,12 @@
 	 * @param string Identifier
 	 * @return mixed false on failure
 	 */
-	function getURL( $id ){
+	function getURL( $id, $configurl ){
 		//create object of DOMDocument class
 		$dom = new DOMDocument();
 		$dom->preserveWhiteSpace = false;
 		//load HTML page of "Download Unit"
-		@$dom->loadHTMLFile("http://openlearn.open.ac.uk/blocks/formats/download_unit.php?id=".$id);
+		@$dom->loadHTMLFile($configurl.$id);
 		//find all <a> tag in HTML
 		$members = $dom->getElementsByTagName('a');
 		//iterate through all <a> to find that <a> which has URL of .doc file
@@ -78,7 +78,7 @@
 	//echo $entry."<br/>";
 	$id = getId($key,$entry);
 	//echo $id."<br/>";
-	$url = getURL($id);
+	$url = getURL($id,$_config['ol_doc_url']);
 	//echo $url."<br/>";
 	//if $url is false then unit does not provide .doc file
 	if( $url === false ){

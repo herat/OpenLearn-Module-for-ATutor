@@ -21,7 +21,7 @@
 	require('update.class.php');
 	//Update database using Update class
 	$obj = new Update();
-	$obj->parse($_config['ol_last_updation'], trim($_config['ol_url']));
+	$obj->parse($_config['ol_last_updation'], trim($_config['ol_url']), $_config['ol_base_url']);
 	//redirect to previous page
 	header('Location: index_admin.php');
 ?>

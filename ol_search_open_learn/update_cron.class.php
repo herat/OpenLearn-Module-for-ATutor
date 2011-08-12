@@ -30,7 +30,7 @@
 		  * @param string last modified date
 		  * @param string URL of OL repository
 		  */
-		function parse($date, $urlforrepo,$db,$prefix) {
+		function parse($date, $urlforrepo,$db,$prefix,$baseurl) {
 			//create object of class XMLReader for reading XML file
 			$xml = new XMLReader();
 			//Parsing may take a few minutes because OL repository is quite large.
@@ -48,7 +48,7 @@
 					$resumption = '';
 				} 
 				else {
-					$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&resumptionToken=' . $resumption);
+					$xml->open($baseurl.'verb=ListRecords&resumptionToken=' . $resumption);
 				}
 				//main logic starts
 				while ($xml->read()) {

@@ -35,8 +35,12 @@
 		$qry = "SELECT * FROM ".TABLE_PREFIX."config WHERE name='ol_url'";
 		$r2 = mysql_query($qry,$db_handle);
 		$res2 = mysql_fetch_assoc($r2);
+		
+		$qry = "SELECT * FROM ".TABLE_PREFIX."config WHERE name='ol_base_url'";
+		$r3 = mysql_query($qry,$db_handle);
+		$res3 = mysql_fetch_assoc($r3);
 				
-		$obj->parse($res1['value'], $res2['value'],$db_handle,TABLE_PREFIX);
+		$obj->parse($res1['value'], $res2['value'],$db_handle,TABLE_PREFIX,$res3['value']);
 		
 	}
 

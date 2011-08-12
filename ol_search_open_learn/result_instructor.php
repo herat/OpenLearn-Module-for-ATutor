@@ -302,7 +302,7 @@
 			//link for popup window of unit
 			$prevw = "<a href=\"javascript: void(popup('" . $row['website'] . "','Preview',screen.width*0.45,screen.height*0.45));\" ><img src='mods/ol_search_open_learn/images/popup.gif' alt='"._AT('ol_tool_3')."' title='"._AT('ol_tool_3')."' border='0' /> </a>";
 			//link for RSS of unit
-			$rss = "<a href=\"javascript: void(popup('" . parseForNumber($row['cc'], $row['entry']) . "','RSS',screen.width*0.45,screen.height*0.45));\"><img src='mods/ol_search_open_learn/images/rss.gif' alt='"._AT('ol_tool_4')."' title='"._AT('ol_tool_4')."' border='0' /></a>";
+			$rss = "<a href=\"javascript: void(popup('" . parseForNumber($row['cc'], $row['entry'],$_config['ol_rss_url']) . "','RSS',screen.width*0.45,screen.height*0.45));\"><img src='mods/ol_search_open_learn/images/rss.gif' alt='"._AT('ol_tool_4')."' title='"._AT('ol_tool_4')."' border='0' /></a>";
 			//link for .doc file of unit
 			$doc_file = "<a href=\"javascript: void(popup('".AT_BASE_HREF."mods/ol_search_open_learn/doc.php?cc=".$row['cc']."&amp;entry=".$row['entry']."','Download',screen.width*0.30,screen.height*0.20));\" ><img src='mods/ol_search_open_learn/images/word.gif' alt='"._AT('ol_tool_5')."' title='"._AT('ol_tool_5')."' border='0' /></a>";
 	
@@ -358,7 +358,7 @@
 	 * @param string Entry of article
 	 * @return string Identifier of article
 	 */
-    function parseForNumber($key, $entry) {
+    function parseForNumber($key, $entry,$configurl) {
         $posofeq = strpos($key, "=");
         $key1 = substr($key, $posofeq + 2);
         //echo $key1."<br/>";
@@ -368,7 +368,7 @@
         $posofsl2 = strpos($key2, "/");
         $key3 = substr($key2, 0, $posofsl2);
 
-        $url = "http://openlearn.open.ac.uk/rss/file.php/stdfeed/" . $key3 . "/" . $entry . "_rss.xml";
+        $url = $configurl . $key3 . "/" . $entry . "_rss.xml";
         //echo $key3;
         return $url;
     }
