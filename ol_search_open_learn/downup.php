@@ -41,8 +41,9 @@
 	$pagh = trim($_POST['p']);
 	$boolnh = trim($_POST['b']);
 	$sf = trim($_POST['sf']);
+	$oby = trim($_POST['orderby']);
 	$_SESSION['n_val'] = trim($_POST['n_val']); 
-	$redirectUrl = AT_BASE_HREF. "mods/ol_search_open_learn/result_instructor.php?q=". $q."&max=".$maxResults."&p=".$pagh."&b=".$boolnh."&sf=".$sf;
+	$redirectUrl = AT_BASE_HREF. "mods/ol_search_open_learn/result_instructor.php?q=". $q."&max=".$maxResults."&p=".$pagh."&b=".$boolnh."&sf=".$sf."&orderby=".$oby;
 	
 	/* make sure we own this course that we're exporting */
 	authenticate(AT_PRIV_CONTENT);

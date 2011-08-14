@@ -284,6 +284,7 @@
 			echo "<input type=\"hidden\" name=\"max\" value=' " . $_GET['max'] . " ' />";
 			echo "<input type=\"hidden\" name=\"sf\" value=' " . $_GET['sf'] . " ' />";
 			echo "<input type=\"hidden\" name=\"n_val\" value='".$iter."'/>";
+			echo "<input type=\"hidden\" name=\"orderby\" value='".$orderby."'/>";
 			echo $importbutton;
 			echo "</form>";
 	
