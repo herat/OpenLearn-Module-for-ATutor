@@ -88,6 +88,7 @@
 				if ($resumption == 'dummy' && $connS) {
 					//if this is first iteration then use following URL
 					$xml->open('http://openlearn.open.ac.uk/local/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_ilox');
+					$resumption = '';
 				} 
 				else if ($connS) {
 					//if this is not first URL then use resumption token of last page

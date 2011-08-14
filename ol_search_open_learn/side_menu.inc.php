@@ -21,7 +21,7 @@
 	global $savant;
 ?>
 
-<form id="search_ol" name="search_ol" method="get" action="../mods/ol_search_open_learn/result_gen.php">
+<form id="search_ol" name="search_ol" method="get" action="<?php echo AT_BASE_HREF; ?>mods/ol_search_open_learn/result_gen.php">
 	<input type="text" name="q" id="key" />
 	<br/>
 	<br/>
