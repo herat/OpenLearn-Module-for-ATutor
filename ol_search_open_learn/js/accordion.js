@@ -11,7 +11,8 @@
 /****************************************************************/
 
 /**
- * This javascript file uses jQuery framework. It will format data into an accordion.
+ * This javascript file uses jQuery framework. It will format data into 
+ * an accordion.
  * It uses following html format:
  * <dl id="accordion">
  *   <dt> <input src="" title="" alt="" /><a> </a></dt>
@@ -22,8 +23,8 @@
  /**
   * Initialize Accordion
   *
-  * This function sets accordion when page is loaded. It opens first content panel 
-  * and hides all other content panels.
+  * This function sets accordion when page is loaded. It opens first 
+  * content panel and hides all other content panels.
   * 
   */
 

@@ -107,8 +107,8 @@
                 <input type="radio" name="b" id="bool" value="1" <?php if ($bool == 1) echo "checked=\"checked\""; ?> />
                 <label for="bool"><?php echo _AT('ol_or'); ?></label>
                 <input type="radio" name="b" id="bool1" value="2" <?php if ($bool == 2) echo "checked=\"checked\""; ?> />
-		<label for="bool1"><?php echo _AT('ol_and'); ?></label>
-		</fieldset>
+				<label for="bool1"><?php echo _AT('ol_and'); ?></label>
+				</fieldset>
             </td>
         </tr>
         <tr>
@@ -140,7 +140,7 @@
 <br/>
 
 <?php
-//options for configuring search results
+//options for configuring number of search results
    if ($total_num > 0) {
        echo "<table width='100%'>";
        echo "<tr>";
