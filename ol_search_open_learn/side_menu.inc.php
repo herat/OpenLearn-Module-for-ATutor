@@ -22,7 +22,7 @@
 ?>
 
 <form id="search_ol" name="search_ol" method="get" action="<?php echo AT_BASE_HREF; ?>mods/ol_search_open_learn/result_gen.php">
-	<input type="text" name="q" id="key" />
+	<input type="text" name="q" id="key_query" />
 	<br/>
 	<br/>
 	<input type="submit" value="<?php echo _AT('ol_search_btn'); ?>" class="button" />

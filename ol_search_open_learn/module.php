@@ -38,7 +38,7 @@
 	/* * *****
 	 * create a side menu box/stack.
 	 */
-	$this->_stacks['ol_search_open_learn'] = array('title_var' => 'ol_search_open_learn', 'file' => 'mods/ol_search_open_learn/side_menu.inc.php');
+	$this->_stacks['ol_search_open_learn'] = array('title_var' => 'ol_search_open_learn', 'file' => AT_INCLUDE_PATH.'../mods/ol_search_open_learn/side_menu.inc.php');
 		
 	/* * *****
 	 * create optional sublinks for module "detail view" on course home page
