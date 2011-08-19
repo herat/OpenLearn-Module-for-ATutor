@@ -20,7 +20,7 @@
 	function ol_search_open_learn_cron() {
 		
 		require('update_cron.class.php');
-				
+		require('getDate.php');		
 		//$db_handle = mysql_connect(DB_HOST.":".DB_PORT, DB_USER, DB_PASSWORD);
 		//$db_found = mysql_select_db(DB_NAME, $db_handle);
 		global $db;
@@ -39,7 +39,7 @@
 		$qry = "SELECT * FROM ".TABLE_PREFIX."config WHERE name='ol_base_url'";
 		$r3 = mysql_query($qry,$db_handle);
 		$res3 = mysql_fetch_assoc($r3);
-				
+		
 		$obj->parse($res1['value'], $res2['value'],$db_handle,TABLE_PREFIX,$res3['value']);
 		
 	}

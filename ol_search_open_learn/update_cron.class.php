@@ -202,7 +202,8 @@
 				$feedback = array('OL_DB_UPDATED');
 				//$msg->addFeedback($feedback);
 				mysql_query($qry, $db);
-				$qry = "UPDATE " . $prefix . "config SET value='".date('H:i:s')."' WHERE name='ol_last_time'";
+				
+				$qry = "UPDATE " . $prefix . "config SET value='".time()."' WHERE name='ol_last_time'";
 				mysql_query($qry, $db);
 			} 
 			else {

@@ -27,7 +27,7 @@ License:
 GPL/ATutor
 
 Notes:
-This module requires cURL extension and cron support.   
+This module requires cURL extension.   
 
 
 INSTALLATION

@@ -221,7 +221,8 @@
 			}
 			mysql_query($qry, $db);
 			//insert current time of installation in database
-			$qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_time','".date('H:i:s')."')";
+			
+			$qry = "INSERT INTO ".TABLE_PREFIX."config VALUES ('ol_last_time','".time()."')";
 			mysql_query($qry, $db);
 		}
 	
