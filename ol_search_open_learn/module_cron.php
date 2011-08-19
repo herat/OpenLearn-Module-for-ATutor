@@ -20,7 +20,7 @@
 	function ol_search_open_learn_cron() {
 		
 		require('update_cron.class.php');
-		require('getDate.php');		
+		
 		//$db_handle = mysql_connect(DB_HOST.":".DB_PORT, DB_USER, DB_PASSWORD);
 		//$db_found = mysql_select_db(DB_NAME, $db_handle);
 		global $db;
