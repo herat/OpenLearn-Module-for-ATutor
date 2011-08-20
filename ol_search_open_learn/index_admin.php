@@ -53,7 +53,11 @@
            <div class="row">
 				<?php echo _AT('ol_last_update'); ?>:
                 <?php echo $_config['ol_last_updation']; echo "  "._AT('ol_at'); ?>
-                <?php echo AT_date(_AT('server_date_format'), $_config['ol_last_time'], AT_DATE_UNIX_TIMESTAMP); ?>
+                <?php 
+					$fulldate = AT_date(_AT('server_date_format'), $_config['ol_last_time'], AT_DATE_UNIX_TIMESTAMP); 
+					$pos_of_space = strpos($fulldate," ");
+					echo substr($fulldate,$pos_of_space+1);
+				?>
             </div>
             <div class="row">
                 <form name="updateoldb" action="mods/ol_search_open_learn/update_admin.php" method="get">
