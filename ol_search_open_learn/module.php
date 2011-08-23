@@ -97,7 +97,7 @@
 	$this->_pages['mods/ol_search_open_learn/result_gen.php']['title_var'] = 'search_results';
 	$this->_pages['mods/ol_search_open_learn/result_gen.php']['parent'] = 'mods/ol_search_open_learn/index.php';
 	
-	$this->_content_tools[] = array("id" => "ol_search_open_learn_tool",
+	/*$this->_content_tools[] = array("id" => "ol_search_open_learn_tool",
 		"class" => "fl-col clickable",
 		"src" => AT_BASE_HREF . "mods/ol_search_open_learn/images/ol_logo.jpg",
 		"title" => _AT('ol_search_open_learn_tool'),
@@ -108,5 +108,5 @@
 	
 	function ol_search_open_learn_get_group_url($group_id) {
 		return 'mods/ol_search_open_learn/index.php';
-	}
+	}*/
 ?>
