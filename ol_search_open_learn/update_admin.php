@@ -15,13 +15,19 @@
 	 * This php file is used for updating database. It will update database and
 	 * redirect admin back to his home page.
 	 */
-	define('AT_INCLUDE_PATH', '../../include/');
-	require (AT_INCLUDE_PATH . 'vitals.inc.php');
-	
-	require('update.class.php');
-	//Update database using Update class
-	$obj = new Update();
-	$obj->parse($_config['ol_last_updation'], trim($_config['ol_url']), $_config['ol_base_url']);
+	if($_config['ol_last_updation'] == ''){
+		// if the database is not populated yet
+		// use the default oai2.php.xml file 
+		require('parse.class.php');
+		$obj = new Parser();
+		$obj->parse();
+	}else{ 
+		// Update database using Update class
+		// if content already exists
+		require('update.class.php');
+		$obj = new Update();
+		$obj->parse($_config['ol_last_updation'], trim($_config['ol_url']), $_config['ol_base_url']);
+	}
 	//redirect to previous page
-	header('Location: index_admin.php');
+	header('Location: index_admin.php');');
 ?>
